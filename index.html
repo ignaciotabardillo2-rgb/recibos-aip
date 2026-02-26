@@ -107,7 +107,7 @@
 
         <label>Celular</label><input id="celular" placeholder="Ej. 6421 000 000" />
 
-        <label>Concepto</label><textarea id="concepto" placeholder="Ej. Asesoría / Trámite / Modalidad 40"></textarea>
+        
 
         <label>Cantidad ($)</label>
         <input id="cantidad" inputmode="numeric" placeholder="Ej. 1200" oninput="autoLetra()" />
@@ -320,7 +320,7 @@
       ciudad:"ciudad",
       direccion:"dirección",
       celular:"celular",
-      concepto:"concepto",
+      
       cantidad:"monto",
       conceptoPago:"concepto de pago"
     };
@@ -328,7 +328,7 @@
   }
 
   function limpiar(){
-    ["recibiDe","ciudad","direccion","celular","concepto","cantidad","conceptoPago"].forEach(id=>document.getElementById(id).value="");
+    ["recibiDe","ciudad","direccion","celular",cantidad","conceptoPago"].forEach(id=>document.getElementById(id).value="");
     document.getElementById("metodoPago").value="Efectivo";
     document.getElementById("importeLetra").value="";
     setStatus("Listo.","muted");
@@ -353,7 +353,7 @@
         ciudad: v("ciudad"),
         direccion: v("direccion"),
         celular: v("celular"),
-        concepto: v("concepto"),
+        
         cantidad: String(monto),
         importeLetra: letra,
         conceptoPago: v("conceptoPago"),
