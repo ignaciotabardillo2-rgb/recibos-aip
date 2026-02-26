@@ -213,6 +213,13 @@
   function saveReceipts(arr){localStorage.setItem(STORE_KEY,JSON.stringify(arr))}
 
   function parseMonto(raw){
+  const s = String(raw ?? "").trim();
+  const cleaned = s.replace(/[^0-9]/g, ""); // solo números
+  if(!cleaned) return NaN;
+  const n = Number(cleaned);
+  if(!Number.isFinite(n)) return NaN;
+  return Math.trunc(n);
+}
     // Acepta "1,200", "1200", "1 200", "$1200"
     const s = (raw||"").toString().replaceAll("$","").replaceAll("MXN","").replaceAll(" ","").replaceAll(",","").trim();
     if(!s) return NaN;
