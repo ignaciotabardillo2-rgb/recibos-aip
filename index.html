@@ -428,7 +428,7 @@
 
         <div class="field">
           <label>Cantidad ($)</label>
-          <input id="cantidad" type="number" inputmode="decimal" placeholder="Ej. 1200.00">
+          <input id="cantidad" type="number" inputmode="decimal" placeholder="Ej. 1200.00" oninput="numeroALetras()">
         </div>
 
         <div class="field">
@@ -683,7 +683,41 @@
     function cerrarPreview(){
       document.getElementById("previewOverlay").style.display = "none";
     }
+function numeroALetras(){
+  const num = parseInt(document.getElementById("cantidad").value);
+  if(!num) return;
 
+  const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
+  const especiales = ["diez","once","doce","trece","catorce","quince"];
+  const decenas = ["","","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
+  const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
+
+  function convertir(n){
+    if(n==100) return "cien";
+    if(n<10) return unidades[n];
+    if(n>=10 && n<16) return especiales[n-10];
+    if(n<20) return "dieci"+unidades[n-10];
+    if(n<30) return "veinti"+unidades[n-20];
+    if(n<100){
+      let d=Math.floor(n/10);
+      let u=n%10;
+      return decenas[d]+(u?" y "+unidades[u]:"");
+    }
+    if(n<1000){
+      let c=Math.floor(n/100);
+      let r=n%100;
+      return centenas[c]+(r?" "+convertir(r):"");
+    }
+    if(n<1000000){
+      let m=Math.floor(n/1000);
+      let r=n%1000;
+      return (m==1?"mil":convertir(m)+" mil")+(r?" "+convertir(r):"");
+    }
+  }
+
+  let texto = convertir(num) + " pesos";
+  document.getElementById("importeLetra").value = texto;
+}
     actualizarFolioUI();
     renderHistorial();
   </script>
