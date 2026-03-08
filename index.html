@@ -1,688 +1,691 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recibos AIP</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesoría Integral en Pensiones</title>
   <style>
     :root{
-      --bg:#0f1115;
-      --card:#151923;
-      --stroke:#242b3a;
-      --muted:#aeb6c4;
-      --text:#ffffff;
-      --accent:#19a85b;
-      --accent2:#0a6b3f;
-      --danger:#d84a4a;
-      --btn:#222838;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius:18px;
+      --bg:#0b0f14;
+      --card:#111826;
+      --ink:#e5e7eb;
+      --muted:#9ca3af;
+      --line:#263041;
+      --accent:#1f7a4a;
+      --accent2:#0f5132;
+      --danger:#7f1d1d;
+      --dangerBorder:#b91c1c;
+      --white:#ffffff;
+      --red:#c1121f;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;
-      background: radial-gradient(1200px 600px at 20% 10%, rgba(25,168,91,.10), transparent 60%),
-                  radial-gradient(900px 500px at 85% 20%, rgba(26,120,255,.10), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      padding:18px;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:radial-gradient(1200px 800px at 50% -10%, #10213f 0%, var(--bg) 45%);
+      color:var(--ink);
+      padding:24px 14px 40px;
     }
     .wrap{max-width:980px;margin:0 auto}
     .topbar{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
-      margin:6px 0 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      margin-bottom:18px;
     }
-    .brand h1{font-size:28px;letter-spacing:.2px;margin:0 0 6px}
-    .brand p{margin:0;color:var(--muted);line-height:1.35}
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--stroke);
-      padding:10px 12px;border-radius:999px;
-      box-shadow:0 10px 25px rgba(0,0,0,.18);
-      min-width:190px;justify-content:space-between;
+    .brand{
+      flex:1;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
     }
-    .pill b{font-size:12px;color:var(--muted);font-weight:700}
-    .pill span{font-size:18px;font-weight:900;letter-spacing:.5px}
+    .mark{
+      width:88px;
+      height:88px;
+      border-radius:20px;
+      background:#0f172a;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .mark img{
+      width:88px;
+      height:88px;
+      object-fit:cover;
+    }
+    .brand h1{
+      margin:0;
+      font-size:22px;
+      line-height:1.15;
+      letter-spacing:.3px;
+      color:#f8fafc;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:2px;
+    }
+    .folioBox{
+      min-width:122px;
+      text-align:right;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      padding:14px 12px;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    }
+    .folioBox .label{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .folioBox .folio{
+      font-size:24px;
+      font-weight:800;
+      color:var(--red);
+      letter-spacing:.4px;
+    }
 
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow: var(--shadow);
+      background:linear-gradient(180deg, rgba(17,24,38,.92), rgba(12,18,30,.96));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      padding:24px 18px;
+      box-shadow:0 20px 50px rgba(0,0,0,.25);
+      margin-top:18px;
     }
-    .title{font-size:18px;font-weight:900;margin:0 0 12px}
+    .card h2{
+      margin:0 0 8px;
+      font-size:20px;
+    }
+    .help{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+      margin-bottom:22px;
+    }
+
     .grid{
       display:grid;
-      grid-template-columns: 220px 1fr;
-      gap:12px 14px;
-      align-items:center;
+      grid-template-columns:1fr;
+      gap:14px;
     }
-    label{color:var(--muted);font-size:13px}
-    input, textarea, select{
+    .field label{
+      display:block;
+      font-size:12px;
+      color:#cbd5e1;
+      margin-bottom:7px;
+    }
+    .field input,
+    .field select,
+    .field textarea{
       width:100%;
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      border:1px solid var(--stroke);
-      border-radius:14px;
-      padding:14px 14px;
+      border:none;
       outline:none;
-      font-size:16px;
+      color:var(--white);
+      background:#09101f;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px 20px;
+      font-size:17px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
-    textarea{min-height:54px;resize:vertical}
-    input:disabled{
-      opacity:.7;
-      background:rgba(255,255,255,.04);
+    .field textarea{min-height:94px;resize:vertical}
+    .field input[readonly]{
+      color:#9ca3af;
+      background:#0d1423;
     }
+
     .actions{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-      margin-top:16px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
     }
-    button{
-      border:1px solid var(--stroke);
-      background:var(--btn);
-      color:var(--text);
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:900;
+    .btn{
+      border:none;
+      border-radius:18px;
+      padding:16px 22px;
+      font-size:16px;
+      font-weight:700;
       cursor:pointer;
+    }
+    .btn.primary{
+      background:linear-gradient(180deg, #2b8f57, var(--accent));
+      color:#fff;
+      box-shadow:0 10px 20px rgba(31,122,74,.25);
+    }
+    .btn.secondary{
+      background:#1b2435;
+      color:#fff;
+      border:1px solid #2f3b50;
+    }
+    .btn.danger{
+      background:#2a1013;
+      color:#ffd7d7;
+      border:1px solid var(--dangerBorder);
+    }
+
+    .pills{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      color:#9ca3af;
+      font-size:12px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .history{
+      margin-top:22px;
+    }
+    .history h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+    .history .searchRow{
+      display:flex;
+      gap:10px;
+      margin:10px 0 14px;
+    }
+    .history input{
+      flex:1;
+      border:none;
+      outline:none;
+      color:#fff;
+      background:#09101f;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px 18px;
       font-size:16px;
     }
-    button.primary{
-      background:linear-gradient(180deg, var(--accent), var(--accent2));
-      border-color:rgba(0,0,0,.18);
+    .table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:14px;
     }
-    button.mini{padding:12px 14px;background:rgba(255,255,255,.06)}
-    .status{
-      padding:10px 12px;border-radius:14px;
-      border:1px dashed rgba(255,255,255,.18);
-      color:var(--muted);
+    .table th,.table td{
+      text-align:left;
+      padding:12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
       font-size:14px;
     }
-    .status.bad{border-color:rgba(216,74,74,.6);color:#ffb3b3}
-    .status.good{border-color:rgba(25,168,91,.55);color:#b9ffd7}
+    .table th{color:#cbd5e1;font-weight:700}
+    .muted{color:var(--muted)}
 
-    /* Modal */
-    .modalBg{
-      position:fixed;inset:0;
+    .previewOverlay{
+      position:fixed;
+      inset:0;
       background:rgba(0,0,0,.55);
       display:none;
-      align-items:center;justify-content:center;
-      padding:18px;
-      z-index:999;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index:9999;
     }
-    .modal{
-      width:min(920px, 96vw);
-      max-height:86vh;
+    .previewBox{
+      width:100%;
+      max-width:780px;
+      max-height:88vh;
       overflow:auto;
-      background:var(--card);
-      border:1px solid var(--stroke);
+      background:#fff;
+      color:#111827;
       border-radius:20px;
-      box-shadow: var(--shadow);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+      padding:22px;
     }
-    .modalHdr{
-      position:sticky;top:0;
-      background:linear-gradient(180deg, rgba(21,25,35,1), rgba(21,25,35,.88));
-      border-bottom:1px solid var(--stroke);
+    .previewBtns{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      margin-bottom:12px;
+      position:sticky;
+      top:0;
+      background:#fff;
+      padding-bottom:10px;
+    }
+    .previewBtns button{
+      border:none;
+      border-radius:12px;
       padding:12px 14px;
-      display:flex;align-items:center;justify-content:space-between;gap:8px;
-      z-index:2;
+      font-weight:700;
+      cursor:pointer;
     }
-    .modalHdr b{font-size:14px}
-    .modalBody{padding:14px}
-    .modalBtns{display:flex;gap:10px;flex-wrap:wrap}
+    .printBtn{background:#111827;color:#fff}
+    .closeBtn{background:#e5e7eb;color:#111827}
 
-    /* Receipt preview inside modal */
-    .rec{
-      background:#fff;color:#111;border-radius:14px;
+    .receipt{
+      max-width:760px;
+      margin:0 auto;
+      background:#fff;
+      color:#111;
+    }
+    .receiptHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .receiptCenter{
+      flex:1;
+      text-align:center;
+    }
+    .receiptLogo{
+      width:90px;
+      height:90px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 10px;
+    }
+    .receiptTitle{
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:.5px;
+      color:#3d4322;
+      margin:0;
+    }
+    .receiptSub{
+      font-size:12px;
+      color:#666;
+      margin-top:6px;
+    }
+    .receiptFolio{
+      min-width:120px;
+      text-align:right;
+    }
+    .receiptFolio .f1{
+      font-size:13px;
+      color:#666;
+    }
+    .receiptFolio .f2{
+      font-size:24px;
+      font-weight:800;
+      color:#c1121f;
+      margin-top:4px;
+    }
+    .receiptBox{
+      border:1px solid #d9dee7;
+      border-radius:18px;
       padding:18px;
-      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial;
     }
-    .rec .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .rec h2{margin:0 0 6px;font-size:18px}
-    .rec small{color:#444}
-    .rec hr{border:none;border-top:1px solid #ddd;margin:12px 0}
-    .rec .kv{display:grid;grid-template-columns: 180px 1fr;gap:8px;margin:8px 0}
-    .rec .kv div:nth-child(odd){color:#333;font-weight:700}
-    .rec .kv div:nth-child(even){color:#111}
-    .rec .sign{display:flex;justify-content:space-between;gap:18px;margin-top:22px}
-    .rec .line{flex:1;border-top:1px solid #999;padding-top:6px;text-align:center;color:#333;font-size:12px}
-
-    @media (max-width:720px){
-      .grid{grid-template-columns: 1fr;gap:10px}
-      .pill{min-width:auto}
+    .receiptRow{
+      display:grid;
+      grid-template-columns:200px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-bottom:1px solid #edf0f5;
     }
-  </style>
-</head>
-
-<body>
-<div class="wrap">
-  <div class="topbar">
-    <div class="brand">
-      <h1>Recibos AIP</h1>
-      <p>Blanco formal • Folio automático • PDF estable en iPhone (Safari).<br>
-      La fecha se genera sola. La cantidad en letra se genera sola (sin centavos).</p>
-    </div>
-    <div class="pill">
-      <b>Próximo folio:</b>
-      <span id="nextFolio">AIP-0001</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <p class="title">Crear recibo</p>
-
-    <div class="grid">
-      <label>Recibí de</label>
-      <input id="recibiDe" placeholder="Nombre del cliente" autocomplete="name" />
-
-      <label>Ciudad</label>
-      <input id="ciudad" placeholder="Ej. Navojoa" />
-
-      <label>Dirección</label>
-      <input id="direccion" placeholder="Calle, colonia (opcional)" />
-
-      <label>Celular</label>
-      <input id="celular" placeholder="10 dígitos" inputmode="numeric" />
-
-      <label>Cantidad ($)</label>
-      <input id="cantidad" placeholder="Ej. 1200" inputmode="numeric" />
-
-      <label>Importe con letra (auto)</label>
-      <input id="importeLetra" disabled placeholder="Se genera automáticamente" />
-
-      <label>Por concepto de pago</label>
-      <input id="conceptoPago" placeholder="Ej. Amway / Asesoría / Producto" />
-
-      <label>Método de pago</label>
-      <select id="metodoPago">
-        <option value="Efectivo">Efectivo</option>
-        <option value="Transferencia">Transferencia</option>
-        <option value="Tarjeta">Tarjeta</option>
-        <option value="Otro">Otro</option>
-      </select>
-
-      <label>Fecha (auto)</label>
-      <input id="fecha" disabled />
-    </div>
-
-    <div class="actions">
-      <button class="primary" onclick="crear()">Generar recibo (PDF)</button>
-      <button class="mini" onclick="limpiar()">Limpiar</button>
-      <button class="mini" onclick="abrirHistorial()">Ver historial</button>
-      <span id="status" class="status">Listo.</span>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Recibo -->
-<div id="modalBg" class="modalBg" onclick="cerrarModalSiBg(event)">
-  <div class="modal">
-    <div class="modalHdr">
-      <b>Vista previa del recibo</b>
-      <div class="modalBtns">
-        <button class="mini" onclick="imprimirActual()">Imprimir / Guardar PDF</button>
-        <button class="mini" onclick="cerrarModal()">Cerrar</button>
-      </div>
-    </div>
-    <div class="modalBody">
-      <div id="modalPreview"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Historial -->
-<div id="modalHistBg" class="modalBg" onclick="cerrarHistSiBg(event)">
-  <div class="modal">
-    <div class="modalHdr">
-      <b>Historial</b>
-      <div class="modalBtns">
-        <button class="mini" onclick="borrarHistorial()">Borrar historial</button>
-        <button class="mini" onclick="cerrarHistorial()">Cerrar</button>
-      </div>
-    </div>
-    <div class="modalBody">
-      <div id="historialList"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-/* ========= CONFIG ========= */
-const SERIE = "AIP-";
-const COUNTER_KEY = "aip_counter_v1";
-const RECEIPTS_KEY = "aip_receipts_v1";
-
-/* ========= HELPERS ========= */
-function setStatus(msg, type="muted"){
-  const el = document.getElementById("status");
-  el.className = "status";
-  if(type==="bad") el.classList.add("bad");
-  if(type==="good") el.classList.add("good");
-  el.textContent = msg;
-}
-function esc(s){
-  return String(s ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-function v(id){ return document.getElementById(id).value.trim(); }
-function pad4(n){ return String(n).padStart(4,"0"); }
-function nowISO(){ return new Date().toISOString(); }
-function fechaTexto(d){
-  const opt = { day:"2-digit", month:"2-digit", year:"numeric" };
-  return new Intl.DateTimeFormat("es-MX", opt).format(d);
-}
-function getCounter(){
-  const raw = Number(localStorage.getItem(COUNTER_KEY));
-  return Number.isFinite(raw) ? raw : 1;
-}
-function setCounter(n){
-  localStorage.setItem(COUNTER_KEY, String(n));
-  updateNextFolio();
-}
-function updateNextFolio(){
-  const folio = SERIE + pad4(getCounter());
-  document.getElementById("nextFolio").textContent = folio;
-}
-function loadReceipts(){
-  try{ return JSON.parse(localStorage.getItem(RECEIPTS_KEY) || "[]"); }
-  catch(e){ return []; }
-}
-function saveReceipts(arr){
-  localStorage.setItem(RECEIPTS_KEY, JSON.stringify(arr));
-}
-function parseMonto(raw){
-  // acepta: "1,200" "1200" "$1 200" "1 200.50" etc -> SIN centavos
-  const s = (raw ?? "").toString()
-    .replaceAll("$","")
-    .replaceAll(",","")
-    .replaceAll(" ","")
-    .replaceAll("\t","")
-    .trim();
-
-  if(!s) return NaN;
-  const n = Number(s);
-  if(!Number.isFinite(n)) return NaN;
-  return Math.floor(n);
-}
-
-/* ========= NÚMERO A LETRAS (sin centavos) ========= */
-function numeroALetras(n){
-  n = Math.floor(n);
-  if(!Number.isFinite(n) || n < 0) return "";
-  if(n === 0) return "Cero pesos";
-
-  const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
-  const especiales = {
-    10:"diez", 11:"once", 12:"doce", 13:"trece", 14:"catorce", 15:"quince",
-    16:"dieciséis", 17:"diecisiete", 18:"dieciocho", 19:"diecinueve"
-  };
-  const decenas = ["","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
-  const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
-
-  function menosDe100(x){
-    if(x < 10) return unidades[x];
-    if(x < 20) return especiales[x];
-    if(x < 30){
-      if(x === 20) return "veinte";
-      return "veinti" + unidades[x-20];
+    .receiptRow:last-child{border-bottom:none}
+    .receiptRow .k{
+      color:#4b5563;
+      font-size:13px;
+      font-weight:700;
     }
-    const d = Math.floor(x/10);
-    const r = x % 10;
-    if(r === 0) return decenas[d];
-    return decenas[d] + " y " + unidades[r];
-  }
-
-  function menosDe1000(x){
-    if(x === 100) return "cien";
-    const c = Math.floor(x/100);
-    const r = x % 100;
-    let out = "";
-    if(c > 0) out += centenas[c];
-    if(r > 0) out += (out ? " " : "") + menosDe100(r);
-    return out;
-  }
-
-  function seccion(x, divisor, singular, plural){
-    const q = Math.floor(x / divisor);
-    const r = x % divisor;
-    let out = "";
-    if(q > 0){
-      if(q === 1) out = singular;
-      else out = menosDe1000(q) + " " + plural;
+    .receiptRow .v{
+      color:#111827;
+      font-size:14px;
     }
-    return { out, resto: r };
-  }
+    .receiptFoot{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      margin-top:28px;
+    }
+    .sign{
+      flex:1;
+      text-align:center;
+    }
+    .signLine{
+      border-top:1px solid #111;
+      margin-top:42px;
+      padding-top:8px;
+      font-size:13px;
+      color:#444;
+    }
 
-  let x = n;
-  let texto = "";
-
-  // millones
-  const milMill = seccion(x, 1000000, "un millón", "millones");
-  if(milMill.out){
-    texto += milMill.out;
-    x = milMill.resto;
-  }
-
-  // miles
-  const miles = seccion(x, 1000, "mil", "mil");
-  if(miles.out){
-    texto += (texto ? " " : "") + (miles.out === "mil" ? "mil" : miles.out);
-    x = miles.resto;
-  }
-
-  // resto
-  if(x > 0){
-    texto += (texto ? " " : "") + menosDe1000(x);
-  }
-
-  // Ajustes: "uno" -> "un" antes de "pesos"
-  texto = texto.trim();
-  if(texto.endsWith("uno")) texto = texto.slice(0, -3) + "un";
-
-  // Capitalizar primera
-  texto = texto.charAt(0).toUpperCase() + texto.slice(1);
-
-  return texto + " pesos";
-}
-
-/* ========= AUTO LETRA + FECHA ========= */
-function autoLetra(){
-  const n = parseMonto(document.getElementById("cantidad").value);
-  const letra = Number.isFinite(n) && n > 0 ? numeroALetras(n) : "";
-  document.getElementById("importeLetra").value = letra;
-}
-
-function autoFecha(){
-  document.getElementById("fecha").value = fechaTexto(new Date());
-}
-
-/* ========= VALIDACIÓN ========= */
-function validar(){
-  const required = ["recibiDe","ciudad","direccion","celular","cantidad","conceptoPago"];
-  for(const k of required){
-    if(!v(k)) return "Falta completar: " + nombreCampo(k);
-  }
-
-  const cel = v("celular").replaceAll(" ","");
-  if(!/^\d{8,15}$/.test(cel)) return "Celular inválido (usa solo números).";
-
-  const n = parseMonto(v("cantidad"));
-  if(!Number.isFinite(n) || n <= 0) return "Cantidad inválida.";
-
-  return "";
-}
-
-function nombreCampo(k){
-  const map = {
-    recibiDe:"Recibí de",
-    ciudad:"Ciudad",
-    direccion:"Dirección",
-    celular:"Celular",
-    cantidad:"Cantidad",
-    conceptoPago:"Concepto de pago"
-  };
-  return map[k] || k;
-}
-
-/* ========= CREAR RECIBO ========= */
-let ultimoItem = null;
-
-function crear(){
-  try{
-    autoLetra(); // fuerza calcular antes
-    autoFecha();
-
-    const err = validar();
-    if(err){ setStatus(err,"bad"); return; }
-
-    const d = new Date();
-    const folio = SERIE + pad4(getCounter());
-    const monto = parseMonto(v("cantidad"));
-    const letra = numeroALetras(monto);
-
-    const item = {
-      id: (crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()) + "_" + Math.random().toString(16).slice(2)),
-      folio,
-      fechaISO: d.toISOString(),
-      fechaTexto: fechaTexto(d),
-      recibiDe: v("recibiDe"),
-      ciudad: v("ciudad"),
-      direccion: v("direccion"),
-      celular: v("celular"),
-      cantidad: String(monto),
-      importeLetra: letra,
-      conceptoPago: v("conceptoPago"),
-      metodoPago: document.getElementById("metodoPago").value,
-      creadoEnISO: nowISO()
-    };
-
-    // Guardar
-    const arr = loadReceipts();
-    arr.unshift(item);
-    saveReceipts(arr);
-
-    // Incrementar folio
-    setCounter(getCounter() + 1);
-
-    // Vista previa
-    ultimoItem = item;
-    mostrarPreview(item);
-
-    setStatus("Recibo listo. Se abrirá impresión para guardar PDF.","good");
-
-    // Abrir modal
-    abrirModal();
-
-    // En iPhone, para PDF: imprimir -> compartir -> guardar en Archivos
-    // Disparamos impresión con un pequeño delay para que se renderice bien
-    setTimeout(()=> imprimirActual(), 400);
-
-  }catch(e){
-    console.error(e);
-    setStatus("Error interno: revisa consola / vuelve a intentar.","bad");
-  }
-}
-
-/* ========= RENDER RECIBO ========= */
-function reciboHTML(item){
-  return `
-  <div class="rec">
-    <div class="row">
-      <div>
-      <div style="text-align:center;margin-bottom:15px">
-
-<img src="logo.PNG" style="height:70px;margin-bottom:10px">
-
-<h2 style="margin:0;font-size:22px;letter-spacing:1px">
-RECIBOS TABARDILLO
-</h2>
-
-<div style="font-size:13px;color:#444">
-Asesoría Integral en Pensiones
-</div>
-
-</div>
-    
-      </div>
-      <div style="text-align:right">
-        <div><b>Folio:</b> ${esc(item.folio)}</div>
-        <div><b>Fecha:</b> ${esc(item.fechaTexto)}</div>
-      </div>
-    </div>
-    <hr/>
-    <div class="kv">
-      <div>Recibí de:</div><div>${esc(item.recibiDe)}</div>
-      <div>Ciudad:</div><div>${esc(item.ciudad)}</div>
-      <div>Dirección:</div><div>${esc(item.direccion)}</div>
-      <div>Celular:</div><div>${esc(item.celular)}</div>
-      <div>Método de pago:</div><div>${esc(item.metodoPago)}</div>
-      <div>Concepto de pago:</div><div>${esc(item.conceptoPago)}</div>
-      <div>Cantidad:</div><div><b>$${esc(item.cantidad)}</b></div>
-      <div>Importe con letra:</div><div>${esc(item.importeLetra)}</div>
-    </div>
-
-    <div class="sign">
-      <div class="line">Entrega / Cliente</div>
-      <div class="line">Recibe / AIP</div>
-    </div>
-
-    <div style="margin-top:10px;font-size:11px;color:#444">
-      Este documento es un comprobante interno. Folio generado automáticamente.
-    </div>
-  </div>`;
-}
-
-function mostrarPreview(item){
-  document.getElementById("modalPreview").innerHTML = reciboHTML(item);
-}
-
-function abrirModal(){
-  document.getElementById("modalBg").style.display = "flex";
-}
-function cerrarModal(){
-  document.getElementById("modalBg").style.display = "none";
-}
-function cerrarModalSiBg(ev){
-  if(ev.target && ev.target.id === "modalBg") cerrarModal();
-}
-
-/* ========= IMPRIMIR / GUARDAR PDF ========= */
-function imprimirActual(){
-  if(!ultimoItem){
-    setStatus("No hay recibo para imprimir.","bad");
-    return;
-  }
-
-  const html = `
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>${esc(ultimoItem.folio)}</title>
-  <style>
-    body{margin:0;padding:18px;background:#f2f2f2;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;}
-    .sheet{max-width:900px;margin:0 auto;}
-    .rec{background:#fff;color:#111;border-radius:14px;padding:18px;border:1px solid #ddd;}
-    .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    h2{margin:0 0 6px;font-size:18px}
-    small{color:#444}
-    hr{border:none;border-top:1px solid #ddd;margin:12px 0}
-    .kv{display:grid;grid-template-columns: 180px 1fr;gap:8px;margin:8px 0}
-    .kv div:nth-child(odd){color:#333;font-weight:700}
-    .kv div:nth-child(even){color:#111}
-    .sign{display:flex;justify-content:space-between;gap:18px;margin-top:22px}
-    .line{flex:1;border-top:1px solid #999;padding-top:6px;text-align:center;color:#333;font-size:12px}
     @media print{
       body{background:#fff;padding:0}
-      .rec{border:none}
+      .wrap,.previewBtns{display:none !important}
+      .previewOverlay{
+        display:block !important;
+        position:static;
+        background:#fff;
+        padding:0;
+      }
+      .previewBox{
+        box-shadow:none;
+        max-height:none;
+        overflow:visible;
+        padding:0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="sheet">
-    ${reciboHTML(ultimoItem)}
-  </div>
-  <script>
-    setTimeout(()=>{ window.print(); }, 350);
-  <\/script>
-</body>
-</html>`;
-
-  const w = window.open("", "_blank");
-  if(!w){
-    setStatus("Safari bloqueó la ventana. Intenta de nuevo o permite popups.","bad");
-    return;
-  }
-  w.document.open();
-  w.document.write(html);
-  w.document.close();
-}
-
-/* ========= LIMPIAR ========= */
-function limpiar(){
-  const ids = ["recibiDe","ciudad","direccion","celular","cantidad","conceptoPago"];
-  for(const id of ids) document.getElementById(id).value = "";
-  document.getElementById("metodoPago").value = "Efectivo";
-  document.getElementById("importeLetra").value = "";
-  autoFecha();
-  setStatus("Listo.","muted");
-}
-
-/* ========= HISTORIAL ========= */
-function abrirHistorial(){
-  const arr = loadReceipts();
-  const box = document.getElementById("historialList");
-  if(arr.length === 0){
-    box.innerHTML = `<div class="status">No hay recibos guardados todavía.</div>`;
-  }else{
-    box.innerHTML = arr.map(r => `
-      <div style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-          <div><b>${esc(r.folio)}</b> • <span style="color:var(--muted)">${esc(r.fechaTexto)}</span></div>
-          <div><b>$${esc(r.cantidad)}</b></div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="mark">
+          <img src="logo.PNG" alt="Logo">
         </div>
-        <div style="color:var(--muted);margin-top:4px">${esc(r.recibiDe)} • ${esc(r.conceptoPago)} • ${esc(r.metodoPago)}</div>
-        <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
-          <button class="mini" onclick='verRecibo("${esc(r.id)}")'>Ver</button>
-          <button class="mini" onclick='imprimirRecibo("${esc(r.id)}")'>Imprimir / PDF</button>
+        <div>
+          <h1>ASESORÍA INTEGRAL EN PENSIONES</h1>
+          <div class="sub">Versión web ligera (sin Google). Optimizada para iPhone + Safari.</div>
         </div>
-        <hr style="border:none;border-top:1px solid var(--stroke);margin:12px 0 0">
       </div>
-    `).join("");
-  }
-  document.getElementById("modalHistBg").style.display = "flex";
-}
-function cerrarHistorial(){
-  document.getElementById("modalHistBg").style.display = "none";
-}
-function cerrarHistSiBg(ev){
-  if(ev.target && ev.target.id === "modalHistBg") cerrarHistorial();
-}
-function verRecibo(id){
-  const arr = loadReceipts();
-  const r = arr.find(x => x.id === id);
-  if(!r){ setStatus("No se encontró ese recibo.","bad"); return; }
-  ultimoItem = r;
-  mostrarPreview(r);
-  cerrarHistorial();
-  abrirModal();
-}
-function imprimirRecibo(id){
-  const arr = loadReceipts();
-  const r = arr.find(x => x.id === id);
-  if(!r){ setStatus("No se encontró ese recibo.","bad"); return; }
-  ultimoItem = r;
-  imprimirActual();
-}
-function borrarHistorial(){
-  if(confirm("¿Seguro que quieres borrar TODO el historial?")){
-    localStorage.removeItem(RECEIPTS_KEY);
-    setStatus("Historial borrado.","good");
-    abrirHistorial();
-  }
-}
 
-/* ========= INIT ========= */
-document.addEventListener("DOMContentLoaded", () => {
-  updateNextFolio();
-  autoFecha();
+      <div class="folioBox">
+        <div class="label">Próximo folio</div>
+        <div class="folio" id="folioPreview">AIP-0001</div>
+      </div>
+    </div>
 
-  // Auto letra cuando escribes cantidad
-  document.getElementById("cantidad").addEventListener("input", autoLetra);
+    <div class="card">
+      <h2>Crear recibo</h2>
+      <div class="help">
+        Genera el recibo y se guarda en historial. En iPhone: al final abre la vista lista para
+        <b>Compartir / Guardar en PDF</b>.
+      </div>
 
-  // También recalcula si pegas
-  document.getElementById("cantidad").addEventListener("change", autoLetra);
+      <div class="grid">
+        <div class="field">
+          <label>Recibí de</label>
+          <input id="cliente" placeholder="Nombre del cliente">
+        </div>
 
-  setStatus("Listo.","muted");
-});
-</script>
+        <div class="field">
+          <label>Ciudad</label>
+          <input id="ciudad" placeholder="Ej. Navojoa, Sonora">
+        </div>
+
+        <div class="field">
+          <label>Dirección</label>
+          <input id="direccion" placeholder="Dirección">
+        </div>
+
+        <div class="field">
+          <label>Celular</label>
+          <input id="celular" placeholder="Ej. 6421 000 000">
+        </div>
+
+        <div class="field">
+          <label>Concepto</label>
+          <input id="concepto" placeholder="Ej. Asesoría">
+        </div>
+
+        <div class="field">
+          <label>Cantidad ($)</label>
+          <input id="cantidad" type="number" inputmode="decimal" placeholder="Ej. 1200.00">
+        </div>
+
+        <div class="field">
+          <label>Método de pago</label>
+          <select id="metodo">
+            <option value="">Selecciona…</option>
+            <option>Efectivo</option>
+            <option>Transferencia</option>
+            <option>Tarjeta</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Importe con letra</label>
+          <input id="importeLetra" placeholder="Ej. Mil doscientos pesos">
+        </div>
+
+        <div class="field">
+          <label>Por concepto de pago</label>
+          <input id="conceptoPago" placeholder="Ej. Mod 40">
+        </div>
+
+        <div class="field">
+          <label>Fecha (auto)</label>
+          <input id="fechaAuto" readonly>
+        </div>
+
+        <div class="field">
+          <label>Folio elegante</label>
+          <input id="folioElegante" readonly>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" onclick="generarRecibo()">Generar recibo (PDF)</button>
+        <button class="btn secondary" onclick="limpiarFormulario()">Limpiar</button>
+        <button class="btn danger" onclick="reiniciarTodo()">Reiniciar folios / historial</button>
+      </div>
+
+      <div class="pills">
+        <span class="pill">Blanco formal</span>
+        <span class="pill">Folio arriba derecha</span>
+      </div>
+    </div>
+
+    <div class="card history">
+      <h3>Historial</h3>
+      <div class="muted">Busca por folio o cliente. Puedes volver a abrir un recibo y guardarlo otra vez.</div>
+
+      <div class="searchRow">
+        <input id="busqueda" placeholder="Buscar por folio o cliente..." oninput="renderHistorial()">
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="historialBody">
+          <tr><td colspan="4" class="muted">Sin registros</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="previewOverlay" id="previewOverlay">
+    <div class="previewBox">
+      <div class="previewBtns">
+        <button class="closeBtn" onclick="cerrarPreview()">Cerrar</button>
+        <button class="printBtn" onclick="window.print()">Compartir / Guardar PDF</button>
+      </div>
+      <div id="previewContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "aip_recibos_historial_v3";
+    const FOLIO_KEY = "aip_recibos_folio_v3";
+
+    function obtenerFolioActual(){
+      let n = localStorage.getItem(FOLIO_KEY);
+      if(!n){
+        n = "1";
+        localStorage.setItem(FOLIO_KEY, n);
+      }
+      return parseInt(n, 10);
+    }
+
+    function folioTexto(n){
+      return "AIP-" + String(n).padStart(4, "0");
+    }
+
+    function actualizarFolioUI(){
+      const actual = obtenerFolioActual();
+      const txt = folioTexto(actual);
+      document.getElementById("folioPreview").value = txt;
+      document.getElementById("folioElegante").value = txt;
+      const fecha = new Date();
+      document.getElementById("fechaAuto").value = fecha.toLocaleString("es-MX", {
+        year:"numeric", month:"short", day:"2-digit",
+        hour:"2-digit", minute:"2-digit"
+      });
+    }
+
+    function guardarHistorial(item){
+      const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      arr.unshift(item);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    }
+
+    function cargarHistorial(){
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    }
+
+    function renderHistorial(){
+      const body = document.getElementById("historialBody");
+      const q = (document.getElementById("busqueda").value || "").toLowerCase().trim();
+      const arr = cargarHistorial().filter(x =>
+        !q ||
+        (x.folio || "").toLowerCase().includes(q) ||
+        (x.cliente || "").toLowerCase().includes(q)
+      );
+
+      if(!arr.length){
+        body.innerHTML = '<tr><td colspan="4" class="muted">Sin registros</td></tr>';
+        return;
+      }
+
+      body.innerHTML = arr.map(x => `
+        <tr onclick="abrirDesdeHistorial('${x.id}')" style="cursor:pointer">
+          <td>${x.folio}</td>
+          <td>${x.cliente}</td>
+          <td>$${x.cantidad}</td>
+          <td>${x.fecha}</td>
+        </tr>
+      `).join("");
+    }
+
+    function limpiarFormulario(){
+      ["cliente","ciudad","direccion","celular","concepto","cantidad","metodo","importeLetra","conceptoPago"].forEach(id=>{
+        document.getElementById(id).value = "";
+      });
+      actualizarFolioUI();
+    }
+
+    function reiniciarTodo(){
+      const ok = confirm("¿Seguro que quieres borrar historial y reiniciar folios?");
+      if(!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(FOLIO_KEY);
+      actualizarFolioUI();
+      renderHistorial();
+      limpiarFormulario();
+    }
+
+    function generarRecibo(){
+      const cliente = document.getElementById("cliente").value.trim();
+      const ciudad = document.getElementById("ciudad").value.trim();
+      const direccion = document.getElementById("direccion").value.trim();
+      const celular = document.getElementById("celular").value.trim();
+      const concepto = document.getElementById("concepto").value.trim();
+      const cantidad = document.getElementById("cantidad").value.trim();
+      const metodo = document.getElementById("metodo").value.trim();
+      const importeLetra = document.getElementById("importeLetra").value.trim();
+      const conceptoPago = document.getElementById("conceptoPago").value.trim();
+
+      if(!cliente || !ciudad || !concepto || !cantidad || !metodo){
+        alert("Completa los campos principales: cliente, ciudad, concepto, cantidad y método.");
+        return;
+      }
+
+      const folioNum = obtenerFolioActual();
+      const folio = folioTexto(folioNum);
+      const fecha = new Date().toLocaleString("es-MX", {
+        year:"numeric", month:"long", day:"numeric",
+        hour:"2-digit", minute:"2-digit"
+      });
+
+      const item = {
+        id: String(Date.now()),
+        folio,
+        fecha,
+        cliente,
+        ciudad,
+        direccion,
+        celular,
+        concepto,
+        cantidad,
+        metodo,
+        importeLetra,
+        conceptoPago
+      };
+
+      guardarHistorial(item);
+      localStorage.setItem(FOLIO_KEY, String(folioNum + 1));
+      actualizarFolioUI();
+      renderHistorial();
+      abrirPreview(item);
+    }
+
+    function abrirDesdeHistorial(id){
+      const item = cargarHistorial().find(x => x.id === id);
+      if(item) abrirPreview(item);
+    }
+
+    function abrirPreview(item){
+      const html = `
+        <div class="receipt">
+          <div class="receiptHead">
+            <div style="width:120px;"></div>
+
+            <div class="receiptCenter">
+              <img class="receiptLogo" src="logo.PNG" alt="Logo">
+              <div class="receiptTitle">ASESORÍA INTEGRAL EN PENSIONES</div>
+              <div class="receiptSub">Recibo profesional</div>
+            </div>
+
+            <div class="receiptFolio">
+              <div class="f1">Folio</div>
+              <div class="f2">${item.folio}</div>
+            </div>
+          </div>
+
+          <div class="receiptBox">
+            <div class="receiptRow"><div class="k">Recibí de</div><div class="v">${item.cliente}</div></div>
+            <div class="receiptRow"><div class="k">Ciudad</div><div class="v">${item.ciudad}</div></div>
+            <div class="receiptRow"><div class="k">Dirección</div><div class="v">${item.direccion || "-"}</div></div>
+            <div class="receiptRow"><div class="k">Celular</div><div class="v">${item.celular || "-"}</div></div>
+            <div class="receiptRow"><div class="k">Concepto</div><div class="v">${item.concepto}</div></div>
+            <div class="receiptRow"><div class="k">Cantidad ($)</div><div class="v">$${item.cantidad}</div></div>
+            <div class="receiptRow"><div class="k">Método de pago</div><div class="v">${item.metodo}</div></div>
+            <div class="receiptRow"><div class="k">Importe con letra</div><div class="v">${item.importeLetra || "-"}</div></div>
+            <div class="receiptRow"><div class="k">Por concepto de pago</div><div class="v">${item.conceptoPago || "-"}</div></div>
+            <div class="receiptRow"><div class="k">Fecha</div><div class="v">${item.fecha}</div></div>
+          </div>
+
+          <div class="receiptFoot">
+            <div class="sign">
+              <div class="signLine">Firma de recibido</div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById("previewContent").innerHTML = html;
+      document.getElementById("previewOverlay").style.display = "flex";
+    }
+
+    function cerrarPreview(){
+      document.getElementById("previewOverlay").style.display = "none";
+    }
+
+    actualizarFolioUI();
+    renderHistorial();
+  </script>
 </body>
 </html>
