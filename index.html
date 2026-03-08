@@ -712,7 +712,7 @@ function numeroALetras(){
     }
   }
 
-  let texto = convertir(num) + " pesos";
+  let texto = (convertir(num) + " pesos").toUpperCase();
   document.getElementById("importeLetra").value = texto;
 }
     actualizarFolioUI();
