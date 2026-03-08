@@ -421,10 +421,7 @@
           <input id="celular" placeholder="Ej. 6421 000 000">
         </div>
 
-        <div class="field">
-          <label>Concepto</label>
-          <input id="concepto" placeholder="Ej. Asesoría">
-        </div>
+      
 
         <div class="field">
           <label>Cantidad ($)</label>
@@ -593,14 +590,14 @@
       const ciudad = document.getElementById("ciudad").value.trim();
       const direccion = document.getElementById("direccion").value.trim();
       const celular = document.getElementById("celular").value.trim();
-      const concepto = document.getElementById("concepto").value.trim();
+    
       const cantidad = document.getElementById("cantidad").value.trim();
       const metodo = document.getElementById("metodo").value.trim();
       const importeLetra = document.getElementById("importeLetra").value.trim();
       const conceptoPago = document.getElementById("conceptoPago").value.trim();
 
-      if(!cliente || !ciudad || !concepto || !cantidad || !metodo){
-        alert("Completa los campos principales: cliente, ciudad, concepto, cantidad y método.");
+      if(!cliente || !ciudad || !cantidad || !metodo){
+        alert("Completa los campos principales: cliente, ciudad, cantidad y método.");
         return;
       }
 
@@ -619,7 +616,7 @@
         ciudad,
         direccion,
         celular,
-        concepto,
+        
         cantidad,
         metodo,
         importeLetra,
@@ -661,7 +658,7 @@
             <div class="receiptRow"><div class="k">Ciudad</div><div class="v">${item.ciudad}</div></div>
             <div class="receiptRow"><div class="k">Dirección</div><div class="v">${item.direccion || "-"}</div></div>
             <div class="receiptRow"><div class="k">Celular</div><div class="v">${item.celular || "-"}</div></div>
-            <div class="receiptRow"><div class="k">Concepto</div><div class="v">${item.concepto}</div></div>
+            
             <div class="receiptRow"><div class="k">Cantidad ($)</div><div class="v">$${item.cantidad}</div></div>
             <div class="receiptRow"><div class="k">Método de pago</div><div class="v">${item.metodo}</div></div>
             <div class="receiptRow"><div class="k">Importe con letra</div><div class="v">${item.importeLetra || "-"}</div></div>
