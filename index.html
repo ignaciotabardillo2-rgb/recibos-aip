@@ -1,52 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recibos Amway México</title>
 
   <style>
     :root{
-      --bg:#eef1f5;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --line:#d1d5db;
-      --accent:#1f4e79;
-      --accentSoft:#eaf2f8;
-      --grayLogo:#555;
+      --bg:#0b0f14;
+      --card:#111827;
+      --card2:#0f172a;
+      --line:#263041;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --white:#ffffff;
+      --dark:#111111;
+      --accent:#2f4b66;
+      --accent2:#1d3557;
+      --soft:#e9eef5;
+      --gray:#4b5563;
+      --gray2:#6b7280;
     }
 
     *{box-sizing:border-box}
 
     body{
       margin:0;
-      font-family:Arial, sans-serif;
-      background:var(--bg);
+      font-family:Arial, Helvetica, sans-serif;
+      background:radial-gradient(circle at top, #111827 0%, #0b0f14 55%);
       color:var(--text);
-      padding:24px;
+      padding:22px 14px 40px;
     }
 
-    .wrap{
-      max-width:760px;
+    .app{
+      max-width:780px;
       margin:0 auto;
     }
 
     .panel{
-      background:var(--card);
-      border-radius:14px;
-      padding:26px;
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
-      margin-bottom:20px;
+      background:linear-gradient(180deg, rgba(17,24,39,.98), rgba(15,23,42,.98));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);
+      margin-bottom:18px;
     }
 
-    .panel h2{
-      margin:0 0 18px;
-      font-size:22px;
-      color:var(--accent);
+    .topTitle{
+      margin:0 0 8px;
+      font-size:28px;
+      line-height:1.1;
+      font-weight:800;
+      color:#f3f4f6;
+      text-align:center;
+      letter-spacing:.3px;
     }
 
-    .grid{
+    .topSub{
+      text-align:center;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+      margin-bottom:22px;
+    }
+
+    .formGrid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
@@ -55,176 +73,205 @@
     .field{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:7px;
     }
 
-    .field.full{
+    .full{
       grid-column:1 / -1;
     }
 
     label{
       font-size:14px;
       font-weight:700;
-      color:#374151;
+      color:#f3f4f6;
     }
 
     input, textarea{
       width:100%;
-      border:1px solid var(--line);
-      border-radius:10px;
-      padding:12px 14px;
+      border:1px solid #334155;
+      background:#0f172a;
+      color:#f8fafc;
+      border-radius:12px;
+      padding:14px 14px;
       font-size:15px;
       outline:none;
-      background:#fff;
+      transition:.18s ease;
     }
 
     textarea{
-      min-height:90px;
+      min-height:96px;
       resize:vertical;
     }
 
+    input::placeholder,
+    textarea::placeholder{
+      color:#94a3b8;
+    }
+
     input:focus, textarea:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 3px rgba(31,78,121,.10);
+      border-color:#64748b;
+      box-shadow:0 0 0 3px rgba(148,163,184,.12);
     }
 
     .actions{
       display:flex;
-      gap:12px;
       flex-wrap:wrap;
+      gap:12px;
       margin-top:18px;
     }
 
     button{
       border:none;
-      border-radius:10px;
-      padding:12px 16px;
+      border-radius:12px;
+      padding:14px 18px;
       font-size:15px;
       font-weight:700;
       cursor:pointer;
+      transition:.15s ease;
     }
 
-    .primary{
-      background:var(--accent);
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .btnPrimary{
+      background:#334a62;
       color:#fff;
+      flex:1;
+      min-width:180px;
     }
 
-    .secondary{
-      background:#111827;
-      color:#fff;
-    }
-
-    .ghost{
+    .btnDark{
       background:#e5e7eb;
       color:#111827;
+      flex:1;
+      min-width:180px;
+    }
+
+    .btnGhost{
+      background:#1f2937;
+      color:#f9fafb;
+      flex:1;
+      min-width:180px;
+      border:1px solid #374151;
     }
 
     .receipt{
-      background:#fff;
-      border-radius:14px;
-      padding:36px;
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
       display:none;
+      background:#fff;
+      color:#111;
+      border-radius:18px;
+      padding:34px 30px;
+      box-shadow:0 16px 36px rgba(0,0,0,.22);
+      max-width:760px;
+      margin:0 auto;
     }
 
     .receiptHead{
       display:flex;
-      align-items:flex-start;
       justify-content:space-between;
+      align-items:flex-start;
       gap:16px;
-      border-bottom:2px solid #dbe3ea;
-      padding-bottom:18px;
       margin-bottom:22px;
+      padding-bottom:18px;
+      border-bottom:2px solid #d7dce3;
     }
 
-    .brand{
+    .brandWrap{
       display:flex;
-      align-items:flex-start;
       gap:14px;
+      align-items:flex-start;
       flex:1;
     }
 
-    .logo{
-      width:82px;
-      height:82px;
+    .receiptLogo{
+      width:86px;
+      height:86px;
       object-fit:contain;
-      filter:grayscale(100%);
+      filter:grayscale(100%) contrast(110%);
     }
 
-    .brandText h1{
+    .receiptTitle{
       margin:0;
-      font-size:28px;
-      letter-spacing:.4px;
-      color:#4b5563;
+      font-size:30px;
+      line-height:1.05;
+      color:#4a4a4a;
+      font-weight:800;
+      letter-spacing:.5px;
     }
 
-    .brandText .sub{
+    .receiptSub{
       margin-top:8px;
       font-size:14px;
-      color:var(--muted);
+      color:#666;
       line-height:1.6;
     }
 
     .folioBox{
-      min-width:160px;
+      min-width:145px;
       text-align:right;
     }
 
-    .folioBox .tag{
+    .folioLabel{
       font-size:12px;
-      color:var(--muted);
+      color:#6b7280;
       text-transform:uppercase;
-      letter-spacing:.8px;
+      letter-spacing:.9px;
+      font-weight:700;
     }
 
-    .folioBox .num{
-      font-size:24px;
-      font-weight:800;
-      color:var(--accent);
+    .folioValue{
       margin-top:6px;
+      font-size:28px;
+      font-weight:800;
+      color:#2f4b66;
     }
 
     .receiptBody{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px 24px;
+      margin-top:6px;
     }
 
     .item{
       padding:10px 0;
-      border-bottom:1px solid #eceff3;
+      border-bottom:1px solid #eceff4;
     }
 
     .item.full{
       grid-column:1 / -1;
     }
 
-    .item .k{
+    .k{
       display:block;
       font-size:12px;
-      color:var(--muted);
+      color:#6b7280;
       text-transform:uppercase;
       letter-spacing:.7px;
-      margin-bottom:6px;
+      margin-bottom:7px;
+      font-weight:700;
     }
 
-    .item .v{
+    .v{
+      display:block;
       font-size:16px;
       color:#111827;
+      line-height:1.5;
       word-break:break-word;
     }
 
-    .amount{
-      background:var(--accentSoft);
-      border:1px solid #d7e6f1;
-      border-radius:12px;
+    .money{
+      background:#edf3f8;
+      border:1px solid #d4dde8;
+      border-radius:14px;
       padding:14px;
     }
 
-    .amount .v{
-      font-size:24px;
+    .money .v{
+      font-size:25px;
       font-weight:800;
-      color:var(--accent);
+      color:#2f4b66;
     }
 
     .signature{
@@ -234,33 +281,33 @@
 
     .signature img{
       max-width:180px;
-      max-height:70px;
+      max-height:68px;
       object-fit:contain;
       display:block;
-      margin:0 auto 6px;
+      margin:0 auto 4px;
     }
 
-    .signature .line{
-      width:220px;
-      margin:0 auto 8px;
+    .signatureLine{
+      width:230px;
       border-top:1.8px solid #444;
+      margin:0 auto 8px;
     }
 
-    .signature .txt{
+    .signatureText{
       font-size:13px;
       color:#444;
       font-weight:700;
     }
 
-    .note{
+    .footNote{
       margin-top:24px;
       font-size:12px;
-      color:var(--muted);
+      color:#7b8190;
       text-align:center;
     }
 
     @media (max-width:700px){
-      .grid,
+      .formGrid,
       .receiptBody{
         grid-template-columns:1fr;
       }
@@ -273,12 +320,22 @@
         text-align:left;
       }
 
-      .brandText h1{
-        font-size:23px;
+      .receipt{
+        padding:24px 18px;
       }
 
-      .receipt{
-        padding:24px;
+      .receiptTitle{
+        font-size:24px;
+      }
+
+      .brandWrap{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+
+      .receiptLogo{
+        margin:0 auto;
       }
     }
 
@@ -288,8 +345,7 @@
         padding:0;
       }
 
-      .panel,
-      .no-print{
+      .panel{
         display:none !important;
       }
 
@@ -297,18 +353,25 @@
         display:block !important;
         box-shadow:none;
         border-radius:0;
+        margin:0;
+        max-width:none;
         padding:18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="app">
 
-    <div class="panel no-print">
-      <h2>Generador de recibos</h2>
+    <div class="panel">
+      <h1 class="topTitle">RECIBOS AMWAY MÉXICO</h1>
+      <div class="topSub">
+        Ignacio Tabardillo<br>
+        Empresario Independiente Amway<br>
+        ID: 1701181882
+      </div>
 
-      <div class="grid">
+      <div class="formGrid">
         <div class="field">
           <label for="folio">Número de recibo</label>
           <input type="text" id="folio" readonly>
@@ -326,34 +389,34 @@
 
         <div class="field">
           <label for="cantidad">Cantidad ($)</label>
-          <input type="number" id="cantidad" placeholder="Ejemplo: 1250" oninput="actualizarLetra()">
+          <input type="number" id="cantidad" placeholder="Ejemplo: 1250" oninput="actualizarImporteLetra()">
         </div>
 
         <div class="field">
           <label for="importeLetra">Cantidad con letra</label>
-          <input type="text" id="importeLetra" placeholder="Se genera automáticamente">
+          <input type="text" id="importeLetra" placeholder="Se llena automáticamente">
         </div>
 
         <div class="field full">
-          <label for="concepto">Concepto general</label>
+          <label for="concepto">Concepto</label>
           <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
         </div>
       </div>
 
       <div class="actions">
-        <button class="primary" onclick="generarRecibo()">Generar recibo</button>
-        <button class="secondary" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
-        <button class="ghost" onclick="nuevoRecibo()">Nuevo recibo</button>
+        <button class="btnPrimary" onclick="generarRecibo()">Generar recibo</button>
+        <button class="btnDark" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
+        <button class="btnGhost" onclick="nuevoRecibo()">Nuevo recibo</button>
       </div>
     </div>
 
     <div class="receipt" id="recibo">
       <div class="receiptHead">
-        <div class="brand">
-          <img src="logo.PNG" alt="Logo" class="logo">
-          <div class="brandText">
-            <h1>RECIBOS AMWAY MÉXICO</h1>
-            <div class="sub">
+        <div class="brandWrap">
+          <img src="logo.PNG" alt="Logo Amway" class="receiptLogo">
+          <div>
+            <h1 class="receiptTitle">RECIBOS AMWAY<br>MÉXICO</h1>
+            <div class="receiptSub">
               Ignacio Tabardillo<br>
               Empresario Independiente Amway<br>
               ID: 1701181882
@@ -362,8 +425,8 @@
         </div>
 
         <div class="folioBox">
-          <div class="tag">Recibo No.</div>
-          <div class="num" id="rfolio">001</div>
+          <div class="folioLabel">Recibo No.</div>
+          <div class="folioValue" id="rfolio">001</div>
         </div>
       </div>
 
@@ -378,13 +441,13 @@
           <span class="v" id="rcliente"></span>
         </div>
 
-        <div class="item amount">
+        <div class="item money">
           <span class="k">Cantidad</span>
           <span class="v" id="rcantidad"></span>
         </div>
 
         <div class="item">
-          <span class="k">Cantidad con letra</span>
+          <span class="k">Importe con letra</span>
           <span class="v" id="rletra"></span>
         </div>
 
@@ -396,11 +459,11 @@
 
       <div class="signature">
         <img src="firma.PNG" alt="Firma">
-        <div class="line"></div>
-        <div class="txt">Firma de recibido</div>
+        <div class="signatureLine"></div>
+        <div class="signatureText">Firma de recibido</div>
       </div>
 
-      <div class="note">
+      <div class="footNote">
         Recibo generado para control de entrega y pago de productos.
       </div>
     </div>
@@ -411,19 +474,22 @@
       return String(n).padStart(3, "0");
     }
 
-    function obtenerSiguienteFolio(){
+    function obtenerFolioActual(){
       let ultimo = localStorage.getItem("amwayUltimoFolio");
       if(!ultimo){
         ultimo = 1;
       }else{
         ultimo = parseInt(ultimo, 10);
+        if(isNaN(ultimo) || ultimo < 1) ultimo = 1;
       }
       document.getElementById("folio").value = formatearFolio(ultimo);
     }
 
-    function guardarSiguienteFolioActual(){
+    function avanzarFolio(){
       const actual = parseInt(document.getElementById("folio").value, 10);
-      localStorage.setItem("amwayUltimoFolio", actual + 1);
+      if(!isNaN(actual)){
+        localStorage.setItem("amwayUltimoFolio", actual + 1);
+      }
     }
 
     function ponerFechaHoy(){
@@ -441,47 +507,64 @@
       return `${partes[2]}/${partes[1]}/${partes[0]}`;
     }
 
-    function numeroALetras(num){
-      num = parseInt(num, 10);
-      if(isNaN(num)) return "";
+    function numeroALetras(numero){
+      numero = parseInt(numero, 10);
+      if(isNaN(numero)) return "";
+      if(numero === 0) return "CERO PESOS";
 
-      const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
-      const especiales = ["diez","once","doce","trece","catorce","quince"];
-      const decenas = ["","","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
-      const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
+      const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+      const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
+      const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+      const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
 
       function convertir(n){
-        if(n === 0) return "cero";
-        if(n === 100) return "cien";
+        if(n === 0) return "";
+        if(n === 100) return "CIEN";
         if(n < 10) return unidades[n];
         if(n >= 10 && n < 16) return especiales[n - 10];
-        if(n < 20) return "dieci" + unidades[n - 10];
-        if(n === 20) return "veinte";
-        if(n < 30) return "veinti" + unidades[n - 20];
+        if(n < 20) return "DIECI" + unidades[n - 10];
+        if(n === 20) return "VEINTE";
+        if(n < 30) return "VEINTI" + unidades[n - 20];
         if(n < 100){
-          let d = Math.floor(n / 10);
-          let u = n % 10;
-          return decenas[d] + (u ? " y " + unidades[u] : "");
+          const d = Math.floor(n / 10);
+          const u = n % 10;
+          return decenas[d] + (u ? " Y " + unidades[u] : "");
         }
         if(n < 1000){
-          let c = Math.floor(n / 100);
-          let r = n % 100;
+          const c = Math.floor(n / 100);
+          const r = n % 100;
           return centenas[c] + (r ? " " + convertir(r) : "");
         }
         if(n < 1000000){
-          let miles = Math.floor(n / 1000);
-          let resto = n % 1000;
-          let textoMiles = miles === 1 ? "mil" : convertir(miles) + " mil";
+          const miles = Math.floor(n / 1000);
+          const resto = n % 1000;
+          let textoMiles = "";
+          if(miles === 1){
+            textoMiles = "MIL";
+          }else{
+            textoMiles = convertir(miles) + " MIL";
+          }
           return textoMiles + (resto ? " " + convertir(resto) : "");
         }
-        return n.toString();
+        if(n < 1000000000){
+          const millones = Math.floor(n / 1000000);
+          const resto = n % 1000000;
+          let textoMillones = "";
+          if(millones === 1){
+            textoMillones = "UN MILLON";
+          }else{
+            textoMillones = convertir(millones) + " MILLONES";
+          }
+          return textoMillones + (resto ? " " + convertir(resto) : "");
+        }
+        return String(n);
       }
 
-      return (convertir(num) + " pesos").toUpperCase();
+      return (convertir(numero).trim() + " PESOS").replace(/\s+/g, " ");
     }
 
-    function actualizarLetra(){
-      const cantidad = document.getElementById("cantidad").value;
+    function actualizarImporteLetra(){
+      const cantidad = document.getElementById("cantidad").value.trim();
       document.getElementById("importeLetra").value = numeroALetras(cantidad);
     }
 
@@ -490,25 +573,34 @@
       const fecha = document.getElementById("fecha").value.trim();
       const cliente = document.getElementById("cliente").value.trim();
       const cantidad = document.getElementById("cantidad").value.trim();
-      const letra = document.getElementById("importeLetra").value.trim();
+      const importeLetraInput = document.getElementById("importeLetra").value.trim();
       const concepto = document.getElementById("concepto").value.trim();
 
       if(!fecha || !cliente || !cantidad || !concepto){
-        alert("Completa fecha, cliente, cantidad y concepto.");
+        alert("Completa fecha, nombre del cliente, cantidad y concepto.");
         return;
       }
+
+      const importeLetraFinal = importeLetraInput || numeroALetras(cantidad);
 
       document.getElementById("rfolio").textContent = folio;
       document.getElementById("rfecha").textContent = fechaBonita(fecha);
       document.getElementById("rcliente").textContent = cliente;
       document.getElementById("rcantidad").textContent = "$" + Number(cantidad).toLocaleString("es-MX");
-      document.getElementById("rletra").textContent = letra || numeroALetras(cantidad);
+      document.getElementById("rletra").textContent = importeLetraFinal;
       document.getElementById("rconcepto").textContent = concepto;
 
       document.getElementById("recibo").style.display = "block";
-      guardarSiguienteFolioActual();
-      obtenerSiguienteFolio();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+
+      avanzarFolio();
+      setTimeout(() => {
+        obtenerFolioActual();
+      }, 50);
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
     }
 
     function imprimirRecibo(){
@@ -527,12 +619,12 @@
       document.getElementById("concepto").value = "";
       document.getElementById("recibo").style.display = "none";
       ponerFechaHoy();
-      obtenerSiguienteFolio();
+      obtenerFolioActual();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     ponerFechaHoy();
-    obtenerSiguienteFolio();
+    obtenerFolioActual();
   </script>
 </body>
 </html>
