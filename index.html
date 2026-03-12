@@ -7,8 +7,8 @@
 
   <style>
     :root{
-      --bg:#06090d;
-      --bg2:#0a1018;
+      --bg:#05080d;
+      --bg2:#0b1220;
       --panel:#0d1420;
       --panel2:#111a27;
       --line:#243244;
@@ -16,13 +16,9 @@
       --text:#e5e7eb;
       --muted:#97a3b6;
       --white:#ffffff;
-      --dark:#111111;
       --accent:#2f4b66;
       --accent2:#20364c;
       --soft:#edf3f8;
-      --soft2:#dde7f0;
-      --success:#123a25;
-      --danger:#7f1d1d;
     }
 
     *{box-sizing:border-box}
@@ -30,14 +26,13 @@
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top, #111827 0%, #0b1220 35%, #06090d 100%);
+      background:radial-gradient(circle at top, #111827 0%, #0b1220 35%, #05080d 100%);
       color:var(--text);
       padding:18px 12px 36px;
     }
 
     .app{
-      max-width:820px;
+      max-width:860px;
       margin:0 auto;
     }
 
@@ -46,7 +41,7 @@
       border:1px solid var(--line);
       border-radius:20px;
       padding:22px;
-      box-shadow:0 20px 50px rgba(0,0,0,.38);
+      box-shadow:0 20px 50px rgba(0,0,0,.42);
       margin-bottom:18px;
     }
 
@@ -57,7 +52,7 @@
 
     .hero h1{
       margin:0;
-      font-size:30px;
+      font-size:31px;
       line-height:1.05;
       font-weight:800;
       color:#f8fafc;
@@ -165,10 +160,14 @@
 
     .productRow{
       display:grid;
-      grid-template-columns: 1.4fr .7fr .8fr auto;
+      grid-template-columns: 1fr 1fr .6fr .7fr auto;
       gap:10px;
       align-items:end;
       margin-bottom:10px;
+      border:1px solid #213042;
+      border-radius:14px;
+      padding:12px;
+      background:#0a1220;
     }
 
     .miniBtn{
@@ -682,7 +681,7 @@
       <div id="productsWrap" class="productsWrap">
         <div class="field full" style="margin-bottom:10px;">
           <label>Productos</label>
-          <div class="hint">Lista inicial editable. Luego la ampliamos si quieres con más productos.</div>
+          <div class="hint">Ahora con categoría y buscador.</div>
         </div>
 
         <div id="productRows"></div>
@@ -692,7 +691,7 @@
         <div class="calcBox">
           <div class="calcLine">
             <span>Subtotal</span>
-            <span id="subtotalVista">$0</span>
+            <span id="subtotalVista">$0.00</span>
           </div>
           <div class="calcLine">
             <span>Total de piezas</span>
@@ -700,7 +699,7 @@
           </div>
           <div class="calcLine">
             <strong>Total</strong>
-            <strong id="totalVista">$0</strong>
+            <strong id="totalVista">$0.00</strong>
           </div>
         </div>
       </div>
@@ -813,25 +812,24 @@
     let modoActual = "concepto";
 
     const catalogoProductos = [
-      { nombre:"Nutrilite Proteína Vegetal", precio:783 },
-      { nombre:"Nutrilite Daily Plus 45 tabletas", precio:430.99 },
-      { nombre:"Nutrilite Daily Plus 90 tabletas", precio:777 },
-      { nombre:"Nutrilite Cal Mag D", precio:510 },
-      { nombre:"Nutrilite C Plus", precio:314.99 },
-      { nombre:"Nutrilite B Plus", precio:465.99 },
-      { nombre:"Nutrilite Triple Omega-3", precio:999 },
-      { nombre:"Nutrilite Green Advanced", precio:705.99 },
-      { nombre:"Nutrilite Fibra en Polvo", precio:597 },
-      { nombre:"Nutrilite Concentrado de Frutas y Vegetales", precio:764.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Proteína Vegetal", precio:783.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 45 tabletas", precio:430.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 90 tabletas", precio:777.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Cal Mag D", precio:510.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite C Plus", precio:314.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Triple Omega-3", precio:999.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Green Advanced", precio:705.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Fibra en Polvo", precio:597.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Concentrado de Frutas y Vegetales", precio:764.99 },
 
-      { nombre:"XS Bebida energética", precio:45 },
-      { nombre:"XS Barra", precio:38 },
+      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50 },
+      { categoria:"XS", nombre:"XS Barra", precio:38.00 },
 
-      { nombre:"Artistry cuidado de piel", precio:950 },
-      { nombre:"Satinique shampoo", precio:289 },
-      { nombre:"G&H body wash", precio:265 },
-      { nombre:"Glister pasta dental", precio:149 },
-      { nombre:"Amway Home detergente", precio:369 }
+      { categoria:"Artistry", nombre:"Artistry Suero Diario de Vitamina C + HA3", precio:1643.99 },
+      { categoria:"Satinique", nombre:"Satinique Shampoo Anticaída", precio:356.00 },
+      { categoria:"G&H", nombre:"G&H Gel de baño Exfoliante Refrescante", precio:261.00 },
+      { categoria:"Glister", nombre:"Glister Pasta de Dientes Multiacción 200 g", precio:178.99 },
+      { categoria:"Amway Home", nombre:"SA8 Detergente Líquido Concentrado para Ropa", precio:502.00 }
     ];
 
     function formatearFolio(n){
@@ -924,6 +922,25 @@
       });
     }
 
+    function categoriasDisponibles(){
+      return [...new Set(catalogoProductos.map(p => p.categoria))];
+    }
+
+    function filtrarProductos(categoria, texto){
+      let lista = [...catalogoProductos];
+      if(categoria && categoria !== "TODOS"){
+        lista = lista.filter(p => p.categoria === categoria);
+      }
+      if(texto){
+        const t = texto.toLowerCase().trim();
+        lista = lista.filter(p =>
+          p.nombre.toLowerCase().includes(t) ||
+          p.categoria.toLowerCase().includes(t)
+        );
+      }
+      return lista;
+    }
+
     function cambiarModo(modo){
       modoActual = modo;
 
@@ -950,81 +967,165 @@
       }
     }
 
-    function crearSelectProductos(){
+    function crearSelectCategoria(selected = "TODOS"){
       const select = document.createElement("select");
-      select.className = "prod-select";
-      catalogoProductos.forEach((p, i) => {
+      const base = document.createElement("option");
+      base.value = "TODOS";
+      base.textContent = "Todas las categorías";
+      select.appendChild(base);
+
+      categoriasDisponibles().forEach(c => {
         const option = document.createElement("option");
-        option.value = i;
-        option.textContent = p.nombre + " — " + dinero(p.precio);
+        option.value = c;
+        option.textContent = c;
         select.appendChild(option);
       });
-      select.onchange = recalcularProductos;
+
+      select.value = selected;
       return select;
     }
 
-    function agregarFilaProducto(productoIndex = 0, cantidad = 1){
+    function crearSelectProductos(){
+      const select = document.createElement("select");
+      select.className = "prod-select";
+      return select;
+    }
+
+    function llenarSelectProductos(select, categoria, texto, selectedNombre = ""){
+      const lista = filtrarProductos(categoria, texto);
+      select.innerHTML = "";
+
+      if(lista.length === 0){
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Sin resultados";
+        select.appendChild(option);
+        return;
+      }
+
+      lista.forEach(p => {
+        const option = document.createElement("option");
+        option.value = p.nombre;
+        option.textContent = `${p.nombre} — ${dinero(p.precio)}`;
+        select.appendChild(option);
+      });
+
+      if(selectedNombre && lista.some(p => p.nombre === selectedNombre)){
+        select.value = selectedNombre;
+      }
+    }
+
+    function obtenerProductoPorNombre(nombre){
+      return catalogoProductos.find(p => p.nombre === nombre);
+    }
+
+    function agregarFilaProducto(nombre = "", cantidad = 1, precioManual = ""){
       const cont = document.getElementById("productRows");
       const row = document.createElement("div");
       row.className = "productRow";
 
-      const col1 = document.createElement("div");
-      const col1Label = document.createElement("label");
-      col1Label.textContent = "Producto";
-      const select = crearSelectProductos();
-      select.value = productoIndex;
-      col1.appendChild(col1Label);
-      col1.appendChild(select);
+      const colCat = document.createElement("div");
+      const catLabel = document.createElement("label");
+      catLabel.textContent = "Categoría";
+      const catSelect = crearSelectCategoria();
+      colCat.appendChild(catLabel);
+      colCat.appendChild(catSelect);
 
-      const col2 = document.createElement("div");
-      const col2Label = document.createElement("label");
-      col2Label.textContent = "Cantidad";
+      const colProd = document.createElement("div");
+      const prodLabel = document.createElement("label");
+      prodLabel.textContent = "Producto / buscador";
+      const search = document.createElement("input");
+      search.type = "text";
+      search.placeholder = "Escribe para buscar";
+      search.className = "prod-search";
+      const prodSelect = crearSelectProductos();
+      colProd.appendChild(prodLabel);
+      colProd.appendChild(search);
+      colProd.appendChild(prodSelect);
+
+      const colQty = document.createElement("div");
+      const qtyLabel = document.createElement("label");
+      qtyLabel.textContent = "Cantidad";
       const qty = document.createElement("input");
       qty.type = "number";
       qty.min = "1";
       qty.value = cantidad;
       qty.className = "prod-qty";
-      qty.oninput = recalcularProductos;
-      col2.appendChild(col2Label);
-      col2.appendChild(qty);
+      colQty.appendChild(qtyLabel);
+      colQty.appendChild(qty);
 
-      const col3 = document.createElement("div");
-      const col3Label = document.createElement("label");
-      col3Label.textContent = "Precio";
+      const colPrice = document.createElement("div");
+      const priceLabel = document.createElement("label");
+      priceLabel.textContent = "Precio";
       const price = document.createElement("input");
       price.type = "number";
       price.min = "0";
       price.step = "0.01";
       price.className = "prod-price";
-      price.value = catalogoProductos[productoIndex].precio;
-      price.oninput = recalcularProductos;
-      select.addEventListener("change", () => {
-        const p = catalogoProductos[parseInt(select.value, 10)];
-        price.value = p.precio;
-        recalcularProductos();
-      });
-      col3.appendChild(col3Label);
-      col3.appendChild(price);
+      colPrice.appendChild(priceLabel);
+      colPrice.appendChild(price);
 
-      const col4 = document.createElement("div");
-      const col4Label = document.createElement("label");
-      col4Label.textContent = "Quitar";
+      const colRemove = document.createElement("div");
+      const removeLabel = document.createElement("label");
+      removeLabel.textContent = "Quitar";
       const remove = document.createElement("button");
       remove.className = "removeBtn";
       remove.type = "button";
       remove.textContent = "×";
+      colRemove.appendChild(removeLabel);
+      colRemove.appendChild(remove);
+
+      row.appendChild(colCat);
+      row.appendChild(colProd);
+      row.appendChild(colQty);
+      row.appendChild(colPrice);
+      row.appendChild(colRemove);
+      cont.appendChild(row);
+
+      function sincronizarLista(conservarNombre = ""){
+        llenarSelectProductos(prodSelect, catSelect.value, search.value, conservarNombre);
+        const actual = obtenerProductoPorNombre(prodSelect.value);
+        if(actual && price.dataset.manual !== "1"){
+          price.value = actual.precio;
+        }
+        recalcularProductos();
+      }
+
+      catSelect.addEventListener("change", () => sincronizarLista());
+      search.addEventListener("input", () => sincronizarLista());
+      prodSelect.addEventListener("change", () => {
+        const p = obtenerProductoPorNombre(prodSelect.value);
+        if(p && price.dataset.manual !== "1"){
+          price.value = p.precio;
+        }
+        recalcularProductos();
+      });
+
+      qty.addEventListener("input", recalcularProductos);
+      price.addEventListener("input", () => {
+        price.dataset.manual = "1";
+        recalcularProductos();
+      });
+
       remove.onclick = () => {
         row.remove();
         recalcularProductos();
       };
-      col4.appendChild(col4Label);
-      col4.appendChild(remove);
 
-      row.appendChild(col1);
-      row.appendChild(col2);
-      row.appendChild(col3);
-      row.appendChild(col4);
-      cont.appendChild(row);
+      let categoriaInicial = "TODOS";
+
+      if(nombre){
+        const p = obtenerProductoPorNombre(nombre);
+        if(p){
+          categoriaInicial = p.categoria;
+          catSelect.value = categoriaInicial;
+        }
+      }
+
+      llenarSelectProductos(prodSelect, catSelect.value, "", nombre);
+      const inicial = obtenerProductoPorNombre(prodSelect.value);
+      price.value = precioManual !== "" ? precioManual : (inicial ? inicial.precio : "");
+      if(precioManual !== "") price.dataset.manual = "1";
 
       recalcularProductos();
     }
@@ -1032,17 +1133,18 @@
     function obtenerProductosCapturados(){
       const rows = [...document.querySelectorAll("#productRows .productRow")];
       return rows.map(row => {
-        const index = parseInt(row.querySelector(".prod-select").value, 10);
+        const nombre = row.querySelector(".prod-select").value;
         const qty = Number(row.querySelector(".prod-qty").value || 0);
         const price = Number(row.querySelector(".prod-price").value || 0);
-        const nombre = catalogoProductos[index]?.nombre || "Producto";
+        const producto = obtenerProductoPorNombre(nombre);
         return {
-          nombre,
+          categoria: producto ? producto.categoria : "",
+          nombre: nombre || "Producto",
           cantidad: qty,
           precio: price,
           importe: qty * price
         };
-      }).filter(x => x.cantidad > 0 && x.precio >= 0);
+      }).filter(x => x.nombre && x.cantidad > 0 && x.precio >= 0);
     }
 
     function recalcularProductos(){
@@ -1108,7 +1210,6 @@
       document.getElementById("rconcepto").textContent = conceptoFinal;
       document.getElementById("recibo").style.display = "block";
 
-      const rConceptoWrap = document.getElementById("rconceptoWrap");
       const receiptProducts = document.getElementById("receiptProducts");
       const receiptProductsBody = document.getElementById("receiptProductsBody");
       const receiptTotals = document.getElementById("receiptTotals");
@@ -1116,7 +1217,6 @@
       receiptProductsBody.innerHTML = "";
 
       if(modoActual === "productos"){
-        rConceptoWrap.style.display = "block";
         receiptProducts.classList.add("active");
         receiptTotals.style.display = "block";
 
@@ -1279,13 +1379,7 @@
         cambiarModo("productos");
         document.getElementById("productRows").innerHTML = "";
         (r.productos || []).forEach(p => {
-          const idx = catalogoProductos.findIndex(x => x.nombre === p.nombre);
-          agregarFilaProducto(idx >= 0 ? idx : 0, p.cantidad || 1);
-          const rows = document.querySelectorAll("#productRows .productRow");
-          const last = rows[rows.length - 1];
-          if(last){
-            last.querySelector(".prod-price").value = p.precio || 0;
-          }
+          agregarFilaProducto(p.nombre, p.cantidad || 1, p.precio || "");
         });
         recalcularProductos();
       }else{
