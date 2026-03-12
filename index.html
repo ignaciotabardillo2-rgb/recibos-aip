@@ -7,18 +7,22 @@
 
   <style>
     :root{
-      --bg:#05080d;
-      --bg2:#0b1220;
-      --panel:#0d1420;
-      --panel2:#111a27;
+      --bg:#04070c;
+      --bg2:#09111d;
+      --panel:#0b1420;
+      --panel2:#101a28;
       --line:#243244;
       --line2:#334155;
       --text:#e5e7eb;
-      --muted:#97a3b6;
+      --muted:#98a4b5;
       --white:#ffffff;
-      --accent:#2f4b66;
-      --accent2:#20364c;
+      --accent:#334a62;
+      --accent2:#22384f;
       --soft:#edf3f8;
+      --soft2:#dbe6ef;
+      --green:#1f5b3d;
+      --red:#4b1111;
+      --card:#0a1220;
     }
 
     *{box-sizing:border-box}
@@ -26,22 +30,23 @@
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:radial-gradient(circle at top, #111827 0%, #0b1220 35%, #05080d 100%);
+      background:
+        radial-gradient(circle at top, #111827 0%, #09111d 38%, #04070c 100%);
       color:var(--text);
-      padding:18px 12px 36px;
+      padding:18px 12px 38px;
     }
 
     .app{
-      max-width:860px;
+      max-width:900px;
       margin:0 auto;
     }
 
     .panel{
-      background:linear-gradient(180deg, rgba(13,20,32,.98), rgba(9,14,24,.98));
+      background:linear-gradient(180deg, rgba(11,20,32,.98), rgba(8,14,24,.98));
       border:1px solid var(--line);
-      border-radius:20px;
+      border-radius:22px;
       padding:22px;
-      box-shadow:0 20px 50px rgba(0,0,0,.42);
+      box-shadow:0 24px 60px rgba(0,0,0,.45);
       margin-bottom:18px;
     }
 
@@ -87,8 +92,8 @@
     }
 
     .modeBtn.active{
-      background:#334a62;
-      border-color:#4d647d;
+      background:var(--accent);
+      border-color:#566d86;
       color:#fff;
     }
 
@@ -117,7 +122,7 @@
     input, textarea, select{
       width:100%;
       border:1px solid #334155;
-      background:#0b1320;
+      background:#0a1220;
       color:#f8fafc;
       border-radius:12px;
       padding:14px 14px;
@@ -145,6 +150,7 @@
       font-size:12px;
       color:var(--muted);
       margin-top:2px;
+      line-height:1.4;
     }
 
     .productsWrap{
@@ -158,16 +164,43 @@
       display:block;
     }
 
+    .productToolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:12px;
+      align-items:center;
+    }
+
+    .toolbarTag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 10px;
+      border:1px solid #2b3a4b;
+      background:#0f1827;
+      border-radius:999px;
+      font-size:12px;
+      color:#d8e1eb;
+      font-weight:700;
+    }
+
     .productRow{
       display:grid;
-      grid-template-columns: 1fr 1fr .6fr .7fr auto;
+      grid-template-columns:1fr 1.15fr .65fr .75fr auto;
       gap:10px;
       align-items:end;
       margin-bottom:10px;
       border:1px solid #213042;
-      border-radius:14px;
+      border-radius:15px;
       padding:12px;
-      background:#0a1220;
+      background:var(--card);
+    }
+
+    .rowActions{
+      display:flex;
+      gap:6px;
+      align-items:center;
     }
 
     .miniBtn{
@@ -180,22 +213,34 @@
     }
 
     .addBtn{
-      background:#1f5b3d;
+      background:var(--green);
       color:#fff;
-      margin-top:6px;
     }
 
     .removeBtn{
-      background:#3b1111;
+      background:var(--red);
       color:#fff;
       min-width:44px;
       height:46px;
+      padding:0;
+      font-size:22px;
+      line-height:1;
+    }
+
+    .duplicateBtn{
+      background:#20364c;
+      color:#fff;
+      min-width:44px;
+      height:46px;
+      padding:0;
+      font-size:18px;
+      line-height:1;
     }
 
     .calcBox{
-      background:#0a1220;
+      background:#09111d;
       border:1px solid var(--line);
-      border-radius:14px;
+      border-radius:15px;
       padding:14px;
       margin-top:14px;
     }
@@ -206,7 +251,7 @@
       gap:10px;
       font-size:14px;
       color:#dbe3ec;
-      margin:6px 0;
+      margin:7px 0;
     }
 
     .calcLine strong{
@@ -236,7 +281,7 @@
     }
 
     .btnPrimary{
-      background:#334a62;
+      background:var(--accent);
       color:#fff;
       flex:1;
       min-width:180px;
@@ -272,7 +317,7 @@
       border-radius:18px;
       padding:34px 30px;
       box-shadow:0 16px 36px rgba(0,0,0,.22);
-      max-width:780px;
+      max-width:800px;
       margin:0 auto 18px;
     }
 
@@ -317,7 +362,7 @@
     }
 
     .folioBox{
-      min-width:145px;
+      min-width:155px;
       text-align:right;
     }
 
@@ -398,7 +443,7 @@
     .receiptProductsHead{
       background:#f3f6f9;
       display:grid;
-      grid-template-columns: 1.5fr .5fr .8fr .8fr;
+      grid-template-columns:1.7fr .5fr .8fr .8fr;
       gap:10px;
       padding:12px 14px;
       font-size:12px;
@@ -410,7 +455,7 @@
 
     .receiptProductRow{
       display:grid;
-      grid-template-columns: 1.5fr .5fr .8fr .8fr;
+      grid-template-columns:1.7fr .5fr .8fr .8fr;
       gap:10px;
       padding:12px 14px;
       border-top:1px solid #edf1f4;
@@ -422,7 +467,7 @@
     .receiptTotals{
       margin-top:14px;
       margin-left:auto;
-      max-width:320px;
+      max-width:340px;
     }
 
     .receiptTotals .tline{
@@ -476,7 +521,7 @@
 
     .historyPanel{
       display:none;
-      background:linear-gradient(180deg, rgba(13,20,32,.98), rgba(9,14,24,.98));
+      background:linear-gradient(180deg, rgba(11,20,32,.98), rgba(8,14,24,.98));
       border:1px solid var(--line);
       border-radius:18px;
       padding:18px;
@@ -563,7 +608,7 @@
       border:1px solid #314052;
     }
 
-    @media (max-width:760px){
+    @media (max-width:780px){
       .formGrid,
       .receiptBody{
         grid-template-columns:1fr;
@@ -571,6 +616,10 @@
 
       .productRow{
         grid-template-columns:1fr;
+      }
+
+      .rowActions{
+        justify-content:flex-start;
       }
 
       .receiptHead{
@@ -663,7 +712,7 @@
 
         <div class="field">
           <label for="cantidad">Cantidad total ($)</label>
-          <input type="number" id="cantidad" placeholder="Ejemplo: 1250" oninput="actualizarImporteLetraManual()">
+          <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarImporteLetraManual()">
           <div class="hint">En modo productos se calcula solo.</div>
         </div>
 
@@ -679,9 +728,12 @@
       </div>
 
       <div id="productsWrap" class="productsWrap">
-        <div class="field full" style="margin-bottom:10px;">
-          <label>Productos</label>
-          <div class="hint">Ahora con categoría y buscador.</div>
+        <div class="productToolbar">
+          <span class="toolbarTag">Versión 2.2</span>
+          <span class="toolbarTag">Categoría</span>
+          <span class="toolbarTag">Buscador</span>
+          <span class="toolbarTag">Duplicar fila</span>
+          <span class="toolbarTag">Precio editable</span>
         </div>
 
         <div id="productRows"></div>
@@ -812,25 +864,27 @@
     let modoActual = "concepto";
 
     const catalogoProductos = [
-      { categoria:"Nutrilite", nombre:"Nutrilite Proteína Vegetal", precio:783.00 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 45 tabletas", precio:430.99 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 90 tabletas", precio:777.00 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Cal Mag D", precio:510.00 },
-      { categoria:"Nutrilite", nombre:"Nutrilite C Plus", precio:314.99 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Triple Omega-3", precio:999.00 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Green Advanced", precio:705.99 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Fibra en Polvo", precio:597.00 },
-      { categoria:"Nutrilite", nombre:"Nutrilite Concentrado de Frutas y Vegetales", precio:764.99 },
-
-      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50 },
-      { categoria:"XS", nombre:"XS Barra", precio:38.00 },
-
+      { categoria:"Amway Home", nombre:"SA8 Detergente Líquido Concentrado para Ropa", precio:502.00 },
       { categoria:"Artistry", nombre:"Artistry Suero Diario de Vitamina C + HA3", precio:1643.99 },
-      { categoria:"Satinique", nombre:"Satinique Shampoo Anticaída", precio:356.00 },
       { categoria:"G&H", nombre:"G&H Gel de baño Exfoliante Refrescante", precio:261.00 },
       { categoria:"Glister", nombre:"Glister Pasta de Dientes Multiacción 200 g", precio:178.99 },
-      { categoria:"Amway Home", nombre:"SA8 Detergente Líquido Concentrado para Ropa", precio:502.00 }
-    ];
+      { categoria:"Nutrilite", nombre:"Nutrilite B Plus", precio:465.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite C Plus", precio:314.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Cal Mag D", precio:510.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Concentrado de Frutas y Vegetales", precio:764.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 45 tabletas", precio:430.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 90 tabletas", precio:777.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Fibra en Polvo", precio:597.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Green Advanced", precio:705.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Proteína Vegetal", precio:783.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Triple Omega-3", precio:999.00 },
+      { categoria:"Satinique", nombre:"Satinique Shampoo Anticaída", precio:356.00 },
+      { categoria:"XS", nombre:"XS Barra", precio:38.00 },
+      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50 }
+    ].sort((a, b) => {
+      if (a.categoria !== b.categoria) return a.categoria.localeCompare(b.categoria, "es");
+      return a.nombre.localeCompare(b.nombre, "es");
+    });
 
     function formatearFolio(n){
       return String(n).padStart(3, "0");
@@ -869,50 +923,57 @@
       return `${partes[2]}/${partes[1]}/${partes[0]}`;
     }
 
-    function numeroALetras(numero){
-      numero = parseInt(numero, 10);
+    function numeroALetrasConCentavos(valor){
+      const numero = Number(valor);
       if(isNaN(numero)) return "";
-      if(numero === 0) return "CERO PESOS";
+      const entero = Math.floor(numero);
+      const centavos = Math.round((numero - entero) * 100);
 
-      const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
-      const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
-      const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
-      const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+      function convertirNumero(n){
+        if(n === 0) return "CERO";
 
-      function convertir(n){
-        if(n === 0) return "";
-        if(n === 100) return "CIEN";
-        if(n < 10) return unidades[n];
-        if(n >= 10 && n < 16) return especiales[n - 10];
-        if(n < 20) return "DIECI" + unidades[n - 10];
-        if(n === 20) return "VEINTE";
-        if(n < 30) return "VEINTI" + unidades[n - 20];
-        if(n < 100){
-          const d = Math.floor(n / 10);
-          const u = n % 10;
-          return decenas[d] + (u ? " Y " + unidades[u] : "");
+        const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+        const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
+        const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+        const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+
+        function conv(x){
+          if(x === 0) return "";
+          if(x === 100) return "CIEN";
+          if(x < 10) return unidades[x];
+          if(x >= 10 && x < 16) return especiales[x - 10];
+          if(x < 20) return "DIECI" + unidades[x - 10];
+          if(x === 20) return "VEINTE";
+          if(x < 30) return "VEINTI" + unidades[x - 20];
+          if(x < 100){
+            const d = Math.floor(x / 10);
+            const u = x % 10;
+            return decenas[d] + (u ? " Y " + unidades[u] : "");
+          }
+          if(x < 1000){
+            const c = Math.floor(x / 100);
+            const r = x % 100;
+            return centenas[c] + (r ? " " + conv(r) : "");
+          }
+          if(x < 1000000){
+            const miles = Math.floor(x / 1000);
+            const resto = x % 1000;
+            const txtMiles = miles === 1 ? "MIL" : conv(miles) + " MIL";
+            return txtMiles + (resto ? " " + conv(resto) : "");
+          }
+          if(x < 1000000000){
+            const millones = Math.floor(x / 1000000);
+            const resto = x % 1000000;
+            const txtMillones = millones === 1 ? "UN MILLON" : conv(millones) + " MILLONES";
+            return txtMillones + (resto ? " " + conv(resto) : "");
+          }
+          return String(x);
         }
-        if(n < 1000){
-          const c = Math.floor(n / 100);
-          const r = n % 100;
-          return centenas[c] + (r ? " " + convertir(r) : "");
-        }
-        if(n < 1000000){
-          const miles = Math.floor(n / 1000);
-          const resto = n % 1000;
-          let textoMiles = miles === 1 ? "MIL" : convertir(miles) + " MIL";
-          return textoMiles + (resto ? " " + convertir(resto) : "");
-        }
-        if(n < 1000000000){
-          const millones = Math.floor(n / 1000000);
-          const resto = n % 1000000;
-          let textoMillones = millones === 1 ? "UN MILLON" : convertir(millones) + " MILLONES";
-          return textoMillones + (resto ? " " + convertir(resto) : "");
-        }
-        return String(n);
+
+        return conv(n).replace(/\s+/g, " ").trim();
       }
 
-      return (convertir(numero).trim() + " PESOS").replace(/\s+/g, " ");
+      return `${convertirNumero(entero)} PESOS ${String(centavos).padStart(2, "0")}/100 M.N.`;
     }
 
     function dinero(n){
@@ -1049,6 +1110,7 @@
       const qty = document.createElement("input");
       qty.type = "number";
       qty.min = "1";
+      qty.step = "1";
       qty.value = cantidad;
       qty.className = "prod-qty";
       colQty.appendChild(qtyLabel);
@@ -1065,21 +1127,29 @@
       colPrice.appendChild(priceLabel);
       colPrice.appendChild(price);
 
-      const colRemove = document.createElement("div");
-      const removeLabel = document.createElement("label");
-      removeLabel.textContent = "Quitar";
+      const colActions = document.createElement("div");
+      const actionLabel = document.createElement("label");
+      actionLabel.textContent = "Acciones";
+      const rowActions = document.createElement("div");
+      rowActions.className = "rowActions";
+      const duplicate = document.createElement("button");
+      duplicate.className = "duplicateBtn";
+      duplicate.type = "button";
+      duplicate.textContent = "⎘";
       const remove = document.createElement("button");
       remove.className = "removeBtn";
       remove.type = "button";
       remove.textContent = "×";
-      colRemove.appendChild(removeLabel);
-      colRemove.appendChild(remove);
+      rowActions.appendChild(duplicate);
+      rowActions.appendChild(remove);
+      colActions.appendChild(actionLabel);
+      colActions.appendChild(rowActions);
 
       row.appendChild(colCat);
       row.appendChild(colProd);
       row.appendChild(colQty);
       row.appendChild(colPrice);
-      row.appendChild(colRemove);
+      row.appendChild(colActions);
       cont.appendChild(row);
 
       function sincronizarLista(conservarNombre = ""){
@@ -1095,7 +1165,8 @@
       search.addEventListener("input", () => sincronizarLista());
       prodSelect.addEventListener("change", () => {
         const p = obtenerProductoPorNombre(prodSelect.value);
-        if(p && price.dataset.manual !== "1"){
+        price.dataset.manual = "";
+        if(p){
           price.value = p.precio;
         }
         recalcularProductos();
@@ -1109,16 +1180,21 @@
 
       remove.onclick = () => {
         row.remove();
-        recalcularProductos();
+        if(document.querySelectorAll("#productRows .productRow").length === 0){
+          agregarFilaProducto();
+        }else{
+          recalcularProductos();
+        }
       };
 
-      let categoriaInicial = "TODOS";
+      duplicate.onclick = () => {
+        agregarFilaProducto(prodSelect.value, qty.value || 1, price.value || "");
+      };
 
       if(nombre){
         const p = obtenerProductoPorNombre(nombre);
         if(p){
-          categoriaInicial = p.categoria;
-          catSelect.value = categoriaInicial;
+          catSelect.value = p.categoria;
         }
       }
 
@@ -1161,13 +1237,13 @@
       document.getElementById("piezasVista").textContent = piezas;
       document.getElementById("totalVista").textContent = dinero(subtotal);
       document.getElementById("cantidad").value = subtotal ? subtotal.toFixed(2) : "";
-      document.getElementById("importeLetra").value = subtotal ? numeroALetras(Math.round(subtotal)) : "";
+      document.getElementById("importeLetra").value = subtotal ? numeroALetrasConCentavos(subtotal) : "";
     }
 
     function actualizarImporteLetraManual(){
       if(modoActual === "productos") return;
       const cantidad = document.getElementById("cantidad").value.trim();
-      document.getElementById("importeLetra").value = numeroALetras(cantidad);
+      document.getElementById("importeLetra").value = numeroALetrasConCentavos(cantidad);
     }
 
     function generarRecibo(){
@@ -1200,7 +1276,7 @@
         }
       }
 
-      const importeLetraFinal = importeLetraInput || numeroALetras(cantidad);
+      const importeLetraFinal = importeLetraInput || numeroALetrasConCentavos(cantidad);
 
       document.getElementById("rfolio").textContent = folio;
       document.getElementById("rfecha").textContent = fechaBonita(fecha);
