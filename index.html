@@ -1,723 +1,201 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asesoría Integral en Pensiones</title>
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#111826;
-      --ink:#e5e7eb;
-      --muted:#9ca3af;
-      --line:#263041;
-      --accent:#1f7a4a;
-      --accent2:#0f5132;
-      --danger:#7f1d1d;
-      --dangerBorder:#b91c1c;
-      --white:#ffffff;
-      --red:#c1121f;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      background:radial-gradient(1200px 800px at 50% -10%, #10213f 0%, var(--bg) 45%);
-      color:var(--ink);
-      padding:24px 14px 40px;
-    }
-    .wrap{max-width:980px;margin:0 auto}
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:14px;
-      margin-bottom:18px;
-    }
-    .brand{
-      flex:1;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-    }
-    .mark{
-      width:88px;
-      height:88px;
-      border-radius:20px;
-      background:#0f172a;
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
-    .mark img{
-      width:88px;
-      height:88px;
-      object-fit:cover;
-    }
-    .brand h1{
-      margin:0;
-      font-size:22px;
-      line-height:1.15;
-      letter-spacing:.3px;
-      color:#f8fafc;
-    }
-    .sub{
-      color:var(--muted);
-      font-size:13px;
-      margin-top:2px;
-    }
-    .folioBox{
-      min-width:122px;
-      text-align:right;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      padding:14px 12px;
-      border-radius:18px;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
-    }
-    .folioBox .label{
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
-    .folioBox .folio{
-      font-size:24px;
-      font-weight:800;
-      color:var(--red);
-      letter-spacing:.4px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibos Amway México</title>
 
-    .card{
-      background:linear-gradient(180deg, rgba(17,24,38,.92), rgba(12,18,30,.96));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:26px;
-      padding:24px 18px;
-      box-shadow:0 20px 50px rgba(0,0,0,.25);
-      margin-top:18px;
-    }
-    .card h2{
-      margin:0 0 8px;
-      font-size:20px;
-    }
-    .help{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-      margin-bottom:22px;
-    }
+<style>
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-    }
-    .field label{
-      display:block;
-      font-size:12px;
-      color:#cbd5e1;
-      margin-bottom:7px;
-    }
-    .field input,
-    .field select,
-    .field textarea{
-      width:100%;
-      border:none;
-      outline:none;
-      color:var(--white);
-      background:#09101f;
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:18px 20px;
-      font-size:17px;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-    .field textarea{min-height:94px;resize:vertical}
-    .field input[readonly]{
-      color:#9ca3af;
-      background:#0d1423;
-    }
-
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-    .btn{
-      border:none;
-      border-radius:18px;
-      padding:16px 22px;
-      font-size:16px;
-      font-weight:700;
-      cursor:pointer;
-    }
-    .btn.primary{
-      background:linear-gradient(180deg, #2b8f57, var(--accent));
-      color:#fff;
-      box-shadow:0 10px 20px rgba(31,122,74,.25);
-    }
-    .btn.secondary{
-      background:#1b2435;
-      color:#fff;
-      border:1px solid #2f3b50;
-    }
-    .btn.danger{
-      background:#2a1013;
-      color:#ffd7d7;
-      border:1px solid var(--dangerBorder);
-    }
-
-    .pills{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      color:#9ca3af;
-      font-size:12px;
-      background:rgba(255,255,255,.03);
-    }
-
-    .history{
-      margin-top:22px;
-    }
-    .history h3{
-      margin:0 0 10px;
-      font-size:18px;
-    }
-    .history .searchRow{
-      display:flex;
-      gap:10px;
-      margin:10px 0 14px;
-    }
-    .history input{
-      flex:1;
-      border:none;
-      outline:none;
-      color:#fff;
-      background:#09101f;
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:15px 18px;
-      font-size:16px;
-    }
-    .table{
-      width:100%;
-      border-collapse:collapse;
-      overflow:hidden;
-      border-radius:14px;
-    }
-    .table th,.table td{
-      text-align:left;
-      padding:12px 10px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      font-size:14px;
-    }
-    .table th{color:#cbd5e1;font-weight:700}
-    .muted{color:var(--muted)}
-
-    .previewOverlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-      z-index:9999;
-    }
-    .previewBox{
-      width:100%;
-      max-width:780px;
-      max-height:88vh;
-      overflow:auto;
-      background:#fff;
-      color:#111827;
-      border-radius:20px;
-      box-shadow:0 30px 80px rgba(0,0,0,.35);
-      padding:22px;
-    }
-    .previewBtns{
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      margin-bottom:12px;
-      position:sticky;
-      top:0;
-      background:#fff;
-      padding-bottom:10px;
-    }
-    .previewBtns button{
-      border:none;
-      border-radius:12px;
-      padding:12px 14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-    .printBtn{background:#111827;color:#fff}
-    .closeBtn{background:#e5e7eb;color:#111827}
-
-    .receipt{
-      max-width:760px;
-      margin:0 auto;
-      background:#fff;
-      color:#111;
-    }
-    .receiptHead{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:18px;
-      margin-bottom:18px;
-    }
-    .receiptCenter{
-      flex:1;
-      text-align:center;
-    }
-    .receiptLogo{
-      width:90px;
-      height:90px;
-      object-fit:contain;
-      display:block;
-      margin:0 auto 10px;
-    }
-    .receiptTitle{
-      font-size:26px;
-      font-weight:800;
-      letter-spacing:.5px;
-      color:#3d4322;
-      margin:0;
-    }
-    .receiptSub{
-      font-size:12px;
-      color:#666;
-      margin-top:6px;
-    }
-    .receiptFolio{
-      min-width:120px;
-      text-align:right;
-    }
-    .receiptFolio .f1{
-      font-size:13px;
-      color:#666;
-    }
-    .receiptFolio .f2{
-      font-size:24px;
-      font-weight:800;
-      color:#c1121f;
-      margin-top:4px;
-    }
-    .receiptBox{
-      border:1px solid #d9dee7;
-      border-radius:18px;
-      padding:18px;
-    }
-    .receiptRow{
-      display:grid;
-      grid-template-columns:200px 1fr;
-      gap:12px;
-      padding:10px 0;
-      border-bottom:1px solid #edf0f5;
-    }
-    .receiptRow:last-child{border-bottom:none}
-    .receiptRow .k{
-      color:#4b5563;
-      font-size:13px;
-      font-weight:700;
-    }
-    .receiptRow .v{
-      color:#111827;
-      font-size:14px;
-    }
-    .receiptFoot{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      margin-top:28px;
-    }
-    .sign{
-      flex:1;
-      text-align:center;
-    }
-    .signLine{
-      border-top:1px solid #111;
-      margin-top:42px;
-      padding-top:8px;
-      font-size:13px;
-      color:#444;
-    }
-
-    @media print{
-      body{background:#fff;padding:0}
-      .wrap,.previewBtns{display:none !important}
-      .previewOverlay{
-        display:block !important;
-        position:static;
-        background:#fff;
-        padding:0;
-      }
-      .previewBox{
-        box-shadow:none;
-        max-height:none;
-        overflow:visible;
-        padding:0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="mark">
-          <img src="logo.PNG" alt="Logo">
-        </div>
-        <div>
-          <h1>ASESORÍA INTEGRAL EN PENSIONES</h1>
-          <div class="sub">Versión web ligera (sin Google). Optimizada para iPhone + Safari.</div>
-        </div>
-      </div>
-
-      <div class="folioBox">
-        <div class="label">Próximo folio</div>
-        <div class="folio" id="folioPreview">AIP-0001</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Crear recibo</h2>
-      <div class="help">
-        Genera el recibo y se guarda en historial. En iPhone: al final abre la vista lista para
-        <b>Compartir / Guardar en PDF</b>.
-      </div>
-
-      <div class="grid">
-        <div class="field">
-          <label>Recibí de</label>
-          <input id="cliente" placeholder="Nombre del cliente">
-        </div>
-
-        <div class="field">
-          <label>Ciudad</label>
-          <input id="ciudad" placeholder="Ej. Navojoa, Sonora">
-        </div>
-
-        <div class="field">
-          <label>Dirección</label>
-          <input id="direccion" placeholder="Dirección">
-        </div>
-
-        <div class="field">
-          <label>Celular</label>
-          <input id="celular" placeholder="Ej. 6421 000 000">
-        </div>
-
-      
-
-        <div class="field">
-          <label>Cantidad ($)</label>
-          <input id="cantidad" type="number" inputmode="decimal" placeholder="Ej. 1200.00" oninput="numeroALetras()">
-        </div>
-
-        <div class="field">
-          <label>Método de pago</label>
-          <select id="metodo">
-            <option value="">Selecciona…</option>
-            <option>Efectivo</option>
-            <option>Transferencia</option>
-            <option>Tarjeta</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Importe con letra</label>
-          <input id="importeLetra" placeholder="Ej. Mil doscientos pesos">
-        </div>
-
-        <div class="field">
-          <label>Por concepto de pago</label>
-          <input id="conceptoPago" placeholder="Ej. Mod 40">
-        </div>
-
-        <div class="field">
-          <label>Fecha (auto)</label>
-          <input id="fechaAuto" readonly>
-        </div>
-
-        <div class="field">
-          <label>Folio elegante</label>
-          <input id="folioElegante" readonly>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="btn primary" onclick="generarRecibo()">Generar recibo (PDF)</button>
-        <button class="btn secondary" onclick="limpiarFormulario()">Limpiar</button>
-        <button class="btn danger" onclick="reiniciarTodo()">Reiniciar folios / historial</button>
-      </div>
-
-      <div class="pills">
-        <span class="pill">Blanco formal</span>
-        <span class="pill">Folio arriba derecha</span>
-      </div>
-    </div>
-
-    <div class="card history">
-      <h3>Historial</h3>
-      <div class="muted">Busca por folio o cliente. Puedes volver a abrir un recibo y guardarlo otra vez.</div>
-
-      <div class="searchRow">
-        <input id="busqueda" placeholder="Buscar por folio o cliente..." oninput="renderHistorial()">
-      </div>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Folio</th>
-            <th>Cliente</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody id="historialBody">
-          <tr><td colspan="4" class="muted">Sin registros</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="previewOverlay" id="previewOverlay">
-    <div class="previewBox">
-      <div class="previewBtns">
-        <button class="closeBtn" onclick="cerrarPreview()">Cerrar</button>
-        <button class="printBtn" onclick="window.print()">Compartir / Guardar PDF</button>
-      </div>
-      <div id="previewContent"></div>
-    </div>
-  </div>
-
-  <script>
-    const STORAGE_KEY = "aip_recibos_historial_v3";
-    const FOLIO_KEY = "aip_recibos_folio_v3";
-
-    function obtenerFolioActual(){
-      let n = localStorage.getItem(FOLIO_KEY);
-      if(!n){
-        n = "1";
-        localStorage.setItem(FOLIO_KEY, n);
-      }
-      return parseInt(n, 10);
-    }
-
-    function folioTexto(n){
-      return "AIP-" + String(n).padStart(4, "0");
-    }
-
-    function actualizarFolioUI(){
-      const actual = obtenerFolioActual();
-      const txt = folioTexto(actual);
-      document.getElementById("folioPreview").value = txt;
-      document.getElementById("folioElegante").value = txt;
-      const fecha = new Date();
-      document.getElementById("fechaAuto").value = fecha.toLocaleString("es-MX", {
-        year:"numeric", month:"short", day:"2-digit",
-        hour:"2-digit", minute:"2-digit"
-      });
-    }
-
-    function guardarHistorial(item){
-      const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      arr.unshift(item);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-    }
-
-    function cargarHistorial(){
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    }
-
-    function renderHistorial(){
-      const body = document.getElementById("historialBody");
-      const q = (document.getElementById("busqueda").value || "").toLowerCase().trim();
-      const arr = cargarHistorial().filter(x =>
-        !q ||
-        (x.folio || "").toLowerCase().includes(q) ||
-        (x.cliente || "").toLowerCase().includes(q)
-      );
-
-      if(!arr.length){
-        body.innerHTML = '<tr><td colspan="4" class="muted">Sin registros</td></tr>';
-        return;
-      }
-
-      body.innerHTML = arr.map(x => `
-        <tr onclick="abrirDesdeHistorial('${x.id}')" style="cursor:pointer">
-          <td>${x.folio}</td>
-          <td>${x.cliente}</td>
-          <td>$${x.cantidad}</td>
-          <td>${x.fecha}</td>
-        </tr>
-      `).join("");
-    }
-
-    function limpiarFormulario(){
-      ["cliente","ciudad","direccion","celular","concepto","cantidad","metodo","importeLetra","conceptoPago"].forEach(id=>{
-        document.getElementById(id).value = "";
-      });
-      actualizarFolioUI();
-    }
-
-    function reiniciarTodo(){
-      const ok = confirm("¿Seguro que quieres borrar historial y reiniciar folios?");
-      if(!ok) return;
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(FOLIO_KEY);
-      actualizarFolioUI();
-      renderHistorial();
-      limpiarFormulario();
-    }
-
-    function generarRecibo(){
-      const cliente = document.getElementById("cliente").value.trim();
-      const ciudad = document.getElementById("ciudad").value.trim();
-      const direccion = document.getElementById("direccion").value.trim();
-      const celular = document.getElementById("celular").value.trim();
-    
-      const cantidad = document.getElementById("cantidad").value.trim();
-      const metodo = document.getElementById("metodo").value.trim();
-      const importeLetra = document.getElementById("importeLetra").value.trim();
-      const conceptoPago = document.getElementById("conceptoPago").value.trim();
-
-      if(!cliente || !ciudad || !cantidad || !metodo){
-        alert("Completa los campos principales: cliente, ciudad, cantidad y método.");
-        return;
-      }
-
-      const folioNum = obtenerFolioActual();
-      const folio = folioTexto(folioNum);
-      const fecha = new Date().toLocaleString("es-MX", {
-        year:"numeric", month:"long", day:"numeric",
-        hour:"2-digit", minute:"2-digit"
-      });
-
-      const item = {
-        id: String(Date.now()),
-        folio,
-        fecha,
-        cliente,
-        ciudad,
-        direccion,
-        celular,
-        
-        cantidad,
-        metodo,
-        importeLetra,
-        conceptoPago
-      };
-
-      guardarHistorial(item);
-      localStorage.setItem(FOLIO_KEY, String(folioNum + 1));
-      actualizarFolioUI();
-      renderHistorial();
-      abrirPreview(item);
-    }
-
-    function abrirDesdeHistorial(id){
-      const item = cargarHistorial().find(x => x.id === id);
-      if(item) abrirPreview(item);
-    }
-
-    function abrirPreview(item){
-      const html = `
-        <div class="receipt">
-          <div class="receiptHead">
-            <div style="width:120px;"></div>
-
-            <div class="receiptCenter">
-              <img class="receiptLogo" src="logo.PNG" alt="Logo">
-              <div class="receiptTitle">ASESORÍA INTEGRAL EN PENSIONES</div>
-        
-            </div>
-
-            <div class="receiptFolio">
-              <div class="f1">Folio</div>
-              <div class="f2">${item.folio}</div>
-            </div>
-          </div>
-
-          <div class="receiptBox">
-            <div class="receiptRow"><div class="k">Recibí de</div><div class="v">${item.cliente}</div></div>
-            <div class="receiptRow"><div class="k">Ciudad</div><div class="v">${item.ciudad}</div></div>
-            <div class="receiptRow"><div class="k">Dirección</div><div class="v">${item.direccion || "-"}</div></div>
-            <div class="receiptRow"><div class="k">Celular</div><div class="v">${item.celular || "-"}</div></div>
-            
-            <div class="receiptRow"><div class="k">Cantidad ($)</div><div class="v">$${item.cantidad}</div></div>
-            <div class="receiptRow"><div class="k">Método de pago</div><div class="v">${item.metodo}</div></div>
-            <div class="receiptRow"><div class="k">Importe con letra</div><div class="v">${item.importeLetra || "-"}</div></div>
-            <div class="receiptRow"><div class="k">Por concepto de pago</div><div class="v">${item.conceptoPago || "-"}</div></div>
-            <div class="receiptRow"><div class="k">Fecha</div><div class="v">${item.fecha}</div></div>
-          </div>
-
-          <div class="receiptFoot">
-          <div class="sign">
-<img src="firma.png" style="width:160px;margin-bottom:10px;">
-<div class="signLine">Firma de recibido</div>
-</div>
-          </div>
-        </div>
-      `;
-      document.getElementById("previewContent").innerHTML = html;
-      document.getElementById("previewOverlay").style.display = "flex";
-    }
-
-    function cerrarPreview(){
-      document.getElementById("previewOverlay").style.display = "none";
-    }
-function numeroALetras(){
-  const num = parseInt(document.getElementById("cantidad").value);
-  if(!num) return;
-
-  const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
-  const especiales = ["diez","once","doce","trece","catorce","quince"];
-  const decenas = ["","","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
-  const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
-
-  function convertir(n){
-    if(n==100) return "cien";
-    if(n<10) return unidades[n];
-    if(n>=10 && n<16) return especiales[n-10];
-    if(n<20) return "dieci"+unidades[n-10];
-    if(n<30) return "veinti"+unidades[n-20];
-    if(n<100){
-      let d=Math.floor(n/10);
-      let u=n%10;
-      return decenas[d]+(u?" y "+unidades[u]:"");
-    }
-    if(n<1000){
-      let c=Math.floor(n/100);
-      let r=n%100;
-      return centenas[c]+(r?" "+convertir(r):"");
-    }
-    if(n<1000000){
-      let m=Math.floor(n/1000);
-      let r=n%1000;
-      return (m==1?"mil":convertir(m)+" mil")+(r?" "+convertir(r):"");
-    }
-  }
-
-  let texto = (convertir(num) + " pesos").toUpperCase();
-  document.getElementById("importeLetra").value = texto;
+body{
+font-family: Arial, sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:40px;
 }
-    actualizarFolioUI();
-    renderHistorial();
-  </script>
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.logo{
+width:120px;
+margin-bottom:10px;
+}
+
+.title{
+font-size:26px;
+font-weight:bold;
+color:#444;
+}
+
+.sub{
+font-size:14px;
+color:#666;
+line-height:1.6;
+}
+
+.row{
+margin-top:15px;
+}
+
+label{
+font-weight:bold;
+display:block;
+margin-bottom:5px;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:14px;
+}
+
+textarea{
+resize:none;
+height:70px;
+}
+
+.btn{
+margin-top:20px;
+padding:12px;
+background:#2c3e50;
+color:white;
+border:none;
+width:100%;
+font-size:16px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.receipt{
+margin-top:40px;
+border-top:2px solid #ddd;
+padding-top:30px;
+}
+
+.receipt h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.line{
+margin:8px 0;
+}
+
+.signature{
+margin-top:50px;
+text-align:center;
+}
+
+.signature img{
+width:180px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<img src="logo.PNG" class="logo">
+
+<div class="title">RECIBOS AMWAY MÉXICO</div>
+
+<div class="sub">
+Ignacio Tabardillo<br>
+Empresario Independiente Amway<br>
+ID: 1701181882
+</div>
+
+</div>
+
+<div class="row">
+<label>Número de Recibo</label>
+<input type="number" id="folio">
+</div>
+
+<div class="row">
+<label>Fecha</label>
+<input type="date" id="fecha">
+</div>
+
+<div class="row">
+<label>Nombre del cliente</label>
+<input type="text" id="cliente">
+</div>
+
+<div class="row">
+<label>Cantidad ($)</label>
+<input type="number" id="cantidad">
+</div>
+
+<div class="row">
+<label>Cantidad con letra</label>
+<input type="text" id="letra">
+</div>
+
+<div class="row">
+<label>Concepto</label>
+<textarea id="concepto"></textarea>
+</div>
+
+<button class="btn" onclick="generar()">Generar Recibo</button>
+
+<div class="receipt" id="recibo" style="display:none">
+
+<h2>RECIBO</h2>
+
+<div class="line"><b>No:</b> <span id="rfolio"></span></div>
+<div class="line"><b>Fecha:</b> <span id="rfecha"></span></div>
+<div class="line"><b>Cliente:</b> <span id="rcliente"></span></div>
+<div class="line"><b>Cantidad:</b> $<span id="rcantidad"></span></div>
+<div class="line"><b>Importe con letra:</b> <span id="rletra"></span></div>
+<div class="line"><b>Concepto:</b> <span id="rconcepto"></span></div>
+
+<div class="signature">
+
+<img src="firma.PNG">
+
+<div>Firma</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function generar(){
+
+document.getElementById("recibo").style.display="block"
+
+document.getElementById("rfolio").innerText=document.getElementById("folio").value
+document.getElementById("rfecha").innerText=document.getElementById("fecha").value
+document.getElementById("rcliente").innerText=document.getElementById("cliente").value
+document.getElementById("rcantidad").innerText=document.getElementById("cantidad").value
+document.getElementById("rletra").innerText=document.getElementById("letra").value
+document.getElementById("rconcepto").innerText=document.getElementById("concepto").value
+
+}
+
+</script>
+
 </body>
 </html>
