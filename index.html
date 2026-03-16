@@ -7,20 +7,18 @@
 
   <style>
     :root{
-      --bg:#08111d;
-      --panel:#101b2a;
-      --panel2:#142235;
-      --line:#30445d;
-      --white:#fff;
+      --bg:#0b1320;
+      --panel:#121c2c;
+      --panel2:#0f1724;
+      --line:#33465d;
       --text:#eef4fa;
       --muted:#9fb0c4;
-      --blue:#2c5588;
-      --blue2:#3b6aa3;
-      --blue3:#1e4a7b;
-      --green:#15803d;
-      --danger:#8b1e1e;
-      --soft:#f3f7fb;
-      --shadow:0 18px 40px rgba(0,0,0,.25);
+      --blue:#2f5f98;
+      --blue2:#244d7e;
+      --green:#178245;
+      --white:#ffffff;
+      --soft:#f4f7fb;
+      --shadow:0 18px 40px rgba(0,0,0,.24);
     }
 
     *{box-sizing:border-box}
@@ -29,20 +27,20 @@
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#0b1522,#08111d);
+      background:linear-gradient(180deg,#0d1725,#0b1320);
       color:var(--text);
     }
 
     .wrap{
-      max-width:1200px;
+      max-width:900px;
       margin:0 auto;
       padding:14px;
     }
 
     .header{
-      background:linear-gradient(180deg,var(--blue2),var(--blue));
-      border-radius:28px;
-      padding:28px 22px 18px;
+      background:linear-gradient(180deg,var(--blue),var(--blue2));
+      border-radius:26px;
+      padding:28px 20px 20px;
       text-align:center;
       box-shadow:var(--shadow);
       margin-bottom:16px;
@@ -50,7 +48,7 @@
 
     .logo{
       width:180px;
-      max-width:80%;
+      max-width:85%;
       display:block;
       margin:0 auto;
     }
@@ -58,7 +56,7 @@
     .subtitulo{
       margin-top:10px;
       font-size:18px;
-      color:rgba(255,255,255,.94);
+      color:rgba(255,255,255,.95);
       font-weight:600;
     }
 
@@ -66,50 +64,63 @@
       margin-top:22px;
       display:flex;
       justify-content:center;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
     .menu button{
-      background:rgba(255,255,255,.16);
       border:none;
-      color:#fff;
-      padding:12px 20px;
       border-radius:14px;
+      padding:12px 18px;
       font-size:15px;
       font-weight:800;
       cursor:pointer;
+      background:rgba(255,255,255,.16);
+      color:#fff;
     }
 
     .menu button.active{
       background:#fff;
-      color:var(--blue);
+      color:var(--blue2);
     }
 
-    .searchBox{
-      background:var(--panel);
+    .panel{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
       border:1px solid var(--line);
-      margin-bottom:16px;
-      padding:16px;
-      border-radius:22px;
+      border-radius:24px;
+      padding:18px;
       box-shadow:var(--shadow);
+      margin-bottom:16px;
     }
 
-    .searchGrid{
+    .panel h2, .panel h3{
+      margin:0 0 14px;
+      color:#fff;
+    }
+
+    .grid{
       display:grid;
-      grid-template-columns:1fr 220px;
-      gap:12px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .full{
+      grid-column:1 / -1;
     }
 
     label{
-      display:block;
       font-size:13px;
       font-weight:800;
-      margin-bottom:8px;
       color:#edf3fa;
     }
 
-    input, select, textarea{
+    input, textarea, select{
       width:100%;
       padding:13px 14px;
       border-radius:14px;
@@ -125,260 +136,53 @@
       resize:vertical;
     }
 
-    .layout{
+    input::placeholder, textarea::placeholder{
+      color:#8ea1b5;
+    }
+
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    .productoRow{
       display:grid;
-      grid-template-columns:1.45fr .95fr;
-      gap:16px;
-      align-items:start;
-    }
-
-    .catalogo{
-      background:var(--soft);
-      color:#111827;
-      border-radius:24px;
-      padding:18px;
-      box-shadow:var(--shadow);
-    }
-
-    .headRow{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-
-    .headRow h2{
-      margin:0;
-      font-size:24px;
-      color:#132235;
-    }
-
-    .meta{
-      color:#64748b;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .productos{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
-      gap:14px;
-    }
-
-    .producto{
-      background:#fff;
-      border:1px solid #d9e2ec;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 8px 18px rgba(0,0,0,.06);
-      display:flex;
-      flex-direction:column;
-    }
-
-    .productoTop{
-      height:170px;
-      background:linear-gradient(180deg,#f8fbff,#eef4f9);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      border-bottom:1px solid #e7eef5;
-    }
-
-    .productoTop img{
-      max-width:100%;
-      max-height:100%;
-      object-fit:contain;
-    }
-
-    .placeholder{
-      width:100%;
-      height:100%;
-      border:2px dashed #c9d5e2;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:10px;
-      color:#7b8da2;
-      font-weight:800;
-      background:#fff;
-    }
-
-    .productoBody{
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      flex:1;
-    }
-
-    .badge{
-      width:max-content;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#eef4fa;
-      border:1px solid #d5e2ee;
-      color:#355679;
-      font-size:11px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.4px;
-    }
-
-    .producto h3{
-      margin:0;
-      color:#172433;
-      font-size:20px;
-      line-height:1.15;
-    }
-
-    .producto p{
-      margin:0;
-      color:#667789;
-      font-size:14px;
-      line-height:1.45;
-      min-height:38px;
-    }
-
-    .bottom{
-      margin-top:auto;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-
-    .precio{
-      color:var(--green);
-      font-weight:800;
-      font-size:21px;
-    }
-
-    .agregar{
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      border:none;
-      background:linear-gradient(180deg,#2b67a7,#1f4e79);
-      color:#fff;
-      font-size:24px;
-      font-weight:800;
-      cursor:pointer;
-    }
-
-    .side{
-      display:grid;
-      gap:16px;
-    }
-
-    .panel{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:16px;
-      box-shadow:var(--shadow);
-    }
-
-    .panel h3{
-      margin:0 0 12px;
-      font-size:20px;
-      color:#fff;
-    }
-
-    .carritoLista{
-      display:grid;
+      grid-template-columns:1.4fr .6fr .7fr auto;
       gap:10px;
-      margin-bottom:14px;
-    }
-
-    .vacio{
-      background:#09111b;
-      border:1px dashed #40546d;
-      border-radius:16px;
-      padding:16px;
-      color:#98aabd;
-      text-align:center;
-      line-height:1.5;
-    }
-
-    .item{
-      background:#09111b;
-      border:1px solid #2a3c52;
-      border-radius:16px;
+      align-items:end;
+      margin-bottom:10px;
       padding:12px;
-      display:grid;
-      gap:10px;
+      border:1px solid #2e4258;
+      border-radius:16px;
+      background:#0b1420;
     }
 
-    .itemTop{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
-
-    .itemName{
-      font-weight:800;
-      color:#f3f8fd;
-      line-height:1.35;
-    }
-
-    .itemCat{
-      font-size:11px;
-      color:#aab8c7;
-      margin-top:5px;
-      text-transform:uppercase;
-      font-weight:800;
-      letter-spacing:.5px;
-    }
-
-    .controls{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-
-    .qty{
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .qty button,
-    .remove{
-      width:32px;
-      height:32px;
+    .miniBtn{
       border:none;
-      border-radius:10px;
-      color:#fff;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:800;
       cursor:pointer;
-      font-weight:800;
     }
 
-    .qty button{background:#182a40}
-    .remove{background:var(--danger)}
-
-    .qty span{
-      min-width:28px;
-      text-align:center;
-      font-weight:800;
+    .addBtn{
+      background:linear-gradient(180deg,#2e6c4a,#1f5236);
       color:#fff;
     }
 
-    .itemPrice{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      font-size:14px;
-      color:#dce6f0;
+    .removeBtn{
+      width:44px;
+      height:46px;
+      padding:0;
+      background:#6a1d1d;
+      color:#fff;
+      font-size:22px;
     }
 
-    .resumen{
-      background:#09111b;
+    .summary{
+      margin-top:14px;
+      background:#0a1220;
       border:1px solid #2a3c52;
       border-radius:16px;
       padding:14px;
@@ -386,15 +190,15 @@
       gap:8px;
     }
 
-    .linea{
+    .line{
       display:flex;
       justify-content:space-between;
       gap:10px;
-      color:#dce6f0;
       font-size:14px;
+      color:#dce6f0;
     }
 
-    .linea.total{
+    .line.total{
       border-top:1px solid #2a3c52;
       padding-top:8px;
       margin-top:4px;
@@ -407,12 +211,12 @@
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:14px;
+      margin-top:16px;
     }
 
     .acciones button{
       flex:1;
-      min-width:150px;
+      min-width:160px;
       border:none;
       border-radius:14px;
       padding:13px 16px;
@@ -444,13 +248,13 @@
 
     .recibo{
       display:none;
-      margin-top:18px;
       background:#fff;
       color:#111827;
       border-radius:22px;
       border:1px solid #e2eaf1;
       box-shadow:var(--shadow);
       padding:34px 30px;
+      margin-bottom:16px;
     }
 
     .reciboHead{
@@ -493,7 +297,7 @@
     }
 
     .folioCard{
-      min-width:170px;
+      min-width:160px;
       text-align:right;
       background:#f6f9fc;
       border:1px solid #dce6ef;
@@ -727,13 +531,13 @@
       cursor:pointer;
     }
 
-    @media (max-width:980px){
-      .layout{grid-template-columns:1fr}
-    }
-
     @media (max-width:760px){
-      .searchGrid,
+      .grid,
       .reciboGrid{
+        grid-template-columns:1fr;
+      }
+
+      .productoRow{
         grid-template-columns:1fr;
       }
 
@@ -763,7 +567,7 @@
 
     @media print{
       body{background:#fff}
-      .header,.searchBox,.catalogo,.panel,.historial{display:none !important}
+      .header,.panel,.historial{display:none !important}
       .recibo{
         display:block !important;
         box-shadow:none;
@@ -783,133 +587,81 @@
       <div class="subtitulo">Empresario Independiente</div>
 
       <div class="menu">
-        <button class="active" onclick="scrollToSection('catalogo')">Catálogo</button>
-        <button onclick="scrollToSection('datosRecibo')">Recibo</button>
+        <button class="active" onclick="scrollToSection('formulario')">Formulario</button>
+        <button onclick="scrollToSection('recibo')">Recibo</button>
         <button onclick="toggleHistorial()">Historial</button>
       </div>
-
-      <div class="menu" style="margin-top:12px;">
-        <button onclick="imprimirRecibo()">PDF</button>
-        <button onclick="enviarWhatsApp()">WhatsApp</button>
-      </div>
     </div>
 
-    <div class="searchBox">
-      <div class="searchGrid">
+    <div class="panel" id="formulario">
+      <h2>Formulario de recibo</h2>
+
+      <div class="grid">
         <div class="field">
-          <label for="busqueda">Buscar producto</label>
-          <input id="busqueda" placeholder="Escribe nombre o categoría" oninput="renderProductos()">
+          <label for="folio">Número de recibo</label>
+          <input id="folio" readonly>
         </div>
 
         <div class="field">
-          <label for="categoria">Filtrar categoría</label>
-          <select id="categoria" onchange="sincronizarTabs(); renderProductos()"></select>
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha">
+        </div>
+
+        <div class="field full">
+          <label for="cliente">Nombre del cliente</label>
+          <input id="cliente" placeholder="Escribe el nombre del cliente">
         </div>
 
         <div class="field">
-          <label for="orden">Ordenar por</label>
-          <select id="orden" onchange="renderProductos()">
-            <option value="nombre">Nombre</option>
-            <option value="precioAsc">Precio menor a mayor</option>
-            <option value="precioDesc">Precio mayor a menor</option>
+          <label for="modo">Modo</label>
+          <select id="modo" onchange="cambiarModo()">
+            <option value="productos">Con productos</option>
+            <option value="concepto">Concepto general</option>
           </select>
         </div>
+
+        <div class="field">
+          <label for="cantidad">Cantidad total ($)</label>
+          <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarLetraManual()">
+        </div>
+
+        <div class="field full">
+          <label for="letra">Cantidad con letra</label>
+          <input id="letra" placeholder="Se llena automáticamente">
+        </div>
+
+        <div class="field full" id="conceptoWrap">
+          <label for="concepto">Concepto general</label>
+          <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
+        </div>
       </div>
 
-      <div id="tabs" style="display:flex; gap:10px; overflow:auto; margin-top:14px;"></div>
-    </div>
+      <div id="productosWrap" style="margin-top:16px;">
+        <h3 style="margin:0 0 12px;">Productos</h3>
+        <div id="productoRows"></div>
+        <button class="miniBtn addBtn" onclick="agregarFilaProducto()">+ Agregar producto</button>
 
-    <div class="layout">
-      <div class="catalogo" id="catalogo">
-        <div class="headRow">
-          <div>
-            <h2>Catálogo visual</h2>
-            <div class="meta">Agrega productos desde las tarjetas para armar la venta.</div>
+        <div class="summary">
+          <div class="line">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
           </div>
-          <div class="meta" id="conteoProductos"></div>
+          <div class="line">
+            <span>Total de piezas</span>
+            <span id="piezas">0</span>
+          </div>
+          <div class="line total">
+            <span>Total</span>
+            <span id="total">$0.00</span>
+          </div>
         </div>
-
-        <div class="productos" id="productos"></div>
       </div>
 
-      <div class="side">
-        <div class="panel">
-          <h3>Carrito / calculadora</h3>
-          <div class="carritoLista" id="carritoLista"></div>
-
-          <div class="resumen">
-            <div class="linea">
-              <span>Subtotal</span>
-              <span id="subtotal">$0.00</span>
-            </div>
-            <div class="linea">
-              <span>Total de piezas</span>
-              <span id="piezas">0</span>
-            </div>
-            <div class="linea total">
-              <span>Total</span>
-              <span id="total">$0.00</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel" id="datosRecibo">
-          <h3>Datos del recibo</h3>
-
-          <div class="field">
-            <label for="folio">Número de recibo</label>
-            <input id="folio" readonly>
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label for="fecha">Fecha</label>
-            <input type="date" id="fecha">
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label for="cliente">Nombre del cliente</label>
-            <input id="cliente" placeholder="Escribe el nombre del cliente">
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label for="modo">Modo</label>
-            <select id="modo" onchange="cambiarModo()">
-              <option value="productos">Venta por productos</option>
-              <option value="concepto">Concepto general</option>
-            </select>
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label for="cantidad">Cantidad total ($)</label>
-            <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarLetraManual()">
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label for="letra">Cantidad con letra</label>
-            <input id="letra" placeholder="Se llena automáticamente">
-          </div>
-
-          <div class="field" style="margin-top:12px;" id="conceptoWrap">
-            <label for="concepto">Concepto general</label>
-            <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
-          </div>
-
-          <div class="acciones">
-            <button class="primario" onclick="generarRecibo()">Generar recibo</button>
-            <button class="secundario" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
-            <button class="whatsapp" onclick="enviarWhatsApp()">WhatsApp</button>
-            <button class="ghost" onclick="nuevoRecibo()">Nuevo recibo</button>
-          </div>
-        </div>
-
-        <div class="panel historial" id="historial">
-          <h3>Historial</h3>
-          <div class="acciones" style="margin-top:0; margin-bottom:12px;">
-            <button class="ghost" onclick="exportarHistorial()">Exportar historial</button>
-            <button class="ghost" onclick="limpiarHistorial()">Borrar historial</button>
-          </div>
-          <div class="historialLista" id="historialLista"></div>
-        </div>
+      <div class="acciones">
+        <button class="primario" onclick="generarRecibo()">Generar recibo</button>
+        <button class="secundario" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
+        <button class="whatsapp" onclick="enviarWhatsApp()">WhatsApp</button>
+        <button class="ghost" onclick="nuevoRecibo()">Nuevo recibo</button>
       </div>
     </div>
 
@@ -990,25 +742,32 @@
       <div class="nota">Recibo generado para control de entrega y pago de productos.</div>
     </div>
 
+    <div class="panel historial" id="historial">
+      <h3>Historial</h3>
+      <div class="acciones" style="margin-top:0; margin-bottom:12px;">
+        <button class="ghost" onclick="exportarHistorial()">Exportar historial</button>
+        <button class="ghost" onclick="limpiarHistorial()">Borrar historial</button>
+      </div>
+      <div class="historialLista" id="historialLista"></div>
+    </div>
+
   </div>
 
   <script>
-    const productosData = [
-      { categoria:"Nutrilite", nombre:"CLA 500", precio:1240.00, descripcion:"Apoyo nutricional para complementar una rutina equilibrada.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Cal Mag D Advanced", precio:545.00, descripcion:"Con calcio y vitamina D para complementar el consumo diario.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Daily Plus 90c", precio:1170.00, descripcion:"Multivitamínico para consumo diario.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Proteína Vegetal", precio:783.00, descripcion:"Proteína vegetal para complementar la alimentación.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Triple Omega-3", precio:999.00, descripcion:"Complemento con ácidos grasos omega.", imagen:"" },
-      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50, descripcion:"Bebida energética.", imagen:"" },
-      { categoria:"XS", nombre:"XS Barra", precio:38.00, descripcion:"Barra práctica para el día.", imagen:"" },
-      { categoria:"Artistry", nombre:"Suero Diario Vitamina C + HA3", precio:1643.99, descripcion:"Cuidado de piel.", imagen:"" },
-      { categoria:"Satinique", nombre:"Shampoo Anticaída", precio:356.00, descripcion:"Shampoo para cuidado capilar.", imagen:"" },
-      { categoria:"G&H", nombre:"Gel de baño exfoliante", precio:261.00, descripcion:"Gel de baño refrescante.", imagen:"" },
-      { categoria:"Glister", nombre:"Pasta dental multiacción 200 g", precio:178.99, descripcion:"Cuidado bucal diario.", imagen:"" },
-      { categoria:"Amway Home", nombre:"SA8 detergente líquido concentrado", precio:502.00, descripcion:"Detergente líquido para ropa.", imagen:"" }
+    let productos = [
+      { nombre:"Cal Mag D Advanced", precio:545.00 },
+      { nombre:"CLA 500", precio:1240.00 },
+      { nombre:"Daily Plus 90c", precio:1170.00 },
+      { nombre:"Proteína Vegetal", precio:783.00 },
+      { nombre:"Triple Omega-3", precio:999.00 },
+      { nombre:"XS Bebida energética", precio:41.50 },
+      { nombre:"XS Barra", precio:38.00 },
+      { nombre:"Suero Diario Vitamina C + HA3", precio:1643.99 },
+      { nombre:"Shampoo Anticaída", precio:356.00 },
+      { nombre:"Gel de baño exfoliante", precio:261.00 },
+      { nombre:"Pasta dental multiacción 200 g", precio:178.99 },
+      { nombre:"SA8 detergente líquido concentrado", precio:502.00 }
     ];
-
-    let carrito = [];
 
     function dinero(n){
       return "$" + Number(n || 0).toLocaleString("es-MX", {
@@ -1106,227 +865,142 @@
       return `${convertirNumero(entero)} PESOS ${String(centavos).padStart(2,"0")}/100 M.N.`;
     }
 
-    function categoriasDisponibles(){
-      return ["TODOS", ...new Set(productosData.map(p => p.categoria))];
+    function crearSelectProductos(valor = ""){
+      const select = document.createElement("select");
+      productos.forEach(p => {
+        const option = document.createElement("option");
+        option.value = p.nombre;
+        option.textContent = `${p.nombre} — ${dinero(p.precio)}`;
+        select.appendChild(option);
+      });
+      if(valor) select.value = valor;
+      return select;
     }
 
-    function initCategorias(){
-      const categoria = document.getElementById("categoria");
-      const tabs = document.getElementById("tabs");
-      categoria.innerHTML = "";
-      tabs.innerHTML = "";
+    function precioDe(nombre){
+      const p = productos.find(x => x.nombre === nombre);
+      return p ? p.precio : 0;
+    }
 
-      categoriasDisponibles().forEach((c, i) => {
-        const o = document.createElement("option");
-        o.value = c;
-        o.textContent = c === "TODOS" ? "Todas las categorías" : c;
-        categoria.appendChild(o);
+    function agregarFilaProducto(nombre = "", cantidad = 1, precio = ""){
+      const cont = document.getElementById("productoRows");
+      const row = document.createElement("div");
+      row.className = "productoRow";
 
-        const b = document.createElement("button");
-        b.className = "cat-tab" + (i === 0 ? " active" : "");
-        b.textContent = c;
-        b.onclick = () => {
-          document.getElementById("categoria").value = c;
-          sincronizarTabs();
-          renderProductos();
+      const col1 = document.createElement("div");
+      const l1 = document.createElement("label");
+      l1.textContent = "Producto";
+      const select = crearSelectProductos(nombre);
+      col1.appendChild(l1);
+      col1.appendChild(select);
+
+      const col2 = document.createElement("div");
+      const l2 = document.createElement("label");
+      l2.textContent = "Cantidad";
+      const qty = document.createElement("input");
+      qty.type = "number";
+      qty.min = "1";
+      qty.value = cantidad;
+      col2.appendChild(l2);
+      col2.appendChild(qty);
+
+      const col3 = document.createElement("div");
+      const l3 = document.createElement("label");
+      l3.textContent = "Precio";
+      const price = document.createElement("input");
+      price.type = "number";
+      price.step = "0.01";
+      price.min = "0";
+      price.value = precio !== "" ? precio : precioDe(select.value);
+      col3.appendChild(l3);
+      col3.appendChild(price);
+
+      const col4 = document.createElement("div");
+      const l4 = document.createElement("label");
+      l4.textContent = "Quitar";
+      const remove = document.createElement("button");
+      remove.className = "miniBtn removeBtn";
+      remove.type = "button";
+      remove.textContent = "×";
+      col4.appendChild(l4);
+      col4.appendChild(remove);
+
+      row.appendChild(col1);
+      row.appendChild(col2);
+      row.appendChild(col3);
+      row.appendChild(col4);
+      cont.appendChild(row);
+
+      select.addEventListener("change", () => {
+        price.value = precioDe(select.value);
+        recalcularProductos();
+      });
+
+      qty.addEventListener("input", recalcularProductos);
+      price.addEventListener("input", recalcularProductos);
+
+      remove.onclick = () => {
+        row.remove();
+        if(document.querySelectorAll("#productoRows .productoRow").length === 0){
+          agregarFilaProducto();
+        }
+        recalcularProductos();
+      };
+
+      recalcularProductos();
+    }
+
+    function obtenerProductosCapturados(){
+      const rows = [...document.querySelectorAll("#productoRows .productoRow")];
+      return rows.map(row => {
+        const nombre = row.querySelector("select").value;
+        const cantidad = Number(row.querySelectorAll("input")[0].value || 0);
+        const precio = Number(row.querySelectorAll("input")[1].value || 0);
+        return {
+          nombre,
+          cantidad,
+          precio,
+          importe: cantidad * precio
         };
-        tabs.appendChild(b);
-      });
-
-      categoria.value = "TODOS";
+      }).filter(x => x.cantidad > 0);
     }
 
-    function sincronizarTabs(){
-      const valor = document.getElementById("categoria").value;
-      [...document.querySelectorAll(".cat-tab")].forEach(tab => {
-        tab.classList.toggle("active", tab.textContent === valor);
-      });
-    }
-
-    function filtrarProductos(){
-      const texto = document.getElementById("busqueda").value.toLowerCase().trim();
-      const categoria = document.getElementById("categoria").value;
-      const orden = document.getElementById("orden").value;
-
-      let lista = [...productosData];
-
-      if(categoria && categoria !== "TODOS"){
-        lista = lista.filter(p => p.categoria === categoria);
-      }
-
-      if(texto){
-        lista = lista.filter(p =>
-          p.nombre.toLowerCase().includes(texto) ||
-          p.categoria.toLowerCase().includes(texto) ||
-          p.descripcion.toLowerCase().includes(texto)
-        );
-      }
-
-      if(orden === "nombre"){
-        lista.sort((a,b) => a.nombre.localeCompare(b.nombre,"es"));
-      }else if(orden === "precioAsc"){
-        lista.sort((a,b) => a.precio - b.precio);
-      }else{
-        lista.sort((a,b) => b.precio - a.precio);
-      }
-
-      return lista;
-    }
-
-    function renderProductos(){
-      const cont = document.getElementById("productos");
-      const lista = filtrarProductos();
-      document.getElementById("conteoProductos").textContent = `${lista.length} producto(s)`;
-      cont.innerHTML = "";
-
-      if(lista.length === 0){
-        cont.innerHTML = `
-          <div class="producto" style="grid-column:1 / -1;">
-            <div class="productoBody">
-              <h3>Sin resultados</h3>
-              <p>Prueba con otra búsqueda o cambia la categoría.</p>
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      lista.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "producto";
-
-        const imagen = p.imagen
-          ? `<img src="${p.imagen}" alt="${p.nombre}">`
-          : `<div class="placeholder">${p.nombre}</div>`;
-
-        div.innerHTML = `
-          <div class="productoTop">${imagen}</div>
-          <div class="productoBody">
-            <span class="badge">${p.categoria}</span>
-            <h3>${p.nombre}</h3>
-            <p>${p.descripcion}</p>
-            <div class="bottom">
-              <div class="precio">${dinero(p.precio)}</div>
-              <button class="agregar" onclick="agregarAlCarrito('${String(p.nombre).replace(/'/g,"\\'")}')">+</button>
-            </div>
-          </div>
-        `;
-        cont.appendChild(div);
-      });
-    }
-
-    function agregarAlCarrito(nombre){
-      const prod = productosData.find(p => p.nombre === nombre);
-      if(!prod) return;
-
-      const existe = carrito.find(i => i.nombre === nombre);
-      if(existe){
-        existe.cantidad += 1;
-      }else{
-        carrito.push({
-          nombre: prod.nombre,
-          categoria: prod.categoria,
-          precio: prod.precio,
-          cantidad: 1
-        });
-      }
-
-      renderCarrito();
-      cambiarModo();
-    }
-
-    function cambiarCantidad(nombre, delta){
-      const item = carrito.find(i => i.nombre === nombre);
-      if(!item) return;
-      item.cantidad += delta;
-      if(item.cantidad <= 0){
-        carrito = carrito.filter(i => i.nombre !== nombre);
-      }
-      renderCarrito();
-      cambiarModo();
-    }
-
-    function eliminarDelCarrito(nombre){
-      carrito = carrito.filter(i => i.nombre !== nombre);
-      renderCarrito();
-      cambiarModo();
-    }
-
-    function resumenCarrito(){
+    function recalcularProductos(){
+      const items = obtenerProductosCapturados();
       let subtotal = 0;
       let piezas = 0;
-      carrito.forEach(i => {
-        subtotal += i.precio * i.cantidad;
+
+      items.forEach(i => {
+        subtotal += i.importe;
         piezas += i.cantidad;
       });
-      return { subtotal, piezas, total: subtotal };
-    }
 
-    function renderCarrito(){
-      const lista = document.getElementById("carritoLista");
-      const r = resumenCarrito();
-
-      if(carrito.length === 0){
-        lista.innerHTML = `<div class="vacio">Aún no has agregado productos.<br>Usa el botón <b>+</b> de las tarjetas.</div>`;
-      }else{
-        lista.innerHTML = "";
-        carrito.forEach(item => {
-          const importe = item.precio * item.cantidad;
-          const div = document.createElement("div");
-          div.className = "item";
-          div.innerHTML = `
-            <div class="itemTop">
-              <div>
-                <div class="itemName">${item.nombre}</div>
-                <div class="itemCat">${item.categoria}</div>
-              </div>
-              <div class="controls">
-                <div class="qty">
-                  <button onclick="cambiarCantidad('${String(item.nombre).replace(/'/g,"\\'")}', -1)">−</button>
-                  <span>${item.cantidad}</span>
-                  <button onclick="cambiarCantidad('${String(item.nombre).replace(/'/g,"\\'")}', 1)">+</button>
-                </div>
-                <button class="remove" onclick="eliminarDelCarrito('${String(item.nombre).replace(/'/g,"\\'")}')">×</button>
-              </div>
-            </div>
-            <div class="itemPrice">
-              <span>${dinero(item.precio)} c/u</span>
-              <strong>${dinero(importe)}</strong>
-            </div>
-          `;
-          lista.appendChild(div);
-        });
-      }
-
-      document.getElementById("subtotal").textContent = dinero(r.subtotal);
-      document.getElementById("piezas").textContent = r.piezas;
-      document.getElementById("total").textContent = dinero(r.total);
+      document.getElementById("subtotal").textContent = dinero(subtotal);
+      document.getElementById("piezas").textContent = piezas;
+      document.getElementById("total").textContent = dinero(subtotal);
 
       if(document.getElementById("modo").value === "productos"){
-        document.getElementById("cantidad").value = r.total ? r.total.toFixed(2) : "";
-        document.getElementById("letra").value = r.total ? numeroALetrasConCentavos(r.total) : "";
+        document.getElementById("cantidad").value = subtotal ? subtotal.toFixed(2) : "";
+        document.getElementById("letra").value = subtotal ? numeroALetrasConCentavos(subtotal) : "";
       }
     }
 
     function cambiarModo(){
       const modo = document.getElementById("modo").value;
-      const wrap = document.getElementById("conceptoWrap");
+      const productosWrap = document.getElementById("productosWrap");
+      const conceptoWrap = document.getElementById("conceptoWrap");
       const cantidad = document.getElementById("cantidad");
 
-      if(carrito.length > 0){
-        document.getElementById("modo").value = "productos";
-      }
-
-      if(document.getElementById("modo").value === "concepto"){
-        wrap.style.display = "flex";
+      if(modo === "concepto"){
+        productosWrap.style.display = "none";
+        conceptoWrap.style.display = "flex";
         cantidad.readOnly = false;
         actualizarLetraManual();
       }else{
-        wrap.style.display = "none";
+        productosWrap.style.display = "block";
+        conceptoWrap.style.display = "none";
         cantidad.readOnly = true;
-        const r = resumenCarrito();
-        document.getElementById("cantidad").value = r.total ? r.total.toFixed(2) : "";
-        document.getElementById("letra").value = r.total ? numeroALetrasConCentavos(r.total) : "";
+        recalcularProductos();
       }
     }
 
@@ -1351,20 +1025,14 @@
       }
 
       let conceptoFinal = concepto;
-      let productos = [];
+      let items = [];
 
       if(modo === "productos"){
-        if(carrito.length === 0){
-          alert("Agrega al menos un producto al carrito.");
+        items = obtenerProductosCapturados();
+        if(items.length === 0){
+          alert("Agrega al menos un producto.");
           return;
         }
-        productos = carrito.map(i => ({
-          nombre:i.nombre,
-          categoria:i.categoria,
-          cantidad:i.cantidad,
-          precio:i.precio,
-          importe:i.precio * i.cantidad
-        }));
         conceptoFinal = "Compra de productos Amway";
       }else{
         if(!concepto){
@@ -1372,8 +1040,6 @@
           return;
         }
       }
-
-      const resumen = resumenCarrito();
 
       document.getElementById("rFolio").textContent = folio;
       document.getElementById("rFecha").textContent = fechaBonita(fecha);
@@ -1388,10 +1054,16 @@
       body.innerHTML = "";
 
       if(modo === "productos"){
+        let subtotal = 0;
+        let piezas = 0;
+
         tabla.classList.add("active");
         totales.style.display = "block";
 
-        productos.forEach(p => {
+        items.forEach(p => {
+          subtotal += p.importe;
+          piezas += p.cantidad;
+
           const row = document.createElement("div");
           row.className = "tablaRow";
           row.innerHTML = `
@@ -1403,9 +1075,9 @@
           body.appendChild(row);
         });
 
-        document.getElementById("rSubtotal").textContent = dinero(resumen.subtotal);
-        document.getElementById("rPiezas").textContent = resumen.piezas;
-        document.getElementById("rTotal").textContent = dinero(resumen.total);
+        document.getElementById("rSubtotal").textContent = dinero(subtotal);
+        document.getElementById("rPiezas").textContent = piezas;
+        document.getElementById("rTotal").textContent = dinero(subtotal);
       }else{
         tabla.classList.remove("active");
         totales.style.display = "none";
@@ -1421,7 +1093,7 @@
         letra: letra || numeroALetrasConCentavos(cantidad),
         concepto: conceptoFinal,
         modo,
-        productos
+        productos: items
       });
 
       avanzarFolio();
@@ -1456,12 +1128,15 @@
       mensaje += `Fecha: ${fechaBonita(fecha)}%0A`;
       mensaje += `Total: ${dinero(cantidad)}%0A`;
 
-      if(modo === "productos" && carrito.length){
-        mensaje += `Productos:%0A`;
-        carrito.forEach(i => {
-          mensaje += `- ${i.nombre} x${i.cantidad} = ${dinero(i.precio * i.cantidad)}%0A`;
-        });
-      }else if(concepto){
+      if(modo === "productos"){
+        const items = obtenerProductosCapturados();
+        if(items.length){
+          mensaje += `Productos:%0A`;
+          items.forEach(i => {
+            mensaje += `- ${i.nombre} x${i.cantidad} = ${dinero(i.importe)}%0A`;
+          });
+        }
+      } else if (concepto) {
         mensaje += `Concepto: ${concepto}%0A`;
       }
 
@@ -1475,8 +1150,8 @@
       document.getElementById("concepto").value = "";
       document.getElementById("modo").value = "productos";
       document.getElementById("recibo").style.display = "none";
-      carrito = [];
-      renderCarrito();
+      document.getElementById("productoRows").innerHTML = "";
+      agregarFilaProducto();
       ponerFechaHoy();
       obtenerFolioActual();
       cambiarModo();
@@ -1489,7 +1164,7 @@
 
     function obtenerHistorial(){
       try{
-        return JSON.parse(localStorage.getItem("amwayHistorial") || "[]");
+        return JSON.parse(localStorage.getItem("amwayHistorialSimple") || "[]");
       }catch(e){
         return [];
       }
@@ -1501,7 +1176,7 @@
         ...recibo,
         creadoEn: new Date().toLocaleString("es-MX")
       });
-      localStorage.setItem("amwayHistorial", JSON.stringify(historial.slice(0,100)));
+      localStorage.setItem("amwayHistorialSimple", JSON.stringify(historial.slice(0,100)));
     }
 
     function toggleHistorial(){
@@ -1536,7 +1211,7 @@
               <div class="histTitle">Recibo No. ${r.folio}</div>
               <div class="histMeta">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
             </div>
-            <div><span class="histBadge">${r.modo === "productos" ? "Modo productos" : "Concepto general"}</span></div>
+            <div><span class="histBadge">${r.modo === "productos" ? "Con productos" : "Concepto general"}</span></div>
           </div>
           <div class="histMeta">${r.concepto}</div>
           ${productosTxt}
@@ -1561,16 +1236,15 @@
       document.getElementById("concepto").value = r.concepto || "";
       document.getElementById("modo").value = r.modo || "concepto";
 
-      carrito = (r.productos || []).map(p => ({
-        nombre:p.nombre,
-        categoria:p.categoria || "",
-        cantidad:p.cantidad || 1,
-        precio:p.precio || 0
-      }));
+      document.getElementById("productoRows").innerHTML = "";
+      if(r.productos && r.productos.length){
+        r.productos.forEach(p => agregarFilaProducto(p.nombre, p.cantidad, p.precio));
+      }else{
+        agregarFilaProducto();
+      }
 
-      renderCarrito();
       cambiarModo();
-      scrollToSection("datosRecibo");
+      scrollToSection("formulario");
     }
 
     function convertirFechaInput(txt){
@@ -1585,7 +1259,7 @@
 
     function limpiarHistorial(){
       if(!confirm("¿Seguro que quieres borrar todo el historial?")) return;
-      localStorage.removeItem("amwayHistorial");
+      localStorage.removeItem("amwayHistorialSimple");
       renderHistorial();
     }
 
@@ -1599,11 +1273,9 @@
       URL.revokeObjectURL(a.href);
     }
 
-    initCategorias();
     ponerFechaHoy();
     obtenerFolioActual();
-    renderProductos();
-    renderCarrito();
+    agregarFilaProducto();
     renderHistorial();
     cambiarModo();
   </script>
