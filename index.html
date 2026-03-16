@@ -8,18 +8,19 @@
   <style>
     :root{
       --bg:#08111d;
-      --bg2:#0d1828;
-      --panel:#0f1b2c;
-      --line:#26384f;
-      --line-soft:#dce5ee;
-      --white:#ffffff;
+      --panel:#101b2a;
+      --panel2:#142235;
+      --line:#30445d;
+      --white:#fff;
       --text:#eef4fa;
-      --muted:#9aabbe;
-      --accent:#1f4e79;
-      --accent-2:#294f78;
-      --green:#148043;
-      --danger:#8e1f1f;
-      --shadow:0 20px 50px rgba(0,0,0,.28);
+      --muted:#9fb0c4;
+      --blue:#2c5588;
+      --blue2:#3b6aa3;
+      --blue3:#1e4a7b;
+      --green:#15803d;
+      --danger:#8b1e1e;
+      --soft:#f3f7fb;
+      --shadow:0 18px 40px rgba(0,0,0,.25);
     }
 
     *{box-sizing:border-box}
@@ -28,236 +29,186 @@
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg, #0a1421 0%, #08111d 100%);
+      background:linear-gradient(180deg,#0b1522,#08111d);
       color:var(--text);
     }
 
-    .app{
-      max-width:1250px;
+    .wrap{
+      max-width:1200px;
       margin:0 auto;
       padding:14px;
     }
 
-    .hero{
-      background:linear-gradient(180deg, #24589b, #1a4479);
-      border:1px solid rgba(255,255,255,.08);
+    .header{
+      background:linear-gradient(180deg,var(--blue2),var(--blue));
       border-radius:28px;
-      overflow:hidden;
+      padding:28px 22px 18px;
+      text-align:center;
       box-shadow:var(--shadow);
       margin-bottom:16px;
     }
 
-    .hero-top{
-      padding:26px 18px 18px;
-      text-align:center;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-    }
-
-    .brand-logo{
-      width:190px;
-      height:95px;
-      object-fit:contain;
+    .logo{
+      width:180px;
+      max-width:80%;
       display:block;
       margin:0 auto;
-      filter:none;
-      background:transparent;
     }
 
-    .brand p{
-      margin:0;
-      font-size:19px;
-      line-height:1.4;
-      color:rgba(255,255,255,.92);
+    .subtitulo{
+      margin-top:10px;
+      font-size:18px;
+      color:rgba(255,255,255,.94);
       font-weight:600;
-      letter-spacing:.2px;
     }
 
-    .hero-actions{
+    .menu{
+      margin-top:22px;
       display:flex;
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:20px;
     }
 
-    .hero-btn{
-      border:none;
-      border-radius:16px;
-      padding:14px 22px;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
+    .menu button{
       background:rgba(255,255,255,.16);
-      color:#fff;
-    }
-
-    .hero-btn.active{
-      background:#fff;
-      color:#173f78;
-    }
-
-    .cat-tabs{
-      display:flex;
-      overflow:auto;
-      background:rgba(0,0,0,.12);
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .cat-tab{
       border:none;
-      background:transparent;
-      color:rgba(255,255,255,.85);
-      font-weight:800;
-      padding:16px 18px;
-      white-space:nowrap;
-      cursor:pointer;
-      font-size:15px;
-    }
-
-    .cat-tab.active{
-      background:rgba(255,255,255,.14);
       color:#fff;
+      padding:12px 20px;
+      border-radius:14px;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
     }
 
-    .tools{
-      background:linear-gradient(180deg, var(--panel), #0d1725);
+    .menu button.active{
+      background:#fff;
+      color:var(--blue);
+    }
+
+    .searchBox{
+      background:var(--panel);
       border:1px solid var(--line);
-      border-radius:24px;
-      padding:16px;
-      box-shadow:var(--shadow);
       margin-bottom:16px;
+      padding:16px;
+      border-radius:22px;
+      box-shadow:var(--shadow);
     }
 
-    .tools-grid{
+    .searchGrid{
       display:grid;
-      grid-template-columns:1.2fr .8fr .8fr;
+      grid-template-columns:1fr 220px;
       gap:12px;
     }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-    }
-
     label{
+      display:block;
       font-size:13px;
       font-weight:800;
-      color:#ebf2f9;
+      margin-bottom:8px;
+      color:#edf3fa;
     }
 
     input, select, textarea{
       width:100%;
-      border:1px solid #344960;
-      background:#09111b;
-      color:#f8fbff;
-      border-radius:14px;
       padding:13px 14px;
+      border-radius:14px;
+      border:1px solid #40546d;
+      background:#09111b;
+      color:#fff;
       font-size:15px;
       outline:none;
     }
 
     textarea{
-      min-height:95px;
+      min-height:90px;
       resize:vertical;
     }
 
-    input::placeholder, textarea::placeholder{
-      color:#8ea1b5;
-    }
-
-    .main{
+    .layout{
       display:grid;
-      grid-template-columns:1.55fr .95fr;
+      grid-template-columns:1.45fr .95fr;
       gap:16px;
       align-items:start;
     }
 
-    .catalog{
-      background:#f3f7fb;
+    .catalogo{
+      background:var(--soft);
+      color:#111827;
       border-radius:24px;
-      padding:16px;
+      padding:18px;
       box-shadow:var(--shadow);
-      min-height:500px;
     }
 
-    .section-head{
+    .headRow{
       display:flex;
       justify-content:space-between;
-      gap:12px;
       align-items:center;
-      margin-bottom:14px;
+      gap:12px;
       flex-wrap:wrap;
+      margin-bottom:14px;
     }
 
-    .section-head h2{
+    .headRow h2{
       margin:0;
-      color:#112033;
-      font-size:23px;
+      font-size:24px;
+      color:#132235;
     }
 
-    .section-head .meta{
-      color:#677789;
+    .meta{
+      color:#64748b;
       font-size:13px;
       font-weight:700;
     }
 
-    .catalog-grid{
+    .productos{
       display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
       gap:14px;
     }
 
-    .product-card{
+    .producto{
       background:#fff;
-      border:1px solid #dde6ef;
-      border-radius:18px;
+      border:1px solid #d9e2ec;
+      border-radius:20px;
       overflow:hidden;
-      box-shadow:0 8px 22px rgba(18,32,51,.08);
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
       display:flex;
       flex-direction:column;
     }
 
-    .product-image-wrap{
-      height:185px;
-      background:linear-gradient(180deg, #f8fbff, #edf4fa);
+    .productoTop{
+      height:170px;
+      background:linear-gradient(180deg,#f8fbff,#eef4f9);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:16px;
-      border-bottom:1px solid #e5edf4;
+      padding:14px;
+      border-bottom:1px solid #e7eef5;
     }
 
-    .product-image{
+    .productoTop img{
       max-width:100%;
       max-height:100%;
       object-fit:contain;
     }
 
-    .product-placeholder{
+    .placeholder{
       width:100%;
       height:100%;
-      border:2px dashed #cdd9e5;
+      border:2px dashed #c9d5e2;
       border-radius:14px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:12px;
-      color:#7f90a6;
+      padding:10px;
+      color:#7b8da2;
       font-weight:800;
       background:#fff;
-      line-height:1.4;
     }
 
-    .product-body{
+    .productoBody{
       padding:14px;
       display:flex;
       flex-direction:column;
@@ -266,65 +217,57 @@
     }
 
     .badge{
-      display:inline-block;
       width:max-content;
-      background:#eef5fb;
-      color:#355679;
-      border:1px solid #d7e4ef;
-      border-radius:999px;
       padding:6px 10px;
+      border-radius:999px;
+      background:#eef4fa;
+      border:1px solid #d5e2ee;
+      color:#355679;
       font-size:11px;
       font-weight:800;
       text-transform:uppercase;
       letter-spacing:.4px;
     }
 
-    .product-title{
+    .producto h3{
       margin:0;
       color:#172433;
-      font-size:21px;
-      line-height:1.14;
+      font-size:20px;
+      line-height:1.15;
     }
 
-    .product-desc{
+    .producto p{
       margin:0;
-      color:#6a7888;
+      color:#667789;
       font-size:14px;
       line-height:1.45;
-      min-height:40px;
+      min-height:38px;
     }
 
-    .product-bottom{
+    .bottom{
       margin-top:auto;
       display:flex;
       justify-content:space-between;
-      gap:12px;
       align-items:center;
+      gap:12px;
     }
 
-    .price{
+    .precio{
       color:var(--green);
-      font-size:21px;
       font-weight:800;
+      font-size:21px;
     }
 
-    .pv{
-      font-size:12px;
-      font-weight:700;
-      color:#7c8794;
-    }
-
-    .add-btn{
-      width:48px;
-      height:48px;
-      border:none;
+    .agregar{
+      width:46px;
+      height:46px;
       border-radius:50%;
-      background:linear-gradient(180deg, #2b67a7, #1f4e79);
+      border:none;
+      background:linear-gradient(180deg,#2b67a7,#1f4e79);
       color:#fff;
       font-size:24px;
       font-weight:800;
       cursor:pointer;
-      box-shadow:0 10px 18px rgba(31,78,121,.24);
     }
 
     .side{
@@ -333,7 +276,7 @@
     }
 
     .panel{
-      background:linear-gradient(180deg, var(--panel), #0d1725);
+      background:var(--panel);
       border:1px solid var(--line);
       border-radius:24px;
       padding:16px;
@@ -346,142 +289,128 @@
       color:#fff;
     }
 
-    .cart-list{
+    .carritoLista{
       display:grid;
       gap:10px;
       margin-bottom:14px;
     }
 
-    .cart-empty{
+    .vacio{
       background:#09111b;
-      border:1px dashed #32465d;
+      border:1px dashed #40546d;
       border-radius:16px;
       padding:16px;
-      color:#8ea2b7;
+      color:#98aabd;
       text-align:center;
-      font-size:14px;
       line-height:1.5;
     }
 
-    .cart-item{
+    .item{
       background:#09111b;
-      border:1px solid #27384d;
+      border:1px solid #2a3c52;
       border-radius:16px;
       padding:12px;
       display:grid;
       gap:10px;
     }
 
-    .cart-item-top{
+    .itemTop{
       display:flex;
       justify-content:space-between;
-      align-items:flex-start;
       gap:10px;
+      align-items:flex-start;
     }
 
-    .cart-name{
-      font-size:15px;
+    .itemName{
       font-weight:800;
-      color:#f2f7fc;
+      color:#f3f8fd;
       line-height:1.35;
     }
 
-    .cart-cat{
+    .itemCat{
       font-size:11px;
-      color:#aab8c8;
+      color:#aab8c7;
       margin-top:5px;
-      font-weight:800;
       text-transform:uppercase;
+      font-weight:800;
       letter-spacing:.5px;
     }
 
-    .cart-controls{
+    .controls{
       display:flex;
-      align-items:center;
       gap:8px;
+      align-items:center;
     }
 
-    .qty-wrap{
+    .qty{
       display:flex;
       align-items:center;
       gap:6px;
     }
 
-    .qty-btn{
+    .qty button,
+    .remove{
       width:32px;
       height:32px;
       border:none;
       border-radius:10px;
-      background:#182a40;
       color:#fff;
-      font-size:18px;
-      font-weight:800;
       cursor:pointer;
+      font-weight:800;
     }
 
-    .qty-value{
+    .qty button{background:#182a40}
+    .remove{background:var(--danger)}
+
+    .qty span{
       min-width:28px;
       text-align:center;
-      color:#fff;
       font-weight:800;
+      color:#fff;
     }
 
-    .remove-btn{
-      width:32px;
-      height:32px;
-      border:none;
-      border-radius:10px;
-      background:#551717;
-      color:#fff;
-      font-weight:800;
-      cursor:pointer;
-    }
-
-    .cart-price-row{
+    .itemPrice{
       display:flex;
       justify-content:space-between;
       gap:10px;
-      color:#dce6f0;
       font-size:14px;
+      color:#dce6f0;
     }
 
-    .summary{
+    .resumen{
       background:#09111b;
-      border:1px solid #293b4f;
+      border:1px solid #2a3c52;
       border-radius:16px;
       padding:14px;
       display:grid;
       gap:8px;
     }
 
-    .summary-line{
+    .linea{
       display:flex;
       justify-content:space-between;
-      gap:12px;
-      font-size:14px;
+      gap:10px;
       color:#dce6f0;
+      font-size:14px;
     }
 
-    .summary-line.total{
-      border-top:1px solid #2b3c4f;
+    .linea.total{
+      border-top:1px solid #2a3c52;
       padding-top:8px;
       margin-top:4px;
-      color:#fff;
       font-size:18px;
       font-weight:800;
+      color:#fff;
     }
 
-    .receipt-actions{
+    .acciones{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       margin-top:14px;
     }
 
-    .btn-primary,
-    .btn-secondary,
-    .btn-ghost,
-    .btn-whatsapp{
+    .acciones button{
       flex:1;
       min-width:150px;
       border:none;
@@ -492,39 +421,39 @@
       cursor:pointer;
     }
 
-    .btn-primary{
-      background:linear-gradient(180deg, #4b6784, #395169);
+    .primario{
+      background:linear-gradient(180deg,#4b6784,#395169);
       color:#fff;
     }
 
-    .btn-secondary{
-      background:linear-gradient(180deg, #f4f7fa, #dfe7ef);
+    .secundario{
+      background:linear-gradient(180deg,#f4f7fa,#dfe7ef);
       color:#111827;
     }
 
-    .btn-ghost{
+    .ghost{
       background:#121d2b;
       color:#fff;
       border:1px solid #33465b;
     }
 
-    .btn-whatsapp{
-      background:linear-gradient(180deg, #1faa59, #168845);
+    .whatsapp{
+      background:linear-gradient(180deg,#1faa59,#168845);
       color:#fff;
     }
 
-    .receipt{
+    .recibo{
       display:none;
       margin-top:18px;
       background:#fff;
       color:#111827;
       border-radius:22px;
       border:1px solid #e2eaf1;
-      box-shadow:0 18px 46px rgba(0,0,0,.18);
+      box-shadow:var(--shadow);
       padding:34px 30px;
     }
 
-    .receipt-head{
+    .reciboHead{
       display:flex;
       justify-content:space-between;
       gap:14px;
@@ -534,21 +463,21 @@
       margin-bottom:20px;
     }
 
-    .receipt-brand{
+    .reciboBrand{
       display:flex;
       gap:14px;
       align-items:flex-start;
       flex:1;
     }
 
-    .receipt-logo{
+    .reciboLogo{
       width:86px;
       height:86px;
       object-fit:contain;
       filter:grayscale(100%);
     }
 
-    .receipt-brand h1{
+    .reciboBrand h1{
       margin:0;
       color:#4b5563;
       font-size:30px;
@@ -556,14 +485,14 @@
       letter-spacing:.4px;
     }
 
-    .receipt-brand p{
+    .reciboBrand p{
       margin:8px 0 0;
       color:#6b7280;
       font-size:14px;
       line-height:1.65;
     }
 
-    .folio-card{
+    .folioCard{
       min-width:170px;
       text-align:right;
       background:#f6f9fc;
@@ -572,7 +501,7 @@
       padding:14px;
     }
 
-    .folio-card .tag{
+    .folioCard .tag{
       font-size:11px;
       font-weight:800;
       color:#6b7280;
@@ -580,29 +509,29 @@
       letter-spacing:.9px;
     }
 
-    .folio-card .num{
+    .folioCard .num{
       margin-top:6px;
       font-size:30px;
       font-weight:800;
       color:#415a77;
     }
 
-    .receipt-grid{
+    .reciboGrid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px 24px;
     }
 
-    .receipt-field{
+    .campo{
       padding:8px 0;
       border-bottom:1px solid #edf2f6;
     }
 
-    .receipt-field.full{
+    .campo.full{
       grid-column:1 / -1;
     }
 
-    .receipt-field .k{
+    .campo .k{
       display:block;
       font-size:11px;
       text-transform:uppercase;
@@ -612,27 +541,27 @@
       margin-bottom:7px;
     }
 
-    .receipt-field .v{
+    .campo .v{
       display:block;
       font-size:16px;
       color:#111827;
       line-height:1.5;
     }
 
-    .amount-box{
-      background:linear-gradient(180deg, #eef4f8, #e6eef4);
+    .amount{
+      background:linear-gradient(180deg,#eef4f8,#e6eef4);
       border:1px solid #d7e1ea;
       border-radius:16px;
       padding:14px;
     }
 
-    .amount-box .v{
+    .amount .v{
       font-size:26px;
       font-weight:800;
       color:#415a77;
     }
 
-    .receipt-products{
+    .tablaProductos{
       margin-top:18px;
       border:1px solid #dde6ee;
       border-radius:16px;
@@ -640,11 +569,11 @@
       display:none;
     }
 
-    .receipt-products.active{
+    .tablaProductos.active{
       display:block;
     }
 
-    .receipt-products-head{
+    .tablaHead{
       background:#f4f8fb;
       display:grid;
       grid-template-columns:1.8fr .5fr .8fr .8fr;
@@ -657,7 +586,7 @@
       letter-spacing:.8px;
     }
 
-    .receipt-product-row{
+    .tablaRow{
       display:grid;
       grid-template-columns:1.8fr .5fr .8fr .8fr;
       gap:10px;
@@ -669,7 +598,7 @@
       background:#fff;
     }
 
-    .receipt-totals{
+    .totalesRecibo{
       margin-top:16px;
       margin-left:auto;
       max-width:360px;
@@ -680,7 +609,7 @@
       display:none;
     }
 
-    .receipt-totals .line{
+    .totalesRecibo .l{
       display:flex;
       justify-content:space-between;
       gap:12px;
@@ -689,7 +618,7 @@
       font-size:14px;
     }
 
-    .receipt-totals .line.total{
+    .totalesRecibo .l.total{
       font-size:19px;
       font-weight:800;
       color:#415a77;
@@ -697,12 +626,12 @@
       padding-top:10px;
     }
 
-    .signature{
+    .firma{
       margin-top:48px;
       text-align:center;
     }
 
-    .signature img{
+    .firma img{
       max-width:180px;
       max-height:68px;
       object-fit:contain;
@@ -710,46 +639,46 @@
       margin:0 auto 4px;
     }
 
-    .signature-line{
+    .firmaLinea{
       width:240px;
       border-top:1.8px solid #444;
       margin:0 auto 8px;
     }
 
-    .signature-text{
+    .firmaTexto{
       font-size:13px;
       color:#444;
       font-weight:700;
     }
 
-    .note{
+    .nota{
       margin-top:22px;
       text-align:center;
       color:#7b8794;
       font-size:12px;
     }
 
-    .history-panel{
+    .historial{
       display:none;
     }
 
-    .history-panel.active{
+    .historial.active{
       display:block;
     }
 
-    .history-list{
+    .historialLista{
       display:grid;
       gap:10px;
     }
 
-    .history-card{
+    .histCard{
       background:#0a1220;
       border:1px solid #26384a;
       border-radius:16px;
       padding:14px;
     }
 
-    .history-card-top{
+    .histTop{
       display:flex;
       justify-content:space-between;
       gap:10px;
@@ -757,19 +686,19 @@
       margin-bottom:8px;
     }
 
-    .history-title{
+    .histTitle{
       font-size:16px;
       font-weight:800;
       color:#fff;
     }
 
-    .history-meta{
+    .histMeta{
       color:#a7b4c4;
       font-size:13px;
       line-height:1.55;
     }
 
-    .history-badge{
+    .histBadge{
       display:inline-block;
       font-size:11px;
       font-weight:800;
@@ -780,14 +709,14 @@
       border:1px solid #314052;
     }
 
-    .history-actions{
+    .histActions{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
       margin-top:10px;
     }
 
-    .small-btn{
+    .smallBtn{
       border:1px solid #334155;
       background:#111827;
       color:#fff;
@@ -799,56 +728,43 @@
     }
 
     @media (max-width:980px){
-      .main{
-        grid-template-columns:1fr;
-      }
+      .layout{grid-template-columns:1fr}
     }
 
     @media (max-width:760px){
-      .tools-grid,
-      .receipt-grid{
+      .searchGrid,
+      .reciboGrid{
         grid-template-columns:1fr;
       }
 
-      .receipt-head{
+      .reciboHead{
         flex-direction:column;
       }
 
-      .folio-card{
+      .folioCard{
         text-align:left;
       }
 
-      .receipt-brand{
+      .reciboBrand{
         flex-direction:column;
         align-items:center;
         text-align:center;
       }
 
-      .receipt-products-head,
-      .receipt-product-row{
+      .tablaHead,
+      .tablaRow{
         grid-template-columns:1fr 1fr;
       }
 
-      .brand-logo{
-        width:160px;
-        height:80px;
+      .logo{
+        width:155px;
       }
     }
 
     @media print{
-      body{
-        background:#fff;
-      }
-
-      .hero,
-      .tools,
-      .catalog,
-      .panel,
-      .history-panel{
-        display:none !important;
-      }
-
-      .receipt{
+      body{background:#fff}
+      .header,.searchBox,.catalogo,.panel,.historial{display:none !important}
+      .recibo{
         display:block !important;
         box-shadow:none;
         border:none;
@@ -860,51 +776,52 @@
   </style>
 </head>
 <body>
-  <div class="app">
+  <div class="wrap">
 
-    <div class="hero">
-      <div class="hero-top">
-        <div class="brand">
-          <img src="logo.png" alt="Logo" class="brand-logo">
-          <p>Empresario Independiente</p>
-        </div>
+    <div class="header">
+      <img src="logo.png" class="logo" alt="Logo">
+      <div class="subtitulo">Empresario Independiente</div>
 
-        <div class="hero-actions">
-          <button class="hero-btn active" onclick="mostrarVista('catalogo')">Catálogo</button>
-          <button class="hero-btn" onclick="mostrarVista('recibo')">Recibo</button>
-          <button class="hero-btn" onclick="toggleHistorial()">Historial</button>
-        </div>
+      <div class="menu">
+        <button class="active" onclick="scrollToSection('catalogo')">Catálogo</button>
+        <button onclick="scrollToSection('datosRecibo')">Recibo</button>
+        <button onclick="toggleHistorial()">Historial</button>
       </div>
 
-      <div class="cat-tabs" id="tabsCategorias"></div>
+      <div class="menu" style="margin-top:12px;">
+        <button onclick="imprimirRecibo()">PDF</button>
+        <button onclick="enviarWhatsApp()">WhatsApp</button>
+      </div>
     </div>
 
-    <div class="tools">
-      <div class="tools-grid">
+    <div class="searchBox">
+      <div class="searchGrid">
         <div class="field">
-          <label for="busquedaProducto">Buscar producto</label>
-          <input type="text" id="busquedaProducto" placeholder="Escribe nombre o categoría" oninput="renderProductos()">
+          <label for="busqueda">Buscar producto</label>
+          <input id="busqueda" placeholder="Escribe nombre o categoría" oninput="renderProductos()">
         </div>
 
         <div class="field">
-          <label for="filtroCategoria">Filtrar categoría</label>
-          <select id="filtroCategoria" onchange="sincronizarTabsDesdeSelect(); renderProductos()"></select>
+          <label for="categoria">Filtrar categoría</label>
+          <select id="categoria" onchange="sincronizarTabs(); renderProductos()"></select>
         </div>
 
         <div class="field">
-          <label for="ordenProductos">Ordenar por</label>
-          <select id="ordenProductos" onchange="renderProductos()">
+          <label for="orden">Ordenar por</label>
+          <select id="orden" onchange="renderProductos()">
             <option value="nombre">Nombre</option>
             <option value="precioAsc">Precio menor a mayor</option>
             <option value="precioDesc">Precio mayor a menor</option>
           </select>
         </div>
       </div>
+
+      <div id="tabs" style="display:flex; gap:10px; overflow:auto; margin-top:14px;"></div>
     </div>
 
-    <div class="main">
-      <div class="catalog" id="catalogoPanel">
-        <div class="section-head">
+    <div class="layout">
+      <div class="catalogo" id="catalogo">
+        <div class="headRow">
           <div>
             <h2>Catálogo visual</h2>
             <div class="meta">Agrega productos desde las tarjetas para armar la venta.</div>
@@ -912,36 +829,36 @@
           <div class="meta" id="conteoProductos"></div>
         </div>
 
-        <div class="catalog-grid" id="productsGrid"></div>
+        <div class="productos" id="productos"></div>
       </div>
 
       <div class="side">
         <div class="panel">
           <h3>Carrito / calculadora</h3>
-          <div class="cart-list" id="cartList"></div>
+          <div class="carritoLista" id="carritoLista"></div>
 
-          <div class="summary">
-            <div class="summary-line">
+          <div class="resumen">
+            <div class="linea">
               <span>Subtotal</span>
-              <span id="subtotalVista">$0.00</span>
+              <span id="subtotal">$0.00</span>
             </div>
-            <div class="summary-line">
+            <div class="linea">
               <span>Total de piezas</span>
-              <span id="piezasVista">0</span>
+              <span id="piezas">0</span>
             </div>
-            <div class="summary-line total">
+            <div class="linea total">
               <span>Total</span>
-              <span id="totalVista">$0.00</span>
+              <span id="total">$0.00</span>
             </div>
           </div>
         </div>
 
-        <div class="panel" id="reciboPanel">
+        <div class="panel" id="datosRecibo">
           <h3>Datos del recibo</h3>
 
           <div class="field">
             <label for="folio">Número de recibo</label>
-            <input type="text" id="folio" readonly>
+            <input id="folio" readonly>
           </div>
 
           <div class="field" style="margin-top:12px;">
@@ -951,12 +868,12 @@
 
           <div class="field" style="margin-top:12px;">
             <label for="cliente">Nombre del cliente</label>
-            <input type="text" id="cliente" placeholder="Escribe el nombre del cliente">
+            <input id="cliente" placeholder="Escribe el nombre del cliente">
           </div>
 
           <div class="field" style="margin-top:12px;">
-            <label for="modoRecibo">Modo</label>
-            <select id="modoRecibo" onchange="cambiarModoFormulario()">
+            <label for="modo">Modo</label>
+            <select id="modo" onchange="cambiarModo()">
               <option value="productos">Venta por productos</option>
               <option value="concepto">Concepto general</option>
             </select>
@@ -964,12 +881,12 @@
 
           <div class="field" style="margin-top:12px;">
             <label for="cantidad">Cantidad total ($)</label>
-            <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarImporteLetraManual()">
+            <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarLetraManual()">
           </div>
 
           <div class="field" style="margin-top:12px;">
-            <label for="importeLetra">Cantidad con letra</label>
-            <input type="text" id="importeLetra" placeholder="Se llena automáticamente">
+            <label for="letra">Cantidad con letra</label>
+            <input id="letra" placeholder="Se llena automáticamente">
           </div>
 
           <div class="field" style="margin-top:12px;" id="conceptoWrap">
@@ -977,133 +894,131 @@
             <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
           </div>
 
-          <div class="receipt-actions">
-            <button class="btn-primary" onclick="generarRecibo()">Generar recibo</button>
-            <button class="btn-secondary" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
-            <button class="btn-whatsapp" onclick="enviarWhatsApp()">WhatsApp</button>
-            <button class="btn-ghost" onclick="nuevoRecibo()">Nuevo recibo</button>
+          <div class="acciones">
+            <button class="primario" onclick="generarRecibo()">Generar recibo</button>
+            <button class="secundario" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
+            <button class="whatsapp" onclick="enviarWhatsApp()">WhatsApp</button>
+            <button class="ghost" onclick="nuevoRecibo()">Nuevo recibo</button>
           </div>
         </div>
 
-        <div class="history-panel panel" id="historyPanel">
+        <div class="panel historial" id="historial">
           <h3>Historial</h3>
-          <div class="receipt-actions" style="margin-top:0; margin-bottom:12px;">
-            <button class="btn-ghost" onclick="exportarHistorialJSON()">Exportar historial</button>
-            <button class="btn-ghost" onclick="limpiarHistorial()">Borrar historial</button>
+          <div class="acciones" style="margin-top:0; margin-bottom:12px;">
+            <button class="ghost" onclick="exportarHistorial()">Exportar historial</button>
+            <button class="ghost" onclick="limpiarHistorial()">Borrar historial</button>
           </div>
-          <div class="history-list" id="historyList"></div>
+          <div class="historialLista" id="historialLista"></div>
         </div>
       </div>
     </div>
 
-    <div class="receipt" id="recibo">
-      <div class="receipt-head">
-        <div class="receipt-brand">
-          <img src="logo.png" alt="Logo" class="receipt-logo">
+    <div class="recibo" id="recibo">
+      <div class="reciboHead">
+        <div class="reciboBrand">
+          <img src="logo.png" class="reciboLogo" alt="Logo">
           <div>
             <h1>AMWAY MÉXICO</h1>
             <p>Empresario Independiente</p>
           </div>
         </div>
 
-        <div class="folio-card">
+        <div class="folioCard">
           <div class="tag">Recibo No.</div>
-          <div class="num" id="rfolio">001</div>
+          <div class="num" id="rFolio">001</div>
         </div>
       </div>
 
-      <div class="receipt-grid">
-        <div class="receipt-field">
+      <div class="reciboGrid">
+        <div class="campo">
           <span class="k">Fecha</span>
-          <span class="v" id="rfecha"></span>
+          <span class="v" id="rFecha"></span>
         </div>
 
-        <div class="receipt-field">
+        <div class="campo">
           <span class="k">Cliente</span>
-          <span class="v" id="rcliente"></span>
+          <span class="v" id="rCliente"></span>
         </div>
 
-        <div class="receipt-field amount-box">
+        <div class="campo amount">
           <span class="k">Cantidad</span>
-          <span class="v" id="rcantidad"></span>
+          <span class="v" id="rCantidad"></span>
         </div>
 
-        <div class="receipt-field">
+        <div class="campo">
           <span class="k">Importe con letra</span>
-          <span class="v" id="rletra"></span>
+          <span class="v" id="rLetra"></span>
         </div>
 
-        <div class="receipt-field full">
+        <div class="campo full">
           <span class="k">Concepto</span>
-          <span class="v" id="rconcepto"></span>
+          <span class="v" id="rConcepto"></span>
         </div>
       </div>
 
-      <div class="receipt-products" id="receiptProducts">
-        <div class="receipt-products-head">
+      <div class="tablaProductos" id="tablaProductos">
+        <div class="tablaHead">
           <div>Producto</div>
           <div>Cant.</div>
           <div>Precio</div>
           <div>Importe</div>
         </div>
-        <div id="receiptProductsBody"></div>
+        <div id="tablaBody"></div>
       </div>
 
-      <div class="receipt-totals" id="receiptTotals">
-        <div class="line">
+      <div class="totalesRecibo" id="totalesRecibo">
+        <div class="l">
           <span>Subtotal</span>
-          <span id="rsubtotal"></span>
+          <span id="rSubtotal"></span>
         </div>
-        <div class="line">
+        <div class="l">
           <span>Total piezas</span>
-          <span id="rpiezas"></span>
+          <span id="rPiezas"></span>
         </div>
-        <div class="line total">
+        <div class="l total">
           <span>Total</span>
-          <span id="rtotal"></span>
+          <span id="rTotal"></span>
         </div>
       </div>
 
-      <div class="signature">
+      <div class="firma">
         <img src="firma.PNG" alt="Firma">
-        <div class="signature-line"></div>
-        <div class="signature-text">Firma de recibido</div>
+        <div class="firmaLinea"></div>
+        <div class="firmaTexto">Firma de recibido</div>
       </div>
 
-      <div class="note">
-        Recibo generado para control de entrega y pago de productos.
-      </div>
+      <div class="nota">Recibo generado para control de entrega y pago de productos.</div>
     </div>
 
   </div>
 
   <script>
-    const catalogoProductos = [
-      { categoria:"Nutrilite", nombre:"CLA 500", precio:1240.00, pv:"18.12", descripcion:"Apoyo nutricional para complementar una rutina equilibrada.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Cal Mag D Advanced", precio:545.00, pv:"7.96", descripcion:"Con calcio y vitamina D para complementar el consumo diario.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Daily Plus 90c", precio:1170.00, pv:"17.09", descripcion:"Multivitamínico para consumo diario.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Proteína Vegetal", precio:783.00, pv:"11.43", descripcion:"Proteína vegetal para complementar la alimentación.", imagen:"" },
-      { categoria:"Nutrilite", nombre:"Triple Omega-3", precio:999.00, pv:"14.59", descripcion:"Complemento con ácidos grasos omega.", imagen:"" },
-      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50, pv:"0.61", descripcion:"Bebida energética.", imagen:"" },
-      { categoria:"XS", nombre:"XS Barra", precio:38.00, pv:"0.55", descripcion:"Barra práctica para el día.", imagen:"" },
-      { categoria:"Artistry", nombre:"Suero Diario Vitamina C + HA3", precio:1643.99, pv:"23.99", descripcion:"Cuidado de piel.", imagen:"" },
-      { categoria:"Satinique", nombre:"Shampoo Anticaída", precio:356.00, pv:"5.20", descripcion:"Shampoo para cuidado capilar.", imagen:"" },
-      { categoria:"G&H", nombre:"Gel de baño exfoliante", precio:261.00, pv:"3.81", descripcion:"Gel de baño refrescante.", imagen:"" },
-      { categoria:"Glister", nombre:"Pasta dental multiacción 200 g", precio:178.99, pv:"2.61", descripcion:"Cuidado bucal diario.", imagen:"" },
-      { categoria:"Amway Home", nombre:"SA8 detergente líquido concentrado", precio:502.00, pv:"7.33", descripcion:"Detergente líquido para ropa.", imagen:"" }
+    const productosData = [
+      { categoria:"Nutrilite", nombre:"CLA 500", precio:1240.00, descripcion:"Apoyo nutricional para complementar una rutina equilibrada.", imagen:"" },
+      { categoria:"Nutrilite", nombre:"Cal Mag D Advanced", precio:545.00, descripcion:"Con calcio y vitamina D para complementar el consumo diario.", imagen:"" },
+      { categoria:"Nutrilite", nombre:"Daily Plus 90c", precio:1170.00, descripcion:"Multivitamínico para consumo diario.", imagen:"" },
+      { categoria:"Nutrilite", nombre:"Proteína Vegetal", precio:783.00, descripcion:"Proteína vegetal para complementar la alimentación.", imagen:"" },
+      { categoria:"Nutrilite", nombre:"Triple Omega-3", precio:999.00, descripcion:"Complemento con ácidos grasos omega.", imagen:"" },
+      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50, descripcion:"Bebida energética.", imagen:"" },
+      { categoria:"XS", nombre:"XS Barra", precio:38.00, descripcion:"Barra práctica para el día.", imagen:"" },
+      { categoria:"Artistry", nombre:"Suero Diario Vitamina C + HA3", precio:1643.99, descripcion:"Cuidado de piel.", imagen:"" },
+      { categoria:"Satinique", nombre:"Shampoo Anticaída", precio:356.00, descripcion:"Shampoo para cuidado capilar.", imagen:"" },
+      { categoria:"G&H", nombre:"Gel de baño exfoliante", precio:261.00, descripcion:"Gel de baño refrescante.", imagen:"" },
+      { categoria:"Glister", nombre:"Pasta dental multiacción 200 g", precio:178.99, descripcion:"Cuidado bucal diario.", imagen:"" },
+      { categoria:"Amway Home", nombre:"SA8 detergente líquido concentrado", precio:502.00, descripcion:"Detergente líquido para ropa.", imagen:"" }
     ];
 
     let carrito = [];
 
     function dinero(n){
       return "$" + Number(n || 0).toLocaleString("es-MX", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
       });
     }
 
     function formatearFolio(n){
-      return String(n).padStart(3, "0");
+      return String(n).padStart(3,"0");
     }
 
     function obtenerFolioActual(){
@@ -1111,14 +1026,14 @@
       if(!ultimo){
         ultimo = 1;
       }else{
-        ultimo = parseInt(ultimo, 10);
+        ultimo = parseInt(ultimo,10);
         if(isNaN(ultimo) || ultimo < 1) ultimo = 1;
       }
       document.getElementById("folio").value = formatearFolio(ultimo);
     }
 
     function avanzarFolio(){
-      const actual = parseInt(document.getElementById("folio").value, 10);
+      const actual = parseInt(document.getElementById("folio").value,10);
       if(!isNaN(actual)){
         localStorage.setItem("amwayUltimoFolio", actual + 1);
       }
@@ -1127,16 +1042,16 @@
     function ponerFechaHoy(){
       const hoy = new Date();
       const y = hoy.getFullYear();
-      const m = String(hoy.getMonth() + 1).padStart(2, "0");
-      const d = String(hoy.getDate()).padStart(2, "0");
+      const m = String(hoy.getMonth()+1).padStart(2,"0");
+      const d = String(hoy.getDate()).padStart(2,"0");
       document.getElementById("fecha").value = `${y}-${m}-${d}`;
     }
 
     function fechaBonita(valor){
       if(!valor) return "";
-      const partes = valor.split("-");
-      if(partes.length !== 3) return valor;
-      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+      const p = valor.split("-");
+      if(p.length !== 3) return valor;
+      return `${p[2]}/${p[1]}/${p[0]}`;
     }
 
     function numeroALetrasConCentavos(valor){
@@ -1147,7 +1062,6 @@
 
       function convertirNumero(n){
         if(n === 0) return "CERO";
-
         const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
         const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
         const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
@@ -1174,70 +1088,67 @@
           if(x < 1000000){
             const miles = Math.floor(x / 1000);
             const resto = x % 1000;
-            const txtMiles = miles === 1 ? "MIL" : conv(miles) + " MIL";
-            return txtMiles + (resto ? " " + conv(resto) : "");
+            const txt = miles === 1 ? "MIL" : conv(miles) + " MIL";
+            return txt + (resto ? " " + conv(resto) : "");
           }
           if(x < 1000000000){
             const millones = Math.floor(x / 1000000);
             const resto = x % 1000000;
-            const txtMillones = millones === 1 ? "UN MILLON" : conv(millones) + " MILLONES";
-            return txtMillones + (resto ? " " + conv(resto) : "");
+            const txt = millones === 1 ? "UN MILLON" : conv(millones) + " MILLONES";
+            return txt + (resto ? " " + conv(resto) : "");
           }
           return String(x);
         }
 
-        return conv(n).replace(/\s+/g, " ").trim();
+        return conv(n).replace(/\s+/g," ").trim();
       }
 
-      return `${convertirNumero(entero)} PESOS ${String(centavos).padStart(2, "0")}/100 M.N.`;
+      return `${convertirNumero(entero)} PESOS ${String(centavos).padStart(2,"0")}/100 M.N.`;
     }
 
     function categoriasDisponibles(){
-      return ["TODOS", ...new Set(catalogoProductos.map(p => p.categoria))];
+      return ["TODOS", ...new Set(productosData.map(p => p.categoria))];
     }
 
-    function inicializarCategorias(){
-      const select = document.getElementById("filtroCategoria");
-      const tabs = document.getElementById("tabsCategorias");
-      select.innerHTML = "";
+    function initCategorias(){
+      const categoria = document.getElementById("categoria");
+      const tabs = document.getElementById("tabs");
+      categoria.innerHTML = "";
       tabs.innerHTML = "";
 
       categoriasDisponibles().forEach((c, i) => {
-        const option = document.createElement("option");
-        option.value = c;
-        option.textContent = c === "TODOS" ? "Todas las categorías" : c;
-        select.appendChild(option);
+        const o = document.createElement("option");
+        o.value = c;
+        o.textContent = c === "TODOS" ? "Todas las categorías" : c;
+        categoria.appendChild(o);
 
-        const btn = document.createElement("button");
-        btn.className = "cat-tab" + (i === 0 ? " active" : "");
-        btn.textContent = c;
-        btn.onclick = () => {
-          document.getElementById("filtroCategoria").value = c;
-          actualizarTabsActivos(c);
+        const b = document.createElement("button");
+        b.className = "cat-tab" + (i === 0 ? " active" : "");
+        b.textContent = c;
+        b.onclick = () => {
+          document.getElementById("categoria").value = c;
+          sincronizarTabs();
           renderProductos();
         };
-        tabs.appendChild(btn);
+        tabs.appendChild(b);
       });
 
-      select.value = "TODOS";
+      categoria.value = "TODOS";
     }
 
-    function actualizarTabsActivos(categoria){
+    function sincronizarTabs(){
+      const valor = document.getElementById("categoria").value;
       [...document.querySelectorAll(".cat-tab")].forEach(tab => {
-        tab.classList.toggle("active", tab.textContent === categoria);
+        tab.classList.toggle("active", tab.textContent === valor);
       });
     }
 
-    function sincronizarTabsDesdeSelect(){
-      actualizarTabsActivos(document.getElementById("filtroCategoria").value);
-    }
+    function filtrarProductos(){
+      const texto = document.getElementById("busqueda").value.toLowerCase().trim();
+      const categoria = document.getElementById("categoria").value;
+      const orden = document.getElementById("orden").value;
 
-    function obtenerProductosFiltrados(){
-      const texto = document.getElementById("busquedaProducto").value.toLowerCase().trim();
-      const categoria = document.getElementById("filtroCategoria").value;
-      const orden = document.getElementById("ordenProductos").value;
-
-      let lista = [...catalogoProductos];
+      let lista = [...productosData];
 
       if(categoria && categoria !== "TODOS"){
         lista = lista.filter(p => p.categoria === categoria);
@@ -1247,15 +1158,15 @@
         lista = lista.filter(p =>
           p.nombre.toLowerCase().includes(texto) ||
           p.categoria.toLowerCase().includes(texto) ||
-          (p.descripcion || "").toLowerCase().includes(texto)
+          p.descripcion.toLowerCase().includes(texto)
         );
       }
 
       if(orden === "nombre"){
-        lista.sort((a,b) => a.nombre.localeCompare(b.nombre, "es"));
+        lista.sort((a,b) => a.nombre.localeCompare(b.nombre,"es"));
       }else if(orden === "precioAsc"){
         lista.sort((a,b) => a.precio - b.precio);
-      }else if(orden === "precioDesc"){
+      }else{
         lista.sort((a,b) => b.precio - a.precio);
       }
 
@@ -1263,68 +1174,65 @@
     }
 
     function renderProductos(){
-      const grid = document.getElementById("productsGrid");
-      const lista = obtenerProductosFiltrados();
+      const cont = document.getElementById("productos");
+      const lista = filtrarProductos();
       document.getElementById("conteoProductos").textContent = `${lista.length} producto(s)`;
-      grid.innerHTML = "";
+      cont.innerHTML = "";
 
       if(lista.length === 0){
-        grid.innerHTML = `
-          <div class="product-card" style="grid-column:1 / -1;">
-            <div class="product-body">
-              <h3 class="product-title">Sin resultados</h3>
-              <p class="product-desc">Prueba con otro texto o cambia la categoría.</p>
+        cont.innerHTML = `
+          <div class="producto" style="grid-column:1 / -1;">
+            <div class="productoBody">
+              <h3>Sin resultados</h3>
+              <p>Prueba con otra búsqueda o cambia la categoría.</p>
             </div>
           </div>
         `;
         return;
       }
 
-      lista.forEach((p) => {
-        const card = document.createElement("div");
-        card.className = "product-card";
+      lista.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "producto";
 
-        const imageHtml = p.imagen
-          ? `<img src="${p.imagen}" alt="${p.nombre}" class="product-image">`
-          : `<div class="product-placeholder">${p.nombre}</div>`;
+        const imagen = p.imagen
+          ? `<img src="${p.imagen}" alt="${p.nombre}">`
+          : `<div class="placeholder">${p.nombre}</div>`;
 
-        card.innerHTML = `
-          <div class="product-image-wrap">${imageHtml}</div>
-          <div class="product-body">
+        div.innerHTML = `
+          <div class="productoTop">${imagen}</div>
+          <div class="productoBody">
             <span class="badge">${p.categoria}</span>
-            <h3 class="product-title">${p.nombre}</h3>
-            <p class="product-desc">${p.descripcion || ""}</p>
-            <div class="product-bottom">
-              <div>
-                <div class="price">${dinero(p.precio)}</div>
-                <div class="pv">PV ${p.pv || "-"}</div>
-              </div>
-              <button class="add-btn" onclick="agregarAlCarrito('${String(p.nombre).replace(/'/g, "\\'")}')">+</button>
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion}</p>
+            <div class="bottom">
+              <div class="precio">${dinero(p.precio)}</div>
+              <button class="agregar" onclick="agregarAlCarrito('${String(p.nombre).replace(/'/g,"\\'")}')">+</button>
             </div>
           </div>
         `;
-        grid.appendChild(card);
+        cont.appendChild(div);
       });
     }
 
     function agregarAlCarrito(nombre){
-      const producto = catalogoProductos.find(p => p.nombre === nombre);
-      if(!producto) return;
+      const prod = productosData.find(p => p.nombre === nombre);
+      if(!prod) return;
 
-      const existente = carrito.find(i => i.nombre === nombre);
-      if(existente){
-        existente.cantidad += 1;
+      const existe = carrito.find(i => i.nombre === nombre);
+      if(existe){
+        existe.cantidad += 1;
       }else{
         carrito.push({
-          categoria: producto.categoria,
-          nombre: producto.nombre,
-          precio: producto.precio,
+          nombre: prod.nombre,
+          categoria: prod.categoria,
+          precio: prod.precio,
           cantidad: 1
         });
       }
 
       renderCarrito();
-      cambiarModoFormularioAutomatico();
+      cambiarModo();
     }
 
     function cambiarCantidad(nombre, delta){
@@ -1335,16 +1243,16 @@
         carrito = carrito.filter(i => i.nombre !== nombre);
       }
       renderCarrito();
-      cambiarModoFormularioAutomatico();
+      cambiarModo();
     }
 
     function eliminarDelCarrito(nombre){
       carrito = carrito.filter(i => i.nombre !== nombre);
       renderCarrito();
-      cambiarModoFormularioAutomatico();
+      cambiarModo();
     }
 
-    function obtenerResumenCarrito(){
+    function resumenCarrito(){
       let subtotal = 0;
       let piezas = 0;
       carrito.forEach(i => {
@@ -1355,102 +1263,86 @@
     }
 
     function renderCarrito(){
-      const list = document.getElementById("cartList");
-      const { subtotal, piezas, total } = obtenerResumenCarrito();
+      const lista = document.getElementById("carritoLista");
+      const r = resumenCarrito();
 
       if(carrito.length === 0){
-        list.innerHTML = `<div class="cart-empty">Aún no has agregado productos.<br>Usa el botón <b>+</b> de las tarjetas.</div>`;
+        lista.innerHTML = `<div class="vacio">Aún no has agregado productos.<br>Usa el botón <b>+</b> de las tarjetas.</div>`;
       }else{
-        list.innerHTML = "";
+        lista.innerHTML = "";
         carrito.forEach(item => {
           const importe = item.precio * item.cantidad;
           const div = document.createElement("div");
-          div.className = "cart-item";
+          div.className = "item";
           div.innerHTML = `
-            <div class="cart-item-top">
+            <div class="itemTop">
               <div>
-                <div class="cart-name">${item.nombre}</div>
-                <div class="cart-cat">${item.categoria}</div>
+                <div class="itemName">${item.nombre}</div>
+                <div class="itemCat">${item.categoria}</div>
               </div>
-              <div class="cart-controls">
-                <div class="qty-wrap">
-                  <button class="qty-btn" onclick="cambiarCantidad('${String(item.nombre).replace(/'/g, "\\'")}', -1)">−</button>
-                  <div class="qty-value">${item.cantidad}</div>
-                  <button class="qty-btn" onclick="cambiarCantidad('${String(item.nombre).replace(/'/g, "\\'")}', 1)">+</button>
+              <div class="controls">
+                <div class="qty">
+                  <button onclick="cambiarCantidad('${String(item.nombre).replace(/'/g,"\\'")}', -1)">−</button>
+                  <span>${item.cantidad}</span>
+                  <button onclick="cambiarCantidad('${String(item.nombre).replace(/'/g,"\\'")}', 1)">+</button>
                 </div>
-                <button class="remove-btn" onclick="eliminarDelCarrito('${String(item.nombre).replace(/'/g, "\\'")}')">×</button>
+                <button class="remove" onclick="eliminarDelCarrito('${String(item.nombre).replace(/'/g,"\\'")}')">×</button>
               </div>
             </div>
-            <div class="cart-price-row">
+            <div class="itemPrice">
               <span>${dinero(item.precio)} c/u</span>
               <strong>${dinero(importe)}</strong>
             </div>
           `;
-          list.appendChild(div);
+          lista.appendChild(div);
         });
       }
 
-      document.getElementById("subtotalVista").textContent = dinero(subtotal);
-      document.getElementById("piezasVista").textContent = piezas;
-      document.getElementById("totalVista").textContent = dinero(total);
+      document.getElementById("subtotal").textContent = dinero(r.subtotal);
+      document.getElementById("piezas").textContent = r.piezas;
+      document.getElementById("total").textContent = dinero(r.total);
 
-      if(document.getElementById("modoRecibo").value === "productos"){
-        document.getElementById("cantidad").value = total ? total.toFixed(2) : "";
-        document.getElementById("importeLetra").value = total ? numeroALetrasConCentavos(total) : "";
+      if(document.getElementById("modo").value === "productos"){
+        document.getElementById("cantidad").value = r.total ? r.total.toFixed(2) : "";
+        document.getElementById("letra").value = r.total ? numeroALetrasConCentavos(r.total) : "";
       }
     }
 
-    function cambiarModoFormulario(){
-      const modo = document.getElementById("modoRecibo").value;
-      const conceptoWrap = document.getElementById("conceptoWrap");
+    function cambiarModo(){
+      const modo = document.getElementById("modo").value;
+      const wrap = document.getElementById("conceptoWrap");
       const cantidad = document.getElementById("cantidad");
 
-      if(modo === "concepto"){
-        conceptoWrap.style.display = "flex";
-        cantidad.readOnly = false;
-        actualizarImporteLetraManual();
-      }else{
-        conceptoWrap.style.display = "none";
-        cantidad.readOnly = true;
-        const resumen = obtenerResumenCarrito();
-        document.getElementById("cantidad").value = resumen.total ? resumen.total.toFixed(2) : "";
-        document.getElementById("importeLetra").value = resumen.total ? numeroALetrasConCentavos(resumen.total) : "";
-      }
-    }
-
-    function cambiarModoFormularioAutomatico(){
       if(carrito.length > 0){
-        document.getElementById("modoRecibo").value = "productos";
+        document.getElementById("modo").value = "productos";
       }
-      cambiarModoFormulario();
-    }
 
-    function actualizarImporteLetraManual(){
-      if(document.getElementById("modoRecibo").value === "productos") return;
-      const cantidad = document.getElementById("cantidad").value.trim();
-      document.getElementById("importeLetra").value = numeroALetrasConCentavos(cantidad);
-    }
-
-    function mostrarVista(vista){
-      const botones = document.querySelectorAll(".hero-btn");
-      botones.forEach(btn => btn.classList.remove("active"));
-
-      if(vista === "catalogo"){
-        botones[0].classList.add("active");
-        document.querySelector(".catalog").scrollIntoView({ behavior:"smooth", block:"start" });
+      if(document.getElementById("modo").value === "concepto"){
+        wrap.style.display = "flex";
+        cantidad.readOnly = false;
+        actualizarLetraManual();
       }else{
-        botones[1].classList.add("active");
-        document.getElementById("reciboPanel").scrollIntoView({ behavior:"smooth", block:"start" });
+        wrap.style.display = "none";
+        cantidad.readOnly = true;
+        const r = resumenCarrito();
+        document.getElementById("cantidad").value = r.total ? r.total.toFixed(2) : "";
+        document.getElementById("letra").value = r.total ? numeroALetrasConCentavos(r.total) : "";
       }
+    }
+
+    function actualizarLetraManual(){
+      if(document.getElementById("modo").value === "productos") return;
+      const cantidad = document.getElementById("cantidad").value.trim();
+      document.getElementById("letra").value = numeroALetrasConCentavos(cantidad);
     }
 
     function generarRecibo(){
       const folio = document.getElementById("folio").value.trim();
       const fecha = document.getElementById("fecha").value.trim();
       const cliente = document.getElementById("cliente").value.trim();
-      const modo = document.getElementById("modoRecibo").value;
+      const modo = document.getElementById("modo").value;
       const cantidad = document.getElementById("cantidad").value.trim();
-      const importeLetraInput = document.getElementById("importeLetra").value.trim();
+      const letra = document.getElementById("letra").value.trim();
       const concepto = document.getElementById("concepto").value.trim();
 
       if(!fecha || !cliente || !cantidad){
@@ -1481,53 +1373,52 @@
         }
       }
 
-      const importeLetraFinal = importeLetraInput || numeroALetrasConCentavos(cantidad);
+      const resumen = resumenCarrito();
 
-      document.getElementById("rfolio").textContent = folio;
-      document.getElementById("rfecha").textContent = fechaBonita(fecha);
-      document.getElementById("rcliente").textContent = cliente;
-      document.getElementById("rcantidad").textContent = dinero(cantidad);
-      document.getElementById("rletra").textContent = importeLetraFinal;
-      document.getElementById("rconcepto").textContent = conceptoFinal;
+      document.getElementById("rFolio").textContent = folio;
+      document.getElementById("rFecha").textContent = fechaBonita(fecha);
+      document.getElementById("rCliente").textContent = cliente;
+      document.getElementById("rCantidad").textContent = dinero(cantidad);
+      document.getElementById("rLetra").textContent = letra || numeroALetrasConCentavos(cantidad);
+      document.getElementById("rConcepto").textContent = conceptoFinal;
 
-      const receiptProducts = document.getElementById("receiptProducts");
-      const receiptProductsBody = document.getElementById("receiptProductsBody");
-      const receiptTotals = document.getElementById("receiptTotals");
-
-      receiptProductsBody.innerHTML = "";
+      const tabla = document.getElementById("tablaProductos");
+      const body = document.getElementById("tablaBody");
+      const totales = document.getElementById("totalesRecibo");
+      body.innerHTML = "";
 
       if(modo === "productos"){
-        const resumen = obtenerResumenCarrito();
-        receiptProducts.classList.add("active");
-        receiptTotals.style.display = "block";
+        tabla.classList.add("active");
+        totales.style.display = "block";
 
         productos.forEach(p => {
           const row = document.createElement("div");
-          row.className = "receipt-product-row";
+          row.className = "tablaRow";
           row.innerHTML = `
             <div>${p.nombre}</div>
             <div>${p.cantidad}</div>
             <div>${dinero(p.precio)}</div>
             <div>${dinero(p.importe)}</div>
           `;
-          receiptProductsBody.appendChild(row);
+          body.appendChild(row);
         });
 
-        document.getElementById("rsubtotal").textContent = dinero(resumen.subtotal);
-        document.getElementById("rpiezas").textContent = resumen.piezas;
-        document.getElementById("rtotal").textContent = dinero(resumen.total);
+        document.getElementById("rSubtotal").textContent = dinero(resumen.subtotal);
+        document.getElementById("rPiezas").textContent = resumen.piezas;
+        document.getElementById("rTotal").textContent = dinero(resumen.total);
       }else{
-        receiptProducts.classList.remove("active");
-        receiptTotals.style.display = "none";
+        tabla.classList.remove("active");
+        totales.style.display = "none";
       }
 
       document.getElementById("recibo").style.display = "block";
-      guardarEnHistorial({
+
+      guardarHistorial({
         folio,
         fecha: fechaBonita(fecha),
         cliente,
         cantidad: dinero(cantidad),
-        importeLetra: importeLetraFinal,
+        letra: letra || numeroALetrasConCentavos(cantidad),
         concepto: conceptoFinal,
         modo,
         productos
@@ -1536,6 +1427,7 @@
       avanzarFolio();
       obtenerFolioActual();
       renderHistorial();
+
       document.getElementById("recibo").scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
@@ -1552,60 +1444,68 @@
       const cliente = document.getElementById("cliente").value.trim();
       const fecha = document.getElementById("fecha").value.trim();
       const cantidad = document.getElementById("cantidad").value.trim();
-      const modo = document.getElementById("modoRecibo").value;
+      const modo = document.getElementById("modo").value;
       const concepto = document.getElementById("concepto").value.trim();
-      let texto = `Hola${cliente ? " " + cliente : ""}, te comparto el resumen de tu compra.%0A`;
-      texto += `Fecha: ${fechaBonita(fecha)}%0A`;
-      texto += `Total: ${dinero(cantidad)}%0A`;
 
-      if(modo === "productos" && carrito.length){
-        texto += `Productos:%0A`;
-        carrito.forEach(i => {
-          texto += `- ${i.nombre} x${i.cantidad} = ${dinero(i.precio * i.cantidad)}%0A`;
-        });
-      } else if (concepto) {
-        texto += `Concepto: ${concepto}%0A`;
+      if(!fecha || !cantidad){
+        alert("Primero llena la información del recibo.");
+        return;
       }
 
-      texto += `Gracias.`;
-      window.open(`https://wa.me/?text=${texto}`, "_blank");
+      let mensaje = `Hola${cliente ? " " + cliente : ""}, te comparto el resumen de tu compra.%0A`;
+      mensaje += `Fecha: ${fechaBonita(fecha)}%0A`;
+      mensaje += `Total: ${dinero(cantidad)}%0A`;
+
+      if(modo === "productos" && carrito.length){
+        mensaje += `Productos:%0A`;
+        carrito.forEach(i => {
+          mensaje += `- ${i.nombre} x${i.cantidad} = ${dinero(i.precio * i.cantidad)}%0A`;
+        });
+      }else if(concepto){
+        mensaje += `Concepto: ${concepto}%0A`;
+      }
+
+      window.open(`https://wa.me/?text=${mensaje}`, "_blank");
     }
 
     function nuevoRecibo(){
       document.getElementById("cliente").value = "";
       document.getElementById("cantidad").value = "";
-      document.getElementById("importeLetra").value = "";
+      document.getElementById("letra").value = "";
       document.getElementById("concepto").value = "";
-      document.getElementById("modoRecibo").value = "productos";
+      document.getElementById("modo").value = "productos";
       document.getElementById("recibo").style.display = "none";
       carrito = [];
       renderCarrito();
       ponerFechaHoy();
       obtenerFolioActual();
-      cambiarModoFormulario();
-      mostrarVista("catalogo");
+      cambiarModo();
       window.scrollTo({ top:0, behavior:"smooth" });
+    }
+
+    function scrollToSection(id){
+      document.getElementById(id).scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
     function obtenerHistorial(){
       try{
-        return JSON.parse(localStorage.getItem("amwayHistorialRecibos") || "[]");
+        return JSON.parse(localStorage.getItem("amwayHistorial") || "[]");
       }catch(e){
         return [];
       }
     }
 
-    function guardarEnHistorial(recibo){
+    function guardarHistorial(recibo){
       const historial = obtenerHistorial();
       historial.unshift({
         ...recibo,
         creadoEn: new Date().toLocaleString("es-MX")
       });
-      localStorage.setItem("amwayHistorialRecibos", JSON.stringify(historial.slice(0, 100)));
+      localStorage.setItem("amwayHistorial", JSON.stringify(historial.slice(0,100)));
     }
 
     function toggleHistorial(){
-      const panel = document.getElementById("historyPanel");
+      const panel = document.getElementById("historial");
       panel.classList.toggle("active");
       if(panel.classList.contains("active")){
         renderHistorial();
@@ -1614,52 +1514,52 @@
     }
 
     function renderHistorial(){
-      const list = document.getElementById("historyList");
+      const lista = document.getElementById("historialLista");
       const historial = obtenerHistorial();
-      list.innerHTML = "";
+      lista.innerHTML = "";
 
       if(historial.length === 0){
-        list.innerHTML = `<div class="history-card"><div class="history-meta">Aún no hay recibos guardados.</div></div>`;
+        lista.innerHTML = `<div class="histCard"><div class="histMeta">Aún no hay recibos guardados.</div></div>`;
         return;
       }
 
       historial.forEach((r, index) => {
         const productosTxt = r.productos && r.productos.length
-          ? `<div class="history-meta" style="margin-top:6px;">${r.productos.map(p => `${p.nombre} (${p.cantidad})`).join("<br>")}</div>`
+          ? `<div class="histMeta" style="margin-top:6px;">${r.productos.map(p => `${p.nombre} (${p.cantidad})`).join("<br>")}</div>`
           : "";
 
         const div = document.createElement("div");
-        div.className = "history-card";
+        div.className = "histCard";
         div.innerHTML = `
-          <div class="history-card-top">
+          <div class="histTop">
             <div>
-              <div class="history-title">Recibo No. ${r.folio}</div>
-              <div class="history-meta">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
+              <div class="histTitle">Recibo No. ${r.folio}</div>
+              <div class="histMeta">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
             </div>
-            <div><span class="history-badge">${r.modo === "productos" ? "Modo productos" : "Concepto general"}</span></div>
+            <div><span class="histBadge">${r.modo === "productos" ? "Modo productos" : "Concepto general"}</span></div>
           </div>
-          <div class="history-meta">${r.concepto}</div>
+          <div class="histMeta">${r.concepto}</div>
           ${productosTxt}
-          <div class="history-meta" style="margin-top:8px;">Guardado: ${r.creadoEn}</div>
-          <div class="history-actions">
-            <button class="small-btn" onclick="cargarDesdeHistorial(${index})">Cargar</button>
+          <div class="histMeta" style="margin-top:8px;">Guardado: ${r.creadoEn}</div>
+          <div class="histActions">
+            <button class="smallBtn" onclick="cargarHistorial(${index})">Cargar</button>
           </div>
         `;
-        list.appendChild(div);
+        lista.appendChild(div);
       });
     }
 
-    function cargarDesdeHistorial(index){
+    function cargarHistorial(index){
       const historial = obtenerHistorial();
       const r = historial[index];
       if(!r) return;
 
       document.getElementById("cliente").value = r.cliente;
-      document.getElementById("fecha").value = convertirFechaAInput(r.fecha);
-      document.getElementById("cantidad").value = parseCantidadHistorial(r.cantidad);
-      document.getElementById("importeLetra").value = r.importeLetra || "";
+      document.getElementById("fecha").value = convertirFechaInput(r.fecha);
+      document.getElementById("cantidad").value = limpiarCantidad(r.cantidad);
+      document.getElementById("letra").value = r.letra || "";
       document.getElementById("concepto").value = r.concepto || "";
-      document.getElementById("modoRecibo").value = r.modo || "concepto";
+      document.getElementById("modo").value = r.modo || "concepto";
 
       carrito = (r.productos || []).map(p => ({
         nombre:p.nombre,
@@ -1669,27 +1569,27 @@
       }));
 
       renderCarrito();
-      cambiarModoFormulario();
-      mostrarVista("recibo");
+      cambiarModo();
+      scrollToSection("datosRecibo");
     }
 
-    function convertirFechaAInput(fechaDDMMYYYY){
-      const p = fechaDDMMYYYY.split("/");
+    function convertirFechaInput(txt){
+      const p = txt.split("/");
       if(p.length !== 3) return "";
       return `${p[2]}-${p[1]}-${p[0]}`;
     }
 
-    function parseCantidadHistorial(txt){
-      return String(txt).replace(/[^0-9.]/g, "");
+    function limpiarCantidad(txt){
+      return String(txt).replace(/[^0-9.]/g,"");
     }
 
     function limpiarHistorial(){
       if(!confirm("¿Seguro que quieres borrar todo el historial?")) return;
-      localStorage.removeItem("amwayHistorialRecibos");
+      localStorage.removeItem("amwayHistorial");
       renderHistorial();
     }
 
-    function exportarHistorialJSON(){
+    function exportarHistorial(){
       const historial = obtenerHistorial();
       const blob = new Blob([JSON.stringify(historial, null, 2)], { type:"application/json" });
       const a = document.createElement("a");
@@ -1699,13 +1599,13 @@
       URL.revokeObjectURL(a.href);
     }
 
-    inicializarCategorias();
+    initCategorias();
     ponerFechaHoy();
     obtenerFolioActual();
     renderProductos();
     renderCarrito();
     renderHistorial();
-    cambiarModoFormulario();
+    cambiarModo();
   </script>
 </body>
 </html>
