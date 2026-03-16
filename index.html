@@ -1,291 +1,1576 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recibos Amway México</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{
+      --bg:#03060b;
+      --bg2:#09111a;
+      --panel:#0b121b;
+      --panel2:#101926;
+      --line:#223041;
+      --line2:#324255;
+      --text:#e8edf3;
+      --muted:#97a5b6;
+      --white:#ffffff;
+      --accent:#415a77;
+      --accent2:#2c3f56;
+      --accent3:#dbe6f1;
+      --soft:#eef3f8;
+      --soft2:#d9e3ec;
+      --green:#1d5c3f;
+      --red:#4a1414;
+      --card:#0a121c;
+      --shadow:0 28px 70px rgba(0,0,0,.48);
+      --radius:22px;
+    }
 
-<title>Recibos Amway</title>
+    *{box-sizing:border-box}
 
-<style>
+    html{
+      scroll-behavior:smooth;
+    }
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#0a1422;
-color:white;
-}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #16202e 0%, #0b121b 30%, #03060b 100%);
+      color:var(--text);
+      padding:22px 12px 42px;
+    }
 
-.header{
-background:linear-gradient(180deg,#3b6aa3,#2c5588);
-border-radius:30px;
-margin:15px;
-padding:30px;
-text-align:center;
-}
+    .app{
+      max-width:940px;
+      margin:0 auto;
+    }
 
-.logo{
-width:180px;
-display:block;
-margin:auto;
-}
+    .panel{
+      background:
+        linear-gradient(180deg, rgba(11,18,27,.98), rgba(8,13,21,.98));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+      position:relative;
+      overflow:hidden;
+    }
 
-.subtitulo{
-margin-top:10px;
-font-size:18px;
-opacity:.9;
-}
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,255,255,.03), transparent 28%, transparent 72%, rgba(255,255,255,.025));
+      pointer-events:none;
+    }
 
-.menu{
-margin-top:25px;
-display:flex;
-justify-content:center;
-gap:15px;
-}
+    .hero{
+      text-align:center;
+      margin-bottom:24px;
+      position:relative;
+      z-index:1;
+    }
 
-.menu button{
+    .heroBadge{
+      display:inline-block;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:#dce6f1;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      padding:7px 12px;
+      margin-bottom:12px;
+    }
 
-background:#6f8fb7;
-border:none;
-color:white;
-padding:12px 22px;
-border-radius:15px;
-font-size:16px;
-cursor:pointer;
-}
+    .hero h1{
+      margin:0;
+      font-size:34px;
+      line-height:1.02;
+      font-weight:800;
+      color:#f8fbff;
+      letter-spacing:.6px;
+    }
 
-.menu button.active{
-background:white;
-color:#2c5588;
-font-weight:bold;
-}
+    .hero .sub{
+      margin-top:12px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:14px;
+    }
 
-.categorias{
+    .switchBar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
+    }
 
-margin:20px;
-display:flex;
-gap:15px;
-overflow:auto;
-}
+    .modeBtn{
+      border:1px solid var(--line2);
+      background:#111925;
+      color:#dfe7f1;
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      flex:1;
+      min-width:200px;
+      transition:.18s ease;
+    }
 
-.categorias button{
+    .modeBtn:hover{
+      transform:translateY(-1px);
+      border-color:#5d7288;
+    }
 
-background:#345f93;
-border:none;
-padding:10px 18px;
-border-radius:10px;
-color:white;
-}
+    .modeBtn.active{
+      background:linear-gradient(180deg, #48637f, #344a63);
+      border-color:#6e8398;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(65,90,119,.24);
+    }
 
-.busqueda{
-background:#08101c;
-margin:20px;
-padding:20px;
-border-radius:20px;
-}
+    .formGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      position:relative;
+      z-index:1;
+    }
 
-input,select{
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
 
-width:100%;
-padding:12px;
-margin-top:10px;
-background:#020a14;
-border:1px solid #3b4f69;
-border-radius:12px;
-color:white;
-}
+    .full{
+      grid-column:1 / -1;
+    }
 
-.catalogo{
+    label{
+      font-size:13px;
+      font-weight:800;
+      color:#f2f6fb;
+      letter-spacing:.2px;
+    }
 
-background:white;
-color:black;
-margin:20px;
-padding:20px;
-border-radius:25px;
-}
+    input, textarea, select{
+      width:100%;
+      border:1px solid #314154;
+      background:#09111b;
+      color:#f7fbff;
+      border-radius:14px;
+      padding:14px 15px;
+      font-size:15px;
+      outline:none;
+      transition:.18s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
+    }
 
-.productos{
+    textarea{
+      min-height:96px;
+      resize:vertical;
+    }
 
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:20px;
-}
+    input::placeholder,
+    textarea::placeholder{
+      color:#8fa1b4;
+    }
 
-.producto{
+    input:focus, textarea:focus, select:focus{
+      border-color:#70869b;
+      box-shadow:0 0 0 3px rgba(148,163,184,.14);
+    }
 
-border:1px dashed #cfd6dd;
-padding:20px;
-border-radius:20px;
-text-align:center;
-}
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+      line-height:1.45;
+    }
 
-.producto h3{
+    .productsWrap{
+      display:none;
+      margin-top:18px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      position:relative;
+      z-index:1;
+    }
 
-margin:10px 0;
-}
+    .productsWrap.active{
+      display:block;
+    }
 
-.producto button{
+    .productToolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:12px;
+      align-items:center;
+    }
 
-background:#1e4a7b;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-}
+    .toolbarTag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 11px;
+      border:1px solid #2c3c4e;
+      background:#0f1824;
+      border-radius:999px;
+      font-size:12px;
+      color:#dde6f0;
+      font-weight:700;
+    }
 
-</style>
+    .productRow{
+      display:grid;
+      grid-template-columns:1fr 1.15fr .65fr .75fr auto;
+      gap:10px;
+      align-items:end;
+      margin-bottom:10px;
+      border:1px solid #213042;
+      border-radius:16px;
+      padding:12px;
+      background:linear-gradient(180deg, #0b1320, #09111b);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .rowActions{
+      display:flex;
+      gap:6px;
+      align-items:center;
+    }
+
+    .miniBtn{
+      border:none;
+      border-radius:13px;
+      padding:12px 14px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .addBtn{
+      background:linear-gradient(180deg, #246747, #194a33);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(29,92,63,.24);
+    }
+
+    .removeBtn{
+      background:linear-gradient(180deg, #5b1818, #421010);
+      color:#fff;
+      min-width:44px;
+      height:46px;
+      padding:0;
+      font-size:22px;
+      line-height:1;
+    }
+
+    .duplicateBtn{
+      background:linear-gradient(180deg, #2e435a, #223245);
+      color:#fff;
+      min-width:44px;
+      height:46px;
+      padding:0;
+      font-size:18px;
+      line-height:1;
+    }
+
+    .calcBox{
+      background:linear-gradient(180deg, #09111b, #0c1520);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:15px;
+      margin-top:14px;
+    }
+
+    .calcLine{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:14px;
+      color:#dce5ef;
+      margin:7px 0;
+    }
+
+    .calcLine strong{
+      font-size:19px;
+      color:#fff;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+      position:relative;
+      z-index:1;
+    }
+
+    button{
+      border:none;
+      border-radius:14px;
+      padding:14px 18px;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.16s ease;
+      letter-spacing:.2px;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .btnPrimary{
+      background:linear-gradient(180deg, #4b6784, #395169);
+      color:#fff;
+      flex:1;
+      min-width:180px;
+      box-shadow:0 14px 28px rgba(65,90,119,.24);
+    }
+
+    .btnDark{
+      background:linear-gradient(180deg, #f4f7fa, #dde5ed);
+      color:#111827;
+      flex:1;
+      min-width:180px;
+    }
+
+    .btnGhost{
+      background:#131d2a;
+      color:#f9fafb;
+      flex:1;
+      min-width:180px;
+      border:1px solid #374151;
+    }
+
+    .btnHistory{
+      background:#0f172a;
+      color:#fff;
+      flex:1;
+      min-width:180px;
+      border:1px solid #334155;
+    }
+
+    .receipt{
+      display:none;
+      background:#fff;
+      color:#111;
+      border-radius:20px;
+      padding:36px 32px;
+      box-shadow:0 20px 46px rgba(0,0,0,.24);
+      max-width:820px;
+      margin:0 auto 18px;
+      border:1px solid #e6edf3;
+    }
+
+    .receiptHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      margin-bottom:24px;
+      padding-bottom:18px;
+      border-bottom:2px solid #dde5ec;
+    }
+
+    .brandWrap{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      flex:1;
+    }
+
+    .receiptLogo{
+      width:88px;
+      height:88px;
+      object-fit:contain;
+      filter:grayscale(100%) contrast(112%);
+    }
+
+    .receiptTitle{
+      margin:0;
+      font-size:31px;
+      line-height:1.03;
+      color:#4b5563;
+      font-weight:800;
+      letter-spacing:.6px;
+    }
+
+    .receiptSub{
+      margin-top:9px;
+      font-size:14px;
+      color:#667085;
+      line-height:1.65;
+    }
+
+    .folioBox{
+      min-width:165px;
+      text-align:right;
+      background:#f6f9fc;
+      border:1px solid #dfe7ef;
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .folioLabel{
+      font-size:11px;
+      color:#6b7280;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-weight:800;
+    }
+
+    .folioValue{
+      margin-top:6px;
+      font-size:29px;
+      font-weight:800;
+      color:#415a77;
+    }
+
+    .receiptBody{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 24px;
+      margin-top:6px;
+    }
+
+    .item{
+      padding:10px 0;
+      border-bottom:1px solid #edf2f6;
+    }
+
+    .item.full{
+      grid-column:1 / -1;
+    }
+
+    .k{
+      display:block;
+      font-size:11px;
+      color:#7b8794;
+      text-transform:uppercase;
+      letter-spacing:.9px;
+      margin-bottom:7px;
+      font-weight:800;
+    }
+
+    .v{
+      display:block;
+      font-size:16px;
+      color:#111827;
+      line-height:1.55;
+      word-break:break-word;
+    }
+
+    .money{
+      background:linear-gradient(180deg, #eef4f8, #e8eff5);
+      border:1px solid #d6e0e9;
+      border-radius:16px;
+      padding:14px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+    }
+
+    .money .v{
+      font-size:26px;
+      font-weight:800;
+      color:#415a77;
+    }
+
+    .receiptProducts{
+      margin-top:20px;
+      border:1px solid #dde6ee;
+      border-radius:16px;
+      overflow:hidden;
+      display:none;
+    }
+
+    .receiptProducts.active{
+      display:block;
+    }
+
+    .receiptProductsHead{
+      background:#f4f8fb;
+      display:grid;
+      grid-template-columns:1.7fr .5fr .8fr .8fr;
+      gap:10px;
+      padding:12px 14px;
+      font-size:11px;
+      font-weight:800;
+      color:#667085;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+
+    .receiptProductRow{
+      display:grid;
+      grid-template-columns:1.7fr .5fr .8fr .8fr;
+      gap:10px;
+      padding:12px 14px;
+      border-top:1px solid #edf1f4;
+      font-size:14px;
+      color:#1f2937;
+      align-items:center;
+      background:#fff;
+    }
+
+    .receiptTotals{
+      margin-top:16px;
+      margin-left:auto;
+      max-width:350px;
+      background:#f8fbfd;
+      border:1px solid #e2eaf1;
+      border-radius:16px;
+      padding:12px 14px;
+    }
+
+    .receiptTotals .tline{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:7px 0;
+      border-bottom:1px solid #edf1f4;
+      font-size:14px;
+    }
+
+    .receiptTotals .tline.total{
+      font-size:19px;
+      font-weight:800;
+      color:#415a77;
+      border-bottom:none;
+      padding-top:10px;
+    }
+
+    .signature{
+      margin-top:52px;
+      text-align:center;
+    }
+
+    .signature img{
+      max-width:180px;
+      max-height:68px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 4px;
+    }
+
+    .signatureLine{
+      width:240px;
+      border-top:1.8px solid #444;
+      margin:0 auto 8px;
+    }
+
+    .signatureText{
+      font-size:13px;
+      color:#444;
+      font-weight:700;
+    }
+
+    .footNote{
+      margin-top:24px;
+      font-size:12px;
+      color:#7b8190;
+      text-align:center;
+    }
+
+    .historyPanel{
+      display:none;
+      background:linear-gradient(180deg, rgba(11,18,27,.98), rgba(8,13,21,.98));
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 20px 50px rgba(0,0,0,.28);
+    }
+
+    .historyPanel.active{
+      display:block;
+    }
+
+    .historyTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+
+    .historyTop h3{
+      margin:0;
+      color:#fff;
+      font-size:21px;
+    }
+
+    .smallBtn{
+      border:1px solid #334155;
+      background:#111827;
+      color:#fff;
+      border-radius:11px;
+      padding:10px 12px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .historyList{
+      display:grid;
+      gap:10px;
+    }
+
+    .historyCard{
+      border:1px solid #233142;
+      background:linear-gradient(180deg, #0c1420, #0b121b);
+      border-radius:15px;
+      padding:14px;
+    }
+
+    .historyCardTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+
+    .historyCard .hf{
+      font-weight:800;
+      color:#fff;
+      font-size:16px;
+    }
+
+    .historyCard .hm{
+      color:#a8b4c3;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .historyActions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:11px;
+      font-weight:800;
+      border-radius:999px;
+      padding:6px 10px;
+      background:#17212f;
+      color:#d8e1eb;
+      border:1px solid #314052;
+    }
+
+    @media (max-width:780px){
+      .formGrid,
+      .receiptBody{
+        grid-template-columns:1fr;
+      }
+
+      .productRow{
+        grid-template-columns:1fr;
+      }
+
+      .rowActions{
+        justify-content:flex-start;
+      }
+
+      .receiptHead{
+        flex-direction:column;
+      }
+
+      .folioBox{
+        text-align:left;
+      }
+
+      .receipt{
+        padding:24px 18px;
+      }
+
+      .receiptTitle{
+        font-size:25px;
+      }
+
+      .brandWrap{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+
+      .receiptLogo{
+        margin:0 auto;
+      }
+
+      .receiptProductsHead,
+      .receiptProductRow{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero h1{
+        font-size:28px;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+        padding:0;
+      }
+
+      .panel,
+      .historyPanel{
+        display:none !important;
+      }
+
+      .receipt{
+        display:block !important;
+        box-shadow:none;
+        border-radius:0;
+        margin:0;
+        max-width:none;
+        padding:18px;
+        border:none;
+      }
+
+      .folioBox{
+        background:#fff;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="app">
 
-<div class="header">
+    <div class="panel">
+      <div class="hero">
+        <div class="heroBadge">Sistema Premium</div>
+        <h1>RECIBOS AMWAY MÉXICO</h1>
+        <div class="sub">
+          Ignacio Tabardillo<br>
+          Empresario Independiente Amway<br>
+          ID: 1701181882
+        </div>
+      </div>
 
-<img src="logo.png" class="logo">
+      <div class="switchBar">
+        <button id="modeConceptBtn" class="modeBtn active" onclick="cambiarModo('concepto')">Modo concepto general</button>
+        <button id="modeProductsBtn" class="modeBtn" onclick="cambiarModo('productos')">Modo productos</button>
+      </div>
 
-<div class="subtitulo">
-Empresario Independiente
-</div>
+      <div class="formGrid">
+        <div class="field">
+          <label for="folio">Número de recibo</label>
+          <input type="text" id="folio" readonly>
+        </div>
 
-<div class="menu">
+        <div class="field">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha">
+        </div>
 
-<button class="active">
-Catálogo
-</button>
+        <div class="field full">
+          <label for="cliente">Nombre del cliente</label>
+          <input type="text" id="cliente" placeholder="Escribe el nombre del cliente">
+        </div>
 
-<button>
-Recibo
-</button>
+        <div class="field">
+          <label for="cantidad">Cantidad total ($)</label>
+          <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="actualizarImporteLetraManual()">
+          <div class="hint">En modo productos se calcula automáticamente.</div>
+        </div>
 
-<button>
-Historial
-</button>
+        <div class="field">
+          <label for="importeLetra">Cantidad con letra</label>
+          <input type="text" id="importeLetra" placeholder="Se llena automáticamente">
+        </div>
 
-</div>
+        <div class="field full" id="conceptoWrap">
+          <label for="concepto">Concepto general</label>
+          <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
+        </div>
+      </div>
 
-</div>
+      <div id="productsWrap" class="productsWrap">
+        <div class="productToolbar">
+          <span class="toolbarTag">Diseño premium</span>
+          <span class="toolbarTag">Categoría</span>
+          <span class="toolbarTag">Buscador</span>
+          <span class="toolbarTag">Duplicar fila</span>
+          <span class="toolbarTag">Precio editable</span>
+        </div>
 
+        <div id="productRows"></div>
 
-<div class="categorias">
+        <button class="miniBtn addBtn" onclick="agregarFilaProducto()">+ Agregar producto</button>
 
-<button>
-Todos
-</button>
+        <div class="calcBox">
+          <div class="calcLine">
+            <span>Subtotal</span>
+            <span id="subtotalVista">$0.00</span>
+          </div>
+          <div class="calcLine">
+            <span>Total de piezas</span>
+            <span id="piezasVista">0</span>
+          </div>
+          <div class="calcLine">
+            <strong>Total</strong>
+            <strong id="totalVista">$0.00</strong>
+          </div>
+        </div>
+      </div>
 
-<button>
-Nutrilite
-</button>
+      <div class="actions">
+        <button class="btnPrimary" onclick="generarRecibo()">Generar recibo</button>
+        <button class="btnDark" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
+        <button class="btnGhost" onclick="nuevoRecibo()">Nuevo recibo</button>
+        <button class="btnHistory" onclick="toggleHistorial()">Ver historial</button>
+      </div>
+    </div>
 
-<button>
-XS
-</button>
+    <div class="receipt" id="recibo">
+      <div class="receiptHead">
+        <div class="brandWrap">
+          <img src="logo.PNG" alt="Logo Amway" class="receiptLogo">
+          <div>
+            <h1 class="receiptTitle">RECIBOS AMWAY<br>MÉXICO</h1>
+            <div class="receiptSub">
+              Ignacio Tabardillo<br>
+              Empresario Independiente Amway<br>
+              ID: 1701181882
+            </div>
+          </div>
+        </div>
 
-<button>
-Artistry
-</button>
+        <div class="folioBox">
+          <div class="folioLabel">Recibo Amway No.</div>
+          <div class="folioValue" id="rfolio">001</div>
+        </div>
+      </div>
 
-<button>
-Satinique
-</button>
+      <div class="receiptBody">
+        <div class="item">
+          <span class="k">Fecha</span>
+          <span class="v" id="rfecha"></span>
+        </div>
 
-<button>
-G&H
-</button>
+        <div class="item">
+          <span class="k">Cliente</span>
+          <span class="v" id="rcliente"></span>
+        </div>
 
-</div>
+        <div class="item money">
+          <span class="k">Cantidad</span>
+          <span class="v" id="rcantidad"></span>
+        </div>
 
+        <div class="item">
+          <span class="k">Importe con letra</span>
+          <span class="v" id="rletra"></span>
+        </div>
 
-<div class="busqueda">
+        <div class="item full" id="rconceptoWrap">
+          <span class="k">Concepto</span>
+          <span class="v" id="rconcepto"></span>
+        </div>
+      </div>
 
-<label>Buscar producto</label>
-<input placeholder="Escribe nombre o categoría">
+      <div id="receiptProducts" class="receiptProducts">
+        <div class="receiptProductsHead">
+          <div>Producto</div>
+          <div>Cant.</div>
+          <div>Precio</div>
+          <div>Importe</div>
+        </div>
+        <div id="receiptProductsBody"></div>
+      </div>
 
-<label>Filtrar categoría</label>
-<select>
+      <div class="receiptTotals" id="receiptTotals" style="display:none;">
+        <div class="tline">
+          <span>Subtotal</span>
+          <span id="rsubtotal"></span>
+        </div>
+        <div class="tline">
+          <span>Total piezas</span>
+          <span id="rpiezas"></span>
+        </div>
+        <div class="tline total">
+          <span>Total</span>
+          <span id="rtotal"></span>
+        </div>
+      </div>
 
-<option>Todas las categorías</option>
+      <div class="signature">
+        <img src="firma.PNG" alt="Firma">
+        <div class="signatureLine"></div>
+        <div class="signatureText">Firma de recibido</div>
+      </div>
 
-</select>
+      <div class="footNote">
+        Recibo generado para control de entrega y pago de productos.
+      </div>
+    </div>
 
-<label>Ordenar por</label>
+    <div id="historyPanel" class="historyPanel">
+      <div class="historyTop">
+        <h3>Historial de recibos</h3>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="smallBtn" onclick="exportarHistorialJSON()">Exportar historial</button>
+          <button class="smallBtn" onclick="limpiarHistorial()">Borrar historial</button>
+        </div>
+      </div>
+      <div id="historyList" class="historyList"></div>
+    </div>
 
-<select>
+  </div>
 
-<option>Nombre</option>
+  <script>
+    let modoActual = "concepto";
 
-</select>
+    const catalogoProductos = [
+      { categoria:"Amway Home", nombre:"SA8 Detergente Líquido Concentrado para Ropa", precio:502.00 },
+      { categoria:"Artistry", nombre:"Artistry Suero Diario de Vitamina C + HA3", precio:1643.99 },
+      { categoria:"G&H", nombre:"G&H Gel de baño Exfoliante Refrescante", precio:261.00 },
+      { categoria:"Glister", nombre:"Glister Pasta de Dientes Multiacción 200 g", precio:178.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite B Plus", precio:465.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite C Plus", precio:314.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Cal Mag D", precio:510.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Concentrado de Frutas y Vegetales", precio:764.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 45 tabletas", precio:430.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Daily Plus 90 tabletas", precio:777.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Fibra en Polvo", precio:597.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Green Advanced", precio:705.99 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Proteína Vegetal", precio:783.00 },
+      { categoria:"Nutrilite", nombre:"Nutrilite Triple Omega-3", precio:999.00 },
+      { categoria:"Satinique", nombre:"Satinique Shampoo Anticaída", precio:356.00 },
+      { categoria:"XS", nombre:"XS Barra", precio:38.00 },
+      { categoria:"XS", nombre:"XS Bebida energética", precio:41.50 }
+    ].sort((a, b) => {
+      if (a.categoria !== b.categoria) return a.categoria.localeCompare(b.categoria, "es");
+      return a.nombre.localeCompare(b.nombre, "es");
+    });
 
-</div>
+    function formatearFolio(n){
+      return String(n).padStart(3, "0");
+    }
 
+    function obtenerFolioActual(){
+      let ultimo = localStorage.getItem("amwayUltimoFolio");
+      if(!ultimo){
+        ultimo = 1;
+      }else{
+        ultimo = parseInt(ultimo, 10);
+        if(isNaN(ultimo) || ultimo < 1) ultimo = 1;
+      }
+      document.getElementById("folio").value = formatearFolio(ultimo);
+    }
 
-<div class="catalogo">
+    function avanzarFolio(){
+      const actual = parseInt(document.getElementById("folio").value, 10);
+      if(!isNaN(actual)){
+        localStorage.setItem("amwayUltimoFolio", actual + 1);
+      }
+    }
 
-<h2>
-Catálogo visual
-</h2>
+    function ponerFechaHoy(){
+      const hoy = new Date();
+      const y = hoy.getFullYear();
+      const m = String(hoy.getMonth() + 1).padStart(2, "0");
+      const d = String(hoy.getDate()).padStart(2, "0");
+      document.getElementById("fecha").value = `${y}-${m}-${d}`;
+    }
 
-<p>
-Agrega productos desde las tarjetas para armar la venta.
-</p>
+    function fechaBonita(valor){
+      if(!valor) return "";
+      const partes = valor.split("-");
+      if(partes.length !== 3) return valor;
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
 
-<div class="productos">
+    function numeroALetrasConCentavos(valor){
+      const numero = Number(valor);
+      if(isNaN(numero)) return "";
+      const entero = Math.floor(numero);
+      const centavos = Math.round((numero - entero) * 100);
 
+      function convertirNumero(n){
+        if(n === 0) return "CERO";
 
-<div class="producto">
+        const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+        const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
+        const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+        const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
 
-<h3>
-Cal Mag D Advanced
-</h3>
+        function conv(x){
+          if(x === 0) return "";
+          if(x === 100) return "CIEN";
+          if(x < 10) return unidades[x];
+          if(x >= 10 && x < 16) return especiales[x - 10];
+          if(x < 20) return "DIECI" + unidades[x - 10];
+          if(x === 20) return "VEINTE";
+          if(x < 30) return "VEINTI" + unidades[x - 20];
+          if(x < 100){
+            const d = Math.floor(x / 10);
+            const u = x % 10;
+            return decenas[d] + (u ? " Y " + unidades[u] : "");
+          }
+          if(x < 1000){
+            const c = Math.floor(x / 100);
+            const r = x % 100;
+            return centenas[c] + (r ? " " + conv(r) : "");
+          }
+          if(x < 1000000){
+            const miles = Math.floor(x / 1000);
+            const resto = x % 1000;
+            const txtMiles = miles === 1 ? "MIL" : conv(miles) + " MIL";
+            return txtMiles + (resto ? " " + conv(resto) : "");
+          }
+          if(x < 1000000000){
+            const millones = Math.floor(x / 1000000);
+            const resto = x % 1000000;
+            const txtMillones = millones === 1 ? "UN MILLON" : conv(millones) + " MILLONES";
+            return txtMillones + (resto ? " " + conv(resto) : "");
+          }
+          return String(x);
+        }
 
-<p>
-Suplemento de calcio y vitamina D
-</p>
+        return conv(n).replace(/\s+/g, " ").trim();
+      }
 
-<button>
-Agregar
-</button>
+      return `${convertirNumero(entero)} PESOS ${String(centavos).padStart(2, "0")}/100 M.N.`;
+    }
 
-</div>
+    function dinero(n){
+      return "$" + Number(n || 0).toLocaleString("es-MX", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
 
+    function categoriasDisponibles(){
+      return [...new Set(catalogoProductos.map(p => p.categoria))];
+    }
 
-<div class="producto">
+    function filtrarProductos(categoria, texto){
+      let lista = [...catalogoProductos];
+      if(categoria && categoria !== "TODOS"){
+        lista = lista.filter(p => p.categoria === categoria);
+      }
+      if(texto){
+        const t = texto.toLowerCase().trim();
+        lista = lista.filter(p =>
+          p.nombre.toLowerCase().includes(t) ||
+          p.categoria.toLowerCase().includes(t)
+        );
+      }
+      return lista;
+    }
 
-<h3>
-CLA 500
-</h3>
+    function cambiarModo(modo){
+      modoActual = modo;
 
-<p>
-Apoyo nutricional
-</p>
+      const btnC = document.getElementById("modeConceptBtn");
+      const btnP = document.getElementById("modeProductsBtn");
+      const pWrap = document.getElementById("productsWrap");
+      const cWrap = document.getElementById("conceptoWrap");
+      const cantidad = document.getElementById("cantidad");
 
-<button>
-Agregar
-</button>
+      if(modo === "concepto"){
+        btnC.classList.add("active");
+        btnP.classList.remove("active");
+        pWrap.classList.remove("active");
+        cWrap.style.display = "flex";
+        cantidad.readOnly = false;
+        actualizarImporteLetraManual();
+      }else{
+        btnP.classList.add("active");
+        btnC.classList.remove("active");
+        pWrap.classList.add("active");
+        cWrap.style.display = "none";
+        cantidad.readOnly = true;
+        recalcularProductos();
+      }
+    }
 
-</div>
+    function crearSelectCategoria(selected = "TODOS"){
+      const select = document.createElement("select");
+      const base = document.createElement("option");
+      base.value = "TODOS";
+      base.textContent = "Todas las categorías";
+      select.appendChild(base);
 
+      categoriasDisponibles().forEach(c => {
+        const option = document.createElement("option");
+        option.value = c;
+        option.textContent = c;
+        select.appendChild(option);
+      });
 
-<div class="producto">
+      select.value = selected;
+      return select;
+    }
 
-<h3>
-Daily Plus
-</h3>
+    function crearSelectProductos(){
+      const select = document.createElement("select");
+      select.className = "prod-select";
+      return select;
+    }
 
-<p>
-Multivitamínico
-</p>
+    function llenarSelectProductos(select, categoria, texto, selectedNombre = ""){
+      const lista = filtrarProductos(categoria, texto);
+      select.innerHTML = "";
 
-<button>
-Agregar
-</button>
+      if(lista.length === 0){
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Sin resultados";
+        select.appendChild(option);
+        return;
+      }
 
-</div>
+      lista.forEach(p => {
+        const option = document.createElement("option");
+        option.value = p.nombre;
+        option.textContent = `${p.nombre} — ${dinero(p.precio)}`;
+        select.appendChild(option);
+      });
 
+      if(selectedNombre && lista.some(p => p.nombre === selectedNombre)){
+        select.value = selectedNombre;
+      }
+    }
 
-</div>
+    function obtenerProductoPorNombre(nombre){
+      return catalogoProductos.find(p => p.nombre === nombre);
+    }
 
-</div>
+    function agregarFilaProducto(nombre = "", cantidad = 1, precioManual = ""){
+      const cont = document.getElementById("productRows");
+      const row = document.createElement("div");
+      row.className = "productRow";
 
+      const colCat = document.createElement("div");
+      const catLabel = document.createElement("label");
+      catLabel.textContent = "Categoría";
+      const catSelect = crearSelectCategoria();
+      colCat.appendChild(catLabel);
+      colCat.appendChild(catSelect);
 
+      const colProd = document.createElement("div");
+      const prodLabel = document.createElement("label");
+      prodLabel.textContent = "Producto / buscador";
+      const search = document.createElement("input");
+      search.type = "text";
+      search.placeholder = "Escribe para buscar";
+      search.className = "prod-search";
+      const prodSelect = crearSelectProductos();
+      colProd.appendChild(prodLabel);
+      colProd.appendChild(search);
+      colProd.appendChild(prodSelect);
+
+      const colQty = document.createElement("div");
+      const qtyLabel = document.createElement("label");
+      qtyLabel.textContent = "Cantidad";
+      const qty = document.createElement("input");
+      qty.type = "number";
+      qty.min = "1";
+      qty.step = "1";
+      qty.value = cantidad;
+      qty.className = "prod-qty";
+      colQty.appendChild(qtyLabel);
+      colQty.appendChild(qty);
+
+      const colPrice = document.createElement("div");
+      const priceLabel = document.createElement("label");
+      priceLabel.textContent = "Precio";
+      const price = document.createElement("input");
+      price.type = "number";
+      price.min = "0";
+      price.step = "0.01";
+      price.className = "prod-price";
+      colPrice.appendChild(priceLabel);
+      colPrice.appendChild(price);
+
+      const colActions = document.createElement("div");
+      const actionLabel = document.createElement("label");
+      actionLabel.textContent = "Acciones";
+      const rowActions = document.createElement("div");
+      rowActions.className = "rowActions";
+      const duplicate = document.createElement("button");
+      duplicate.className = "duplicateBtn";
+      duplicate.type = "button";
+      duplicate.textContent = "⎘";
+      const remove = document.createElement("button");
+      remove.className = "removeBtn";
+      remove.type = "button";
+      remove.textContent = "×";
+      rowActions.appendChild(duplicate);
+      rowActions.appendChild(remove);
+      colActions.appendChild(actionLabel);
+      colActions.appendChild(rowActions);
+
+      row.appendChild(colCat);
+      row.appendChild(colProd);
+      row.appendChild(colQty);
+      row.appendChild(colPrice);
+      row.appendChild(colActions);
+      cont.appendChild(row);
+
+      function sincronizarLista(conservarNombre = ""){
+        llenarSelectProductos(prodSelect, catSelect.value, search.value, conservarNombre);
+        const actual = obtenerProductoPorNombre(prodSelect.value);
+        if(actual && price.dataset.manual !== "1"){
+          price.value = actual.precio;
+        }
+        recalcularProductos();
+      }
+
+      catSelect.addEventListener("change", () => sincronizarLista());
+      search.addEventListener("input", () => sincronizarLista());
+      prodSelect.addEventListener("change", () => {
+        const p = obtenerProductoPorNombre(prodSelect.value);
+        price.dataset.manual = "";
+        if(p){
+          price.value = p.precio;
+        }
+        recalcularProductos();
+      });
+
+      qty.addEventListener("input", recalcularProductos);
+      price.addEventListener("input", () => {
+        price.dataset.manual = "1";
+        recalcularProductos();
+      });
+
+      remove.onclick = () => {
+        row.remove();
+        if(document.querySelectorAll("#productRows .productRow").length === 0){
+          agregarFilaProducto();
+        }else{
+          recalcularProductos();
+        }
+      };
+
+      duplicate.onclick = () => {
+        agregarFilaProducto(prodSelect.value, qty.value || 1, price.value || "");
+      };
+
+      if(nombre){
+        const p = obtenerProductoPorNombre(nombre);
+        if(p){
+          catSelect.value = p.categoria;
+        }
+      }
+
+      llenarSelectProductos(prodSelect, catSelect.value, "", nombre);
+      const inicial = obtenerProductoPorNombre(prodSelect.value);
+      price.value = precioManual !== "" ? precioManual : (inicial ? inicial.precio : "");
+      if(precioManual !== "") price.dataset.manual = "1";
+
+      recalcularProductos();
+    }
+
+    function obtenerProductosCapturados(){
+      const rows = [...document.querySelectorAll("#productRows .productRow")];
+      return rows.map(row => {
+        const nombre = row.querySelector(".prod-select").value;
+        const qty = Number(row.querySelector(".prod-qty").value || 0);
+        const price = Number(row.querySelector(".prod-price").value || 0);
+        const producto = obtenerProductoPorNombre(nombre);
+        return {
+          categoria: producto ? producto.categoria : "",
+          nombre: nombre || "Producto",
+          cantidad: qty,
+          precio: price,
+          importe: qty * price
+        };
+      }).filter(x => x.nombre && x.cantidad > 0 && x.precio >= 0);
+    }
+
+    function recalcularProductos(){
+      const items = obtenerProductosCapturados();
+      let subtotal = 0;
+      let piezas = 0;
+
+      items.forEach(i => {
+        subtotal += i.importe;
+        piezas += i.cantidad;
+      });
+
+      document.getElementById("subtotalVista").textContent = dinero(subtotal);
+      document.getElementById("piezasVista").textContent = piezas;
+      document.getElementById("totalVista").textContent = dinero(subtotal);
+      document.getElementById("cantidad").value = subtotal ? subtotal.toFixed(2) : "";
+      document.getElementById("importeLetra").value = subtotal ? numeroALetrasConCentavos(subtotal) : "";
+    }
+
+    function actualizarImporteLetraManual(){
+      if(modoActual === "productos") return;
+      const cantidad = document.getElementById("cantidad").value.trim();
+      document.getElementById("importeLetra").value = numeroALetrasConCentavos(cantidad);
+    }
+
+    function generarRecibo(){
+      const folio = document.getElementById("folio").value.trim();
+      const fecha = document.getElementById("fecha").value.trim();
+      const cliente = document.getElementById("cliente").value.trim();
+      const cantidad = document.getElementById("cantidad").value.trim();
+      const importeLetraInput = document.getElementById("importeLetra").value.trim();
+      const concepto = document.getElementById("concepto").value.trim();
+
+      if(!fecha || !cliente || !cantidad){
+        alert("Completa fecha, nombre del cliente y cantidad.");
+        return;
+      }
+
+      let detalleProductos = [];
+      let conceptoFinal = concepto;
+
+      if(modoActual === "productos"){
+        detalleProductos = obtenerProductosCapturados();
+        if(detalleProductos.length === 0){
+          alert("Agrega al menos un producto.");
+          return;
+        }
+        conceptoFinal = "Compra de productos Amway";
+      }else{
+        if(!concepto){
+          alert("Escribe el concepto.");
+          return;
+        }
+      }
+
+      const importeLetraFinal = importeLetraInput || numeroALetrasConCentavos(cantidad);
+
+      document.getElementById("rfolio").textContent = folio;
+      document.getElementById("rfecha").textContent = fechaBonita(fecha);
+      document.getElementById("rcliente").textContent = cliente;
+      document.getElementById("rcantidad").textContent = dinero(cantidad);
+      document.getElementById("rletra").textContent = importeLetraFinal;
+      document.getElementById("rconcepto").textContent = conceptoFinal;
+      document.getElementById("recibo").style.display = "block";
+
+      const receiptProducts = document.getElementById("receiptProducts");
+      const receiptProductsBody = document.getElementById("receiptProductsBody");
+      const receiptTotals = document.getElementById("receiptTotals");
+
+      receiptProductsBody.innerHTML = "";
+
+      if(modoActual === "productos"){
+        receiptProducts.classList.add("active");
+        receiptTotals.style.display = "block";
+
+        let subtotal = 0;
+        let piezas = 0;
+
+        detalleProductos.forEach(p => {
+          subtotal += p.importe;
+          piezas += p.cantidad;
+
+          const row = document.createElement("div");
+          row.className = "receiptProductRow";
+          row.innerHTML = `
+            <div>${p.nombre}</div>
+            <div>${p.cantidad}</div>
+            <div>${dinero(p.precio)}</div>
+            <div>${dinero(p.importe)}</div>
+          `;
+          receiptProductsBody.appendChild(row);
+        });
+
+        document.getElementById("rsubtotal").textContent = dinero(subtotal);
+        document.getElementById("rpiezas").textContent = piezas;
+        document.getElementById("rtotal").textContent = dinero(subtotal);
+      }else{
+        receiptProducts.classList.remove("active");
+        receiptTotals.style.display = "none";
+      }
+
+      guardarEnHistorial({
+        folio,
+        fecha: fechaBonita(fecha),
+        cliente,
+        cantidad: dinero(cantidad),
+        importeLetra: importeLetraFinal,
+        concepto: conceptoFinal,
+        modo: modoActual,
+        productos: detalleProductos
+      });
+
+      avanzarFolio();
+      setTimeout(() => {
+        obtenerFolioActual();
+      }, 50);
+
+      renderHistorial();
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+    }
+
+    function imprimirRecibo(){
+      const visible = document.getElementById("recibo").style.display === "block";
+      if(!visible){
+        alert("Primero genera el recibo.");
+        return;
+      }
+      window.print();
+    }
+
+    function nuevoRecibo(){
+      document.getElementById("cliente").value = "";
+      document.getElementById("cantidad").value = "";
+      document.getElementById("importeLetra").value = "";
+      document.getElementById("concepto").value = "";
+      document.getElementById("recibo").style.display = "none";
+
+      if(modoActual === "productos"){
+        document.getElementById("productRows").innerHTML = "";
+        agregarFilaProducto();
+      }
+
+      ponerFechaHoy();
+      obtenerFolioActual();
+      recalcularProductos();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function obtenerHistorial(){
+      try{
+        return JSON.parse(localStorage.getItem("amwayHistorialRecibos") || "[]");
+      }catch(e){
+        return [];
+      }
+    }
+
+    function guardarEnHistorial(recibo){
+      const historial = obtenerHistorial();
+      historial.unshift({
+        ...recibo,
+        creadoEn: new Date().toLocaleString("es-MX")
+      });
+      localStorage.setItem("amwayHistorialRecibos", JSON.stringify(historial.slice(0, 100)));
+    }
+
+    function toggleHistorial(){
+      const panel = document.getElementById("historyPanel");
+      panel.classList.toggle("active");
+      if(panel.classList.contains("active")){
+        renderHistorial();
+        setTimeout(() => {
+          panel.scrollIntoView({ behavior:"smooth", block:"start" });
+        }, 100);
+      }
+    }
+
+    function renderHistorial(){
+      const list = document.getElementById("historyList");
+      const historial = obtenerHistorial();
+      list.innerHTML = "";
+
+      if(historial.length === 0){
+        list.innerHTML = `<div class="historyCard"><div class="hm">Aún no hay recibos guardados.</div></div>`;
+        return;
+      }
+
+      historial.forEach((r, index) => {
+        const card = document.createElement("div");
+        card.className = "historyCard";
+
+        const productosTxt = r.productos && r.productos.length
+          ? `<div class="hm" style="margin-top:6px;">${r.productos.map(p => `${p.nombre} (${p.cantidad})`).join("<br>")}</div>`
+          : "";
+
+        card.innerHTML = `
+          <div class="historyCardTop">
+            <div>
+              <div class="hf">Recibo No. ${r.folio}</div>
+              <div class="hm">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
+            </div>
+            <div>
+              <span class="badge">${r.modo === "productos" ? "Modo productos" : "Concepto general"}</span>
+            </div>
+          </div>
+          <div class="hm">${r.concepto}</div>
+          ${productosTxt}
+          <div class="hm" style="margin-top:8px;">Guardado: ${r.creadoEn}</div>
+          <div class="historyActions">
+            <button class="smallBtn" onclick="cargarDesdeHistorial(${index})">Cargar</button>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function cargarDesdeHistorial(index){
+      const historial = obtenerHistorial();
+      const r = historial[index];
+      if(!r) return;
+
+      document.getElementById("cliente").value = r.cliente;
+      document.getElementById("fecha").value = convertirFechaAInput(r.fecha);
+      document.getElementById("cantidad").value = parseCantidadHistorial(r.cantidad);
+      document.getElementById("importeLetra").value = r.importeLetra || "";
+      document.getElementById("concepto").value = r.concepto || "";
+
+      if(r.modo === "productos"){
+        cambiarModo("productos");
+        document.getElementById("productRows").innerHTML = "";
+        (r.productos || []).forEach(p => {
+          agregarFilaProducto(p.nombre, p.cantidad || 1, p.precio || "");
+        });
+        recalcularProductos();
+      }else{
+        cambiarModo("concepto");
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function convertirFechaAInput(fechaDDMMYYYY){
+      const p = fechaDDMMYYYY.split("/");
+      if(p.length !== 3) return "";
+      return `${p[2]}-${p[1]}-${p[0]}`;
+    }
+
+    function parseCantidadHistorial(txt){
+      return String(txt).replace(/[^0-9.]/g, "");
+    }
+
+    function limpiarHistorial(){
+      if(!confirm("¿Seguro que quieres borrar todo el historial?")) return;
+      localStorage.removeItem("amwayHistorialRecibos");
+      renderHistorial();
+    }
+
+    function exportarHistorialJSON(){
+      const historial = obtenerHistorial();
+      const blob = new Blob([JSON.stringify(historial, null, 2)], { type:"application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "historial-recibos-amway.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    ponerFechaHoy();
+    obtenerFolioActual();
+    agregarFilaProducto();
+    renderHistorial();
+  </script>
 </body>
 </html>
