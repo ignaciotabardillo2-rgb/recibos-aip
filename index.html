@@ -3,101 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amway México</title>
+  <title>Recibos Amway México</title>
 
   <style>
     :root{
-      --bg:#0b1220;
-      --panel:#111a2b;
-      --panel-soft:#162235;
-      --line:#2c3d55;
-      --text:#eef3f9;
-      --muted:#9eacc0;
-      --blue:#315f97;
-      --blue-dark:#274d7c;
+      --bg:#0b0f14;
+      --card:#111827;
+      --card2:#0f172a;
+      --line:#263041;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
       --white:#ffffff;
-      --soft:#f7f9fc;
-      --soft-line:#e3e9f0;
-      --green:#1c8a49;
-      --danger:#8c2020;
-      --shadow:0 18px 40px rgba(0,0,0,.22);
-      --radius:22px;
+      --dark:#111111;
+      --accent:#2f4b66;
+      --accent2:#1d3557;
+      --soft:#e9eef5;
+      --gray:#4b5563;
+      --gray2:#6b7280;
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
 
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#0d1523,#0b1220);
+      background:radial-gradient(circle at top, #111827 0%, #0b0f14 55%);
       color:var(--text);
+      padding:22px 14px 40px;
     }
 
-    .wrap{
-      max-width:860px;
+    .app{
+      max-width:780px;
       margin:0 auto;
-      padding:16px;
-    }
-
-    .hero{
-      background:linear-gradient(180deg,var(--blue),var(--blue-dark));
-      border-radius:28px;
-      padding:30px 22px 22px;
-      text-align:center;
-      box-shadow:var(--shadow);
-      margin-bottom:16px;
-    }
-
-    .hero img{
-      width:180px;
-      max-width:85%;
-      display:block;
-      margin:0 auto;
-    }
-
-    .hero p{
-      margin:10px 0 0;
-      font-size:18px;
-      font-weight:600;
-      color:rgba(255,255,255,.95);
-    }
-
-    .top-actions{
-      margin-top:18px;
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .top-actions button{
-      border:none;
-      border-radius:14px;
-      padding:12px 18px;
-      font-size:14px;
-      font-weight:800;
-      cursor:pointer;
-      background:rgba(255,255,255,.14);
-      color:#fff;
     }
 
     .panel{
-      background:linear-gradient(180deg,var(--panel),var(--panel-soft));
+      background:linear-gradient(180deg, rgba(17,24,39,.98), rgba(15,23,42,.98));
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:var(--shadow);
-      margin-bottom:16px;
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);
+      margin-bottom:18px;
     }
 
-    .panel h2,
-    .panel h3{
-      margin:0 0 14px;
-      color:#fff;
+    .topTitle{
+      margin:0 0 8px;
+      font-size:28px;
+      line-height:1.1;
+      font-weight:800;
+      color:#f3f4f6;
+      text-align:center;
+      letter-spacing:.3px;
     }
 
-    .grid{
+    .topSub{
+      text-align:center;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+      margin-bottom:22px;
+    }
+
+    .formGrid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
@@ -114,239 +81,179 @@
     }
 
     label{
-      font-size:13px;
-      font-weight:800;
-      color:#eef3f9;
-      letter-spacing:.2px;
+      font-size:14px;
+      font-weight:700;
+      color:#f3f4f6;
     }
 
-    input, select, textarea{
+    input, textarea{
       width:100%;
-      padding:13px 14px;
-      border-radius:14px;
-      border:1px solid #40546d;
-      background:#0a1019;
-      color:#fff;
+      border:1px solid #334155;
+      background:#0f172a;
+      color:#f8fafc;
+      border-radius:12px;
+      padding:14px 14px;
       font-size:15px;
       outline:none;
+      transition:.18s ease;
     }
 
     textarea{
-      min-height:90px;
+      min-height:96px;
       resize:vertical;
     }
 
-    input::placeholder, textarea::placeholder{
-      color:#8ea0b4;
+    input::placeholder,
+    textarea::placeholder{
+      color:#94a3b8;
     }
 
-    .hint{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
-
-    .product-row{
-      display:grid;
-      grid-template-columns:1.4fr .55fr .75fr auto;
-      gap:10px;
-      align-items:end;
-      margin-bottom:10px;
-      padding:12px;
-      border:1px solid #2c3d55;
-      border-radius:16px;
-      background:#0b1320;
-    }
-
-    .mini-btn{
-      border:none;
-      border-radius:12px;
-      padding:12px 14px;
-      font-weight:800;
-      cursor:pointer;
-    }
-
-    .add-btn{
-      background:linear-gradient(180deg,#2a734d,#1f5739);
-      color:#fff;
-    }
-
-    .remove-btn{
-      width:44px;
-      height:46px;
-      padding:0;
-      background:var(--danger);
-      color:#fff;
-      font-size:22px;
-      line-height:1;
-    }
-
-    .summary{
-      margin-top:14px;
-      background:#0a111c;
-      border:1px solid #2c3d55;
-      border-radius:16px;
-      padding:14px;
-      display:grid;
-      gap:8px;
-    }
-
-    .sum-line{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      font-size:14px;
-      color:#dce5ef;
-    }
-
-    .sum-line.total{
-      border-top:1px solid #2c3d55;
-      padding-top:8px;
-      margin-top:4px;
-      font-size:18px;
-      font-weight:800;
-      color:#fff;
+    input:focus, textarea:focus{
+      border-color:#64748b;
+      box-shadow:0 0 0 3px rgba(148,163,184,.12);
     }
 
     .actions{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
+      gap:12px;
+      margin-top:18px;
     }
 
-    .actions button{
-      flex:1;
-      min-width:160px;
+    button{
       border:none;
-      border-radius:14px;
-      padding:13px 16px;
-      font-size:14px;
-      font-weight:800;
+      border-radius:12px;
+      padding:14px 18px;
+      font-size:15px;
+      font-weight:700;
       cursor:pointer;
+      transition:.15s ease;
     }
 
-    .primary{
-      background:linear-gradient(180deg,#4b6784,#395169);
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .btnPrimary{
+      background:#334a62;
       color:#fff;
+      flex:1;
+      min-width:180px;
     }
 
-    .secondary{
-      background:linear-gradient(180deg,#f4f7fa,#dfe7ef);
+    .btnDark{
+      background:#e5e7eb;
       color:#111827;
+      flex:1;
+      min-width:180px;
     }
 
-    .ghost{
-      background:#121d2b;
-      color:#fff;
-      border:1px solid #33465b;
-    }
-
-    .whatsapp{
-      background:linear-gradient(180deg,#1faa59,#168845);
-      color:#fff;
+    .btnGhost{
+      background:#1f2937;
+      color:#f9fafb;
+      flex:1;
+      min-width:180px;
+      border:1px solid #374151;
     }
 
     .receipt{
       display:none;
       background:#fff;
-      color:#111827;
-      border-radius:24px;
-      border:1px solid var(--soft-line);
-      box-shadow:var(--shadow);
+      color:#111;
+      border-radius:18px;
       padding:34px 30px;
-      margin-bottom:16px;
+      box-shadow:0 16px 36px rgba(0,0,0,.22);
+      max-width:760px;
+      margin:0 auto;
     }
 
-    .receipt-head{
+    .receiptHead{
       display:flex;
       justify-content:space-between;
-      gap:14px;
       align-items:flex-start;
-      border-bottom:2px solid #dfe7ef;
+      gap:16px;
+      margin-bottom:22px;
       padding-bottom:18px;
-      margin-bottom:20px;
+      border-bottom:2px solid #d7dce3;
     }
 
-    .receipt-brand{
+    .brandWrap{
       display:flex;
       gap:14px;
       align-items:flex-start;
       flex:1;
     }
 
-    .receipt-logo{
+    .receiptLogo{
       width:86px;
       height:86px;
       object-fit:contain;
-      filter:grayscale(100%);
+      filter:grayscale(100%) contrast(110%);
     }
 
-    .receipt-brand h1{
+    .receiptTitle{
       margin:0;
-      color:#4b5563;
       font-size:30px;
-      line-height:1.03;
-      letter-spacing:.4px;
-    }
-
-    .receipt-brand p{
-      margin:8px 0 0;
-      color:#6b7280;
-      font-size:14px;
-      line-height:1.65;
-    }
-
-    .folio-card{
-      min-width:165px;
-      text-align:right;
-      background:#f6f9fc;
-      border:1px solid #dce6ef;
-      border-radius:16px;
-      padding:14px;
-    }
-
-    .folio-card .tag{
-      font-size:11px;
+      line-height:1.05;
+      color:#4a4a4a;
       font-weight:800;
+      letter-spacing:.5px;
+    }
+
+    .receiptSub{
+      margin-top:8px;
+      font-size:14px;
+      color:#666;
+      line-height:1.6;
+    }
+
+    .folioBox{
+      min-width:145px;
+      text-align:right;
+    }
+
+    .folioLabel{
+      font-size:12px;
       color:#6b7280;
       text-transform:uppercase;
       letter-spacing:.9px;
+      font-weight:700;
     }
 
-    .folio-card .num{
+    .folioValue{
       margin-top:6px;
-      font-size:30px;
+      font-size:28px;
       font-weight:800;
-      color:#415a77;
+      color:#2f4b66;
     }
 
-    .receipt-grid{
+    .receiptBody{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px 24px;
+      margin-top:6px;
     }
 
-    .receipt-field{
-      padding:8px 0;
-      border-bottom:1px solid #edf2f6;
+    .item{
+      padding:10px 0;
+      border-bottom:1px solid #eceff4;
     }
 
-    .receipt-field.full{
+    .item.full{
       grid-column:1 / -1;
     }
 
-    .receipt-field .k{
+    .k{
       display:block;
-      font-size:11px;
+      font-size:12px;
+      color:#6b7280;
       text-transform:uppercase;
-      letter-spacing:.8px;
-      color:#7b8794;
-      font-weight:800;
+      letter-spacing:.7px;
       margin-bottom:7px;
+      font-weight:700;
     }
 
-    .receipt-field .v{
+    .v{
       display:block;
       font-size:16px;
       color:#111827;
@@ -354,82 +261,17 @@
       word-break:break-word;
     }
 
-    .amount-box{
-      background:linear-gradient(180deg,#eef4f8,#e6eef4);
-      border:1px solid #d7e1ea;
-      border-radius:16px;
+    .money{
+      background:#edf3f8;
+      border:1px solid #d4dde8;
+      border-radius:14px;
       padding:14px;
     }
 
-    .amount-box .v{
-      font-size:26px;
+    .money .v{
+      font-size:25px;
       font-weight:800;
-      color:#415a77;
-    }
-
-    .receipt-table{
-      margin-top:18px;
-      border:1px solid #dde6ee;
-      border-radius:16px;
-      overflow:hidden;
-      display:none;
-    }
-
-    .receipt-table.active{
-      display:block;
-    }
-
-    .receipt-table-head{
-      background:#f4f8fb;
-      display:grid;
-      grid-template-columns:1.8fr .5fr .8fr .8fr;
-      gap:10px;
-      padding:12px 14px;
-      font-size:11px;
-      font-weight:800;
-      color:#667085;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-    }
-
-    .receipt-table-row{
-      display:grid;
-      grid-template-columns:1.8fr .5fr .8fr .8fr;
-      gap:10px;
-      padding:12px 14px;
-      border-top:1px solid #edf1f4;
-      font-size:14px;
-      color:#1f2937;
-      align-items:center;
-      background:#fff;
-    }
-
-    .receipt-totals{
-      margin-top:16px;
-      margin-left:auto;
-      max-width:360px;
-      background:#f8fbfd;
-      border:1px solid #e2eaf1;
-      border-radius:16px;
-      padding:12px 14px;
-      display:none;
-    }
-
-    .receipt-totals .l{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding:7px 0;
-      border-bottom:1px solid #edf1f4;
-      font-size:14px;
-    }
-
-    .receipt-totals .l.total{
-      font-size:19px;
-      font-weight:800;
-      color:#415a77;
-      border-bottom:none;
-      padding-top:10px;
+      color:#2f4b66;
     }
 
     .signature{
@@ -445,163 +287,94 @@
       margin:0 auto 4px;
     }
 
-    .signature-line{
-      width:240px;
+    .signatureLine{
+      width:230px;
       border-top:1.8px solid #444;
       margin:0 auto 8px;
     }
 
-    .signature-text{
+    .signatureText{
       font-size:13px;
       color:#444;
       font-weight:700;
     }
 
-    .note{
-      margin-top:22px;
-      text-align:center;
-      color:#7b8794;
+    .footNote{
+      margin-top:24px;
       font-size:12px;
+      color:#7b8190;
+      text-align:center;
     }
 
-    .history{
-      display:none;
-    }
-
-    .history.active{
-      display:block;
-    }
-
-    .history-list{
-      display:grid;
-      gap:10px;
-    }
-
-    .history-card{
-      background:#0a1220;
-      border:1px solid #26384a;
-      border-radius:16px;
-      padding:14px;
-    }
-
-    .history-top{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:8px;
-    }
-
-    .history-title{
-      font-size:16px;
-      font-weight:800;
-      color:#fff;
-    }
-
-    .history-meta{
-      color:#a7b4c4;
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .history-badge{
-      display:inline-block;
-      font-size:11px;
-      font-weight:800;
-      border-radius:999px;
-      padding:6px 10px;
-      background:#17212f;
-      color:#d8e1eb;
-      border:1px solid #314052;
-    }
-
-    .history-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-
-    .small-btn{
-      border:1px solid #334155;
-      background:#111827;
-      color:#fff;
-      border-radius:11px;
-      padding:10px 12px;
-      font-size:13px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width:760px){
-      .grid,
-      .receipt-grid{
+    @media (max-width:700px){
+      .formGrid,
+      .receiptBody{
         grid-template-columns:1fr;
       }
 
-      .product-row{
-        grid-template-columns:1fr;
-      }
-
-      .receipt-head{
+      .receiptHead{
         flex-direction:column;
       }
 
-      .folio-card{
+      .folioBox{
         text-align:left;
       }
 
-      .receipt-brand{
+      .receipt{
+        padding:24px 18px;
+      }
+
+      .receiptTitle{
+        font-size:24px;
+      }
+
+      .brandWrap{
         flex-direction:column;
         align-items:center;
         text-align:center;
       }
 
-      .receipt-table-head,
-      .receipt-table-row{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .hero img{
-        width:155px;
+      .receiptLogo{
+        margin:0 auto;
       }
     }
 
     @media print{
-      body{background:#fff}
-      .hero,.panel,.history{display:none !important}
+      body{
+        background:#fff;
+        padding:0;
+      }
+
+      .panel{
+        display:none !important;
+      }
+
       .receipt{
         display:block !important;
         box-shadow:none;
-        border:none;
         border-radius:0;
         margin:0;
+        max-width:none;
         padding:18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="app">
 
-    <div class="hero">
-      <img src="logo.png" alt="Logo">
-      <p>Empresario Independiente</p>
-
-      <div class="top-actions">
-        <button onclick="scrollToSection('form-section')">Formulario</button>
-        <button onclick="scrollToSection('recibo')">Recibo</button>
-        <button onclick="toggleHistory()">Historial</button>
+    <div class="panel">
+      <h1 class="topTitle">RECIBOS AMWAY MÉXICO</h1>
+      <div class="topSub">
+        Ignacio Tabardillo<br>
+        Empresario Independiente Amway<br>
+        ID: 1701181882
       </div>
-    </div>
 
-    <div class="panel" id="form-section">
-      <h2>Formulario de recibo</h2>
-
-      <div class="grid">
+      <div class="formGrid">
         <div class="field">
           <label for="folio">Número de recibo</label>
-          <input id="folio" readonly>
+          <input type="text" id="folio" readonly>
         </div>
 
         <div class="field">
@@ -611,496 +384,226 @@
 
         <div class="field full">
           <label for="cliente">Nombre del cliente</label>
-          <input id="cliente" placeholder="Escribe el nombre del cliente">
+          <input type="text" id="cliente" placeholder="Escribe el nombre del cliente">
         </div>
 
         <div class="field">
-          <label for="modo">Modo</label>
-          <select id="modo" onchange="toggleMode()">
-            <option value="productos">Con productos</option>
-            <option value="concepto">Concepto general</option>
-          </select>
+          <label for="cantidad">Cantidad ($)</label>
+          <input type="number" id="cantidad" placeholder="Ejemplo: 1250" oninput="actualizarImporteLetra()">
         </div>
 
         <div class="field">
-          <label for="cantidad">Cantidad total ($)</label>
-          <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="updateLetterManual()">
+          <label for="importeLetra">Cantidad con letra</label>
+          <input type="text" id="importeLetra" placeholder="Se llena automáticamente">
         </div>
 
         <div class="field full">
-          <label for="letra">Cantidad con letra</label>
-          <input id="letra" placeholder="Se llena automáticamente">
-        </div>
-
-        <div class="field full" id="concepto-wrap">
-          <label for="concepto">Concepto general</label>
+          <label for="concepto">Concepto</label>
           <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
         </div>
       </div>
 
-      <div id="products-wrap" style="margin-top:16px;">
-        <h3 style="margin:0 0 12px;">Productos</h3>
-        <div id="product-rows"></div>
-        <button class="mini-btn add-btn" onclick="addProductRow()">+ Agregar producto</button>
-
-        <div class="summary">
-          <div class="sum-line">
-            <span>Subtotal</span>
-            <span id="subtotal">$0.00</span>
-          </div>
-          <div class="sum-line">
-            <span>Total de piezas</span>
-            <span id="piezas">0</span>
-          </div>
-          <div class="sum-line total">
-            <span>Total</span>
-            <span id="total">$0.00</span>
-          </div>
-        </div>
-      </div>
-
       <div class="actions">
-        <button class="primary" onclick="generateReceipt()">Generar recibo</button>
-        <button class="secondary" onclick="printReceipt()">Guardar / Imprimir PDF</button>
-        <button class="whatsapp" onclick="sendWhatsApp()">WhatsApp</button>
-        <button class="ghost" onclick="resetForm()">Nuevo recibo</button>
+        <button class="btnPrimary" onclick="generarRecibo()">Generar recibo</button>
+        <button class="btnDark" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
+        <button class="btnGhost" onclick="nuevoRecibo()">Nuevo recibo</button>
       </div>
     </div>
 
     <div class="receipt" id="recibo">
-      <div class="receipt-head">
-        <div class="receipt-brand">
-          <img src="logo.png" class="receipt-logo" alt="Logo">
+      <div class="receiptHead">
+        <div class="brandWrap">
+          <img src="logo.PNG" alt="Logo Amway" class="receiptLogo">
           <div>
-            <h1>AMWAY MÉXICO</h1>
-            <p>Empresario Independiente</p>
+            <h1 class="receiptTitle">RECIBOS AMWAY<br>MÉXICO</h1>
+            <div class="receiptSub">
+              Ignacio Tabardillo<br>
+              Empresario Independiente Amway<br>
+              ID: 1701181882
+            </div>
           </div>
         </div>
 
-        <div class="folio-card">
-          <div class="tag">Recibo No.</div>
-          <div class="num" id="r-folio">001</div>
+        <div class="folioBox">
+          <div class="folioLabel">Recibo No.</div>
+          <div class="folioValue" id="rfolio">001</div>
         </div>
       </div>
 
-      <div class="receipt-grid">
-        <div class="receipt-field">
+      <div class="receiptBody">
+        <div class="item">
           <span class="k">Fecha</span>
-          <span class="v" id="r-fecha"></span>
+          <span class="v" id="rfecha"></span>
         </div>
 
-        <div class="receipt-field">
+        <div class="item">
           <span class="k">Cliente</span>
-          <span class="v" id="r-cliente"></span>
+          <span class="v" id="rcliente"></span>
         </div>
 
-        <div class="receipt-field amount-box">
+        <div class="item money">
           <span class="k">Cantidad</span>
-          <span class="v" id="r-cantidad"></span>
+          <span class="v" id="rcantidad"></span>
         </div>
 
-        <div class="receipt-field">
+        <div class="item">
           <span class="k">Importe con letra</span>
-          <span class="v" id="r-letra"></span>
+          <span class="v" id="rletra"></span>
         </div>
 
-        <div class="receipt-field full">
+        <div class="item full">
           <span class="k">Concepto</span>
-          <span class="v" id="r-concepto"></span>
-        </div>
-      </div>
-
-      <div class="receipt-table" id="receipt-table">
-        <div class="receipt-table-head">
-          <div>Producto</div>
-          <div>Cant.</div>
-          <div>Precio</div>
-          <div>Importe</div>
-        </div>
-        <div id="receipt-table-body"></div>
-      </div>
-
-      <div class="receipt-totals" id="receipt-totals">
-        <div class="l">
-          <span>Subtotal</span>
-          <span id="r-subtotal"></span>
-        </div>
-        <div class="l">
-          <span>Total piezas</span>
-          <span id="r-piezas"></span>
-        </div>
-        <div class="l total">
-          <span>Total</span>
-          <span id="r-total"></span>
+          <span class="v" id="rconcepto"></span>
         </div>
       </div>
 
       <div class="signature">
         <img src="firma.PNG" alt="Firma">
-        <div class="signature-line"></div>
-        <div class="signature-text">Firma de recibido</div>
+        <div class="signatureLine"></div>
+        <div class="signatureText">Firma de recibido</div>
       </div>
 
-      <div class="note">Recibo generado para control de entrega y pago de productos.</div>
-    </div>
-
-    <div class="panel history" id="history">
-      <h3>Historial</h3>
-      <div class="actions" style="margin-top:0; margin-bottom:12px;">
-        <button class="ghost" onclick="exportHistory()">Exportar historial</button>
-        <button class="ghost" onclick="clearHistory()">Borrar historial</button>
+      <div class="footNote">
+        Recibo generado para control de entrega y pago de productos.
       </div>
-      <div class="history-list" id="history-list"></div>
     </div>
-
   </div>
 
   <script>
-    const products = [
-      { nombre:"Cal Mag D Advanced", precio:545.00 },
-      { nombre:"CLA 500", precio:1240.00 },
-      { nombre:"Daily Plus 90c", precio:1170.00 },
-      { nombre:"Proteína Vegetal", precio:783.00 },
-      { nombre:"Triple Omega-3", precio:999.00 },
-      { nombre:"XS Bebida energética", precio:41.50 },
-      { nombre:"XS Barra", precio:38.00 },
-      { nombre:"Suero Diario Vitamina C + HA3", precio:1643.99 },
-      { nombre:"Shampoo Anticaída", precio:356.00 },
-      { nombre:"Gel de baño exfoliante", precio:261.00 },
-      { nombre:"Pasta dental multiacción 200 g", precio:178.99 },
-      { nombre:"SA8 detergente líquido concentrado", precio:502.00 }
-    ];
-
-    function money(n){
-      return "$" + Number(n || 0).toLocaleString("es-MX", {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      });
+    function formatearFolio(n){
+      return String(n).padStart(3, "0");
     }
 
-    function formatFolio(n){
-      return String(n).padStart(3,"0");
-    }
-
-    function setCurrentFolio(){
-      let last = localStorage.getItem("amwayMinimalFolio");
-      if(!last){
-        last = 1;
+    function obtenerFolioActual(){
+      let ultimo = localStorage.getItem("amwayUltimoFolio");
+      if(!ultimo){
+        ultimo = 1;
       }else{
-        last = parseInt(last,10);
-        if(isNaN(last) || last < 1) last = 1;
+        ultimo = parseInt(ultimo, 10);
+        if(isNaN(ultimo) || ultimo < 1) ultimo = 1;
       }
-      document.getElementById("folio").value = formatFolio(last);
+      document.getElementById("folio").value = formatearFolio(ultimo);
     }
 
-    function advanceFolio(){
-      const current = parseInt(document.getElementById("folio").value,10);
-      if(!isNaN(current)){
-        localStorage.setItem("amwayMinimalFolio", current + 1);
+    function avanzarFolio(){
+      const actual = parseInt(document.getElementById("folio").value, 10);
+      if(!isNaN(actual)){
+        localStorage.setItem("amwayUltimoFolio", actual + 1);
       }
     }
 
-    function setToday(){
-      const now = new Date();
-      const y = now.getFullYear();
-      const m = String(now.getMonth() + 1).padStart(2,"0");
-      const d = String(now.getDate()).padStart(2,"0");
+    function ponerFechaHoy(){
+      const hoy = new Date();
+      const y = hoy.getFullYear();
+      const m = String(hoy.getMonth() + 1).padStart(2, "0");
+      const d = String(hoy.getDate()).padStart(2, "0");
       document.getElementById("fecha").value = `${y}-${m}-${d}`;
     }
 
-    function prettyDate(v){
-      if(!v) return "";
-      const p = v.split("-");
-      if(p.length !== 3) return v;
-      return `${p[2]}/${p[1]}/${p[0]}`;
+    function fechaBonita(valor){
+      if(!valor) return "";
+      const partes = valor.split("-");
+      if(partes.length !== 3) return valor;
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
     }
 
-    function toWordsWithCents(value){
-      const number = Number(value);
-      if(isNaN(number)) return "";
-      const whole = Math.floor(number);
-      const cents = Math.round((number - whole) * 100);
+    function numeroALetras(numero){
+      numero = parseInt(numero, 10);
+      if(isNaN(numero)) return "";
+      if(numero === 0) return "CERO PESOS";
 
-      function convert(n){
-        if(n === 0) return "CERO";
-        const u = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
-        const sp = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
-        const d = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
-        const c = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+      const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+      const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
+      const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+      const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
 
-        function inner(x){
-          if(x === 0) return "";
-          if(x === 100) return "CIEN";
-          if(x < 10) return u[x];
-          if(x >= 10 && x < 16) return sp[x - 10];
-          if(x < 20) return "DIECI" + u[x - 10];
-          if(x === 20) return "VEINTE";
-          if(x < 30) return "VEINTI" + u[x - 20];
-          if(x < 100){
-            const dd = Math.floor(x / 10);
-            const uu = x % 10;
-            return d[dd] + (uu ? " Y " + u[uu] : "");
-          }
-          if(x < 1000){
-            const cc = Math.floor(x / 100);
-            const rr = x % 100;
-            return c[cc] + (rr ? " " + inner(rr) : "");
-          }
-          if(x < 1000000){
-            const th = Math.floor(x / 1000);
-            const rr = x % 1000;
-            const tx = th === 1 ? "MIL" : inner(th) + " MIL";
-            return tx + (rr ? " " + inner(rr) : "");
-          }
-          if(x < 1000000000){
-            const mi = Math.floor(x / 1000000);
-            const rr = x % 1000000;
-            const tx = mi === 1 ? "UN MILLON" : inner(mi) + " MILLONES";
-            return tx + (rr ? " " + inner(rr) : "");
-          }
-          return String(x);
+      function convertir(n){
+        if(n === 0) return "";
+        if(n === 100) return "CIEN";
+        if(n < 10) return unidades[n];
+        if(n >= 10 && n < 16) return especiales[n - 10];
+        if(n < 20) return "DIECI" + unidades[n - 10];
+        if(n === 20) return "VEINTE";
+        if(n < 30) return "VEINTI" + unidades[n - 20];
+        if(n < 100){
+          const d = Math.floor(n / 10);
+          const u = n % 10;
+          return decenas[d] + (u ? " Y " + unidades[u] : "");
         }
-
-        return inner(n).replace(/\s+/g, " ").trim();
-      }
-
-      return `${convert(whole)} PESOS ${String(cents).padStart(2,"0")}/100 M.N.`;
-    }
-
-    function createProductSelect(selected = ""){
-      const select = document.createElement("select");
-      products.forEach(p => {
-        const option = document.createElement("option");
-        option.value = p.nombre;
-        option.textContent = `${p.nombre} — ${money(p.precio)}`;
-        select.appendChild(option);
-      });
-      if(selected) select.value = selected;
-      return select;
-    }
-
-    function findPrice(name){
-      const p = products.find(x => x.nombre === name);
-      return p ? p.precio : 0;
-    }
-
-    function addProductRow(name = "", qty = 1, price = ""){
-      const container = document.getElementById("product-rows");
-      const row = document.createElement("div");
-      row.className = "product-row";
-
-      const c1 = document.createElement("div");
-      const l1 = document.createElement("label");
-      l1.textContent = "Producto";
-      const select = createProductSelect(name);
-      c1.appendChild(l1);
-      c1.appendChild(select);
-
-      const c2 = document.createElement("div");
-      const l2 = document.createElement("label");
-      l2.textContent = "Cantidad";
-      const inputQty = document.createElement("input");
-      inputQty.type = "number";
-      inputQty.min = "1";
-      inputQty.value = qty;
-      c2.appendChild(l2);
-      c2.appendChild(inputQty);
-
-      const c3 = document.createElement("div");
-      const l3 = document.createElement("label");
-      l3.textContent = "Precio";
-      const inputPrice = document.createElement("input");
-      inputPrice.type = "number";
-      inputPrice.step = "0.01";
-      inputPrice.min = "0";
-      inputPrice.value = price !== "" ? price : findPrice(select.value);
-      c3.appendChild(l3);
-      c3.appendChild(inputPrice);
-
-      const c4 = document.createElement("div");
-      const l4 = document.createElement("label");
-      l4.textContent = "Quitar";
-      const remove = document.createElement("button");
-      remove.className = "mini-btn remove-btn";
-      remove.type = "button";
-      remove.textContent = "×";
-      c4.appendChild(l4);
-      c4.appendChild(remove);
-
-      row.appendChild(c1);
-      row.appendChild(c2);
-      row.appendChild(c3);
-      row.appendChild(c4);
-      container.appendChild(row);
-
-      select.addEventListener("change", () => {
-        inputPrice.value = findPrice(select.value);
-        recalcProducts();
-      });
-
-      inputQty.addEventListener("input", recalcProducts);
-      inputPrice.addEventListener("input", recalcProducts);
-
-      remove.onclick = () => {
-        row.remove();
-        if(document.querySelectorAll("#product-rows .product-row").length === 0){
-          addProductRow();
+        if(n < 1000){
+          const c = Math.floor(n / 100);
+          const r = n % 100;
+          return centenas[c] + (r ? " " + convertir(r) : "");
         }
-        recalcProducts();
-      };
-
-      recalcProducts();
-    }
-
-    function capturedProducts(){
-      const rows = [...document.querySelectorAll("#product-rows .product-row")];
-      return rows.map(row => {
-        const name = row.querySelector("select").value;
-        const qty = Number(row.querySelectorAll("input")[0].value || 0);
-        const price = Number(row.querySelectorAll("input")[1].value || 0);
-        return { nombre:name, cantidad:qty, precio:price, importe:qty * price };
-      }).filter(x => x.cantidad > 0);
-    }
-
-    function recalcProducts(){
-      const items = capturedProducts();
-      let subtotal = 0;
-      let pieces = 0;
-
-      items.forEach(i => {
-        subtotal += i.importe;
-        pieces += i.cantidad;
-      });
-
-      document.getElementById("subtotal").textContent = money(subtotal);
-      document.getElementById("piezas").textContent = pieces;
-      document.getElementById("total").textContent = money(subtotal);
-
-      if(document.getElementById("modo").value === "productos"){
-        document.getElementById("cantidad").value = subtotal ? subtotal.toFixed(2) : "";
-        document.getElementById("letra").value = subtotal ? toWordsWithCents(subtotal) : "";
+        if(n < 1000000){
+          const miles = Math.floor(n / 1000);
+          const resto = n % 1000;
+          let textoMiles = "";
+          if(miles === 1){
+            textoMiles = "MIL";
+          }else{
+            textoMiles = convertir(miles) + " MIL";
+          }
+          return textoMiles + (resto ? " " + convertir(resto) : "");
+        }
+        if(n < 1000000000){
+          const millones = Math.floor(n / 1000000);
+          const resto = n % 1000000;
+          let textoMillones = "";
+          if(millones === 1){
+            textoMillones = "UN MILLON";
+          }else{
+            textoMillones = convertir(millones) + " MILLONES";
+          }
+          return textoMillones + (resto ? " " + convertir(resto) : "");
+        }
+        return String(n);
       }
+
+      return (convertir(numero).trim() + " PESOS").replace(/\s+/g, " ");
     }
 
-    function toggleMode(){
-      const mode = document.getElementById("modo").value;
-      const productsWrap = document.getElementById("products-wrap");
-      const conceptWrap = document.getElementById("concepto-wrap");
-      const amount = document.getElementById("cantidad");
-
-      if(mode === "concepto"){
-        productsWrap.style.display = "none";
-        conceptWrap.style.display = "flex";
-        amount.readOnly = false;
-        updateLetterManual();
-      }else{
-        productsWrap.style.display = "block";
-        conceptWrap.style.display = "none";
-        amount.readOnly = true;
-        recalcProducts();
-      }
+    function actualizarImporteLetra(){
+      const cantidad = document.getElementById("cantidad").value.trim();
+      document.getElementById("importeLetra").value = numeroALetras(cantidad);
     }
 
-    function updateLetterManual(){
-      if(document.getElementById("modo").value === "productos") return;
-      const amount = document.getElementById("cantidad").value.trim();
-      document.getElementById("letra").value = toWordsWithCents(amount);
-    }
-
-    function generateReceipt(){
+    function generarRecibo(){
       const folio = document.getElementById("folio").value.trim();
-      const date = document.getElementById("fecha").value.trim();
-      const client = document.getElementById("cliente").value.trim();
-      const mode = document.getElementById("modo").value;
-      const amount = document.getElementById("cantidad").value.trim();
-      const words = document.getElementById("letra").value.trim();
-      const concept = document.getElementById("concepto").value.trim();
+      const fecha = document.getElementById("fecha").value.trim();
+      const cliente = document.getElementById("cliente").value.trim();
+      const cantidad = document.getElementById("cantidad").value.trim();
+      const importeLetraInput = document.getElementById("importeLetra").value.trim();
+      const concepto = document.getElementById("concepto").value.trim();
 
-      if(!date || !client || !amount){
-        alert("Completa fecha, nombre del cliente y cantidad.");
+      if(!fecha || !cliente || !cantidad || !concepto){
+        alert("Completa fecha, nombre del cliente, cantidad y concepto.");
         return;
       }
 
-      let finalConcept = concept;
-      let items = [];
+      const importeLetraFinal = importeLetraInput || numeroALetras(cantidad);
 
-      if(mode === "productos"){
-        items = capturedProducts();
-        if(items.length === 0){
-          alert("Agrega al menos un producto.");
-          return;
-        }
-        finalConcept = "Compra de productos Amway";
-      }else{
-        if(!concept){
-          alert("Escribe el concepto general.");
-          return;
-        }
-      }
-
-      document.getElementById("r-folio").textContent = folio;
-      document.getElementById("r-fecha").textContent = prettyDate(date);
-      document.getElementById("r-cliente").textContent = client;
-      document.getElementById("r-cantidad").textContent = money(amount);
-      document.getElementById("r-letra").textContent = words || toWordsWithCents(amount);
-      document.getElementById("r-concepto").textContent = finalConcept;
-
-      const table = document.getElementById("receipt-table");
-      const body = document.getElementById("receipt-table-body");
-      const totals = document.getElementById("receipt-totals");
-      body.innerHTML = "";
-
-      if(mode === "productos"){
-        let subtotal = 0;
-        let pieces = 0;
-
-        table.classList.add("active");
-        totals.style.display = "block";
-
-        items.forEach(p => {
-          subtotal += p.importe;
-          pieces += p.cantidad;
-
-          const row = document.createElement("div");
-          row.className = "receipt-table-row";
-          row.innerHTML = `
-            <div>${p.nombre}</div>
-            <div>${p.cantidad}</div>
-            <div>${money(p.precio)}</div>
-            <div>${money(p.importe)}</div>
-          `;
-          body.appendChild(row);
-        });
-
-        document.getElementById("r-subtotal").textContent = money(subtotal);
-        document.getElementById("r-piezas").textContent = pieces;
-        document.getElementById("r-total").textContent = money(subtotal);
-      }else{
-        table.classList.remove("active");
-        totals.style.display = "none";
-      }
+      document.getElementById("rfolio").textContent = folio;
+      document.getElementById("rfecha").textContent = fechaBonita(fecha);
+      document.getElementById("rcliente").textContent = cliente;
+      document.getElementById("rcantidad").textContent = "$" + Number(cantidad).toLocaleString("es-MX");
+      document.getElementById("rletra").textContent = importeLetraFinal;
+      document.getElementById("rconcepto").textContent = concepto;
 
       document.getElementById("recibo").style.display = "block";
 
-      saveHistory({
-        folio,
-        fecha: prettyDate(date),
-        cliente: client,
-        cantidad: money(amount),
-        letra: words || toWordsWithCents(amount),
-        concepto: finalConcept,
-        modo: mode,
-        productos: items
+      avanzarFolio();
+      setTimeout(() => {
+        obtenerFolioActual();
+      }, 50);
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
       });
-
-      advanceFolio();
-      setCurrentFolio();
-      renderHistory();
-
-      document.getElementById("recibo").scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
-    function printReceipt(){
+    function imprimirRecibo(){
       const visible = document.getElementById("recibo").style.display === "block";
       if(!visible){
         alert("Primero genera el recibo.");
@@ -1109,172 +612,19 @@
       window.print();
     }
 
-    function sendWhatsApp(){
-      const client = document.getElementById("cliente").value.trim();
-      const date = document.getElementById("fecha").value.trim();
-      const amount = document.getElementById("cantidad").value.trim();
-      const mode = document.getElementById("modo").value;
-      const concept = document.getElementById("concepto").value.trim();
-
-      if(!date || !amount){
-        alert("Primero llena la información del recibo.");
-        return;
-      }
-
-      let message = `Hola${client ? " " + client : ""}, te comparto el resumen de tu compra.%0A`;
-      message += `Fecha: ${prettyDate(date)}%0A`;
-      message += `Total: ${money(amount)}%0A`;
-
-      if(mode === "productos"){
-        const items = capturedProducts();
-        if(items.length){
-          message += `Productos:%0A`;
-          items.forEach(i => {
-            message += `- ${i.nombre} x${i.cantidad} = ${money(i.importe)}%0A`;
-          });
-        }
-      } else if (concept) {
-        message += `Concepto: ${concept}%0A`;
-      }
-
-      window.open(`https://wa.me/?text=${message}`, "_blank");
-    }
-
-    function resetForm(){
+    function nuevoRecibo(){
       document.getElementById("cliente").value = "";
       document.getElementById("cantidad").value = "";
-      document.getElementById("letra").value = "";
+      document.getElementById("importeLetra").value = "";
       document.getElementById("concepto").value = "";
-      document.getElementById("modo").value = "productos";
       document.getElementById("recibo").style.display = "none";
-      document.getElementById("product-rows").innerHTML = "";
-      addProductRow();
-      setToday();
-      setCurrentFolio();
-      toggleMode();
-      window.scrollTo({ top:0, behavior:"smooth" });
+      ponerFechaHoy();
+      obtenerFolioActual();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function scrollToSection(id){
-      document.getElementById(id).scrollIntoView({ behavior:"smooth", block:"start" });
-    }
-
-    function getHistory(){
-      try{
-        return JSON.parse(localStorage.getItem("amwayPremiumMinimalHistory") || "[]");
-      }catch(e){
-        return [];
-      }
-    }
-
-    function saveHistory(receipt){
-      const history = getHistory();
-      history.unshift({
-        ...receipt,
-        creadoEn: new Date().toLocaleString("es-MX")
-      });
-      localStorage.setItem("amwayPremiumMinimalHistory", JSON.stringify(history.slice(0,100)));
-    }
-
-    function toggleHistory(){
-      const panel = document.getElementById("history");
-      panel.classList.toggle("active");
-      if(panel.classList.contains("active")){
-        renderHistory();
-        panel.scrollIntoView({ behavior:"smooth", block:"start" });
-      }
-    }
-
-    function renderHistory(){
-      const list = document.getElementById("history-list");
-      const history = getHistory();
-      list.innerHTML = "";
-
-      if(history.length === 0){
-        list.innerHTML = `<div class="history-card"><div class="history-meta">Aún no hay recibos guardados.</div></div>`;
-        return;
-      }
-
-      history.forEach((r, index) => {
-        const productsTxt = r.productos && r.productos.length
-          ? `<div class="history-meta" style="margin-top:6px;">${r.productos.map(p => `${p.nombre} (${p.cantidad})`).join("<br>")}</div>`
-          : "";
-
-        const div = document.createElement("div");
-        div.className = "history-card";
-        div.innerHTML = `
-          <div class="history-top">
-            <div>
-              <div class="history-title">Recibo No. ${r.folio}</div>
-              <div class="history-meta">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
-            </div>
-            <div><span class="history-badge">${r.modo === "productos" ? "Con productos" : "Concepto general"}</span></div>
-          </div>
-          <div class="history-meta">${r.concepto}</div>
-          ${productsTxt}
-          <div class="history-meta" style="margin-top:8px;">Guardado: ${r.creadoEn}</div>
-          <div class="history-actions">
-            <button class="small-btn" onclick="loadHistory(${index})">Cargar</button>
-          </div>
-        `;
-        list.appendChild(div);
-      });
-    }
-
-    function loadHistory(index){
-      const history = getHistory();
-      const r = history[index];
-      if(!r) return;
-
-      document.getElementById("cliente").value = r.cliente;
-      document.getElementById("fecha").value = toInputDate(r.fecha);
-      document.getElementById("cantidad").value = cleanAmount(r.cantidad);
-      document.getElementById("letra").value = r.letra || "";
-      document.getElementById("concepto").value = r.concepto || "";
-      document.getElementById("modo").value = r.modo || "concepto";
-
-      document.getElementById("product-rows").innerHTML = "";
-      if(r.productos && r.productos.length){
-        r.productos.forEach(p => addProductRow(p.nombre, p.cantidad, p.precio));
-      }else{
-        addProductRow();
-      }
-
-      toggleMode();
-      scrollToSection("form-section");
-    }
-
-    function toInputDate(text){
-      const p = text.split("/");
-      if(p.length !== 3) return "";
-      return `${p[2]}-${p[1]}-${p[0]}`;
-    }
-
-    function cleanAmount(text){
-      return String(text).replace(/[^0-9.]/g,"");
-    }
-
-    function clearHistory(){
-      if(!confirm("¿Seguro que quieres borrar todo el historial?")) return;
-      localStorage.removeItem("amwayPremiumMinimalHistory");
-      renderHistory();
-    }
-
-    function exportHistory(){
-      const history = getHistory();
-      const blob = new Blob([JSON.stringify(history, null, 2)], { type:"application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "historial-recibos-amway.json";
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    setToday();
-    setCurrentFolio();
-    addProductRow();
-    renderHistory();
-    toggleMode();
+    ponerFechaHoy();
+    obtenerFolioActual();
   </script>
 </body>
 </html>
