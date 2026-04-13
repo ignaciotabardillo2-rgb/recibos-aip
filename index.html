@@ -1,225 +1,1191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asesoría Integral en Pensiones</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amway México</title>
 
-<style>
-body{
-  font-family: Arial;
-  background:#0b0f14;
-  color:white;
-  padding:20px;
-}
+  <style>
+    :root{
+      --bg:#f3f5f8;
+      --card:#ffffff;
+      --line:#d9e0e7;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --blue:#2f5d95;
+      --blue-dark:#234872;
+      --soft:#f8fafc;
+      --green:#198754;
+      --red:#b42318;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:18px;
+    }
 
-.container{
-  max-width:600px;
-  margin:auto;
-}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-input, select{
-  width:100%;
-  padding:15px;
-  margin:10px 0;
-  border-radius:15px;
-  border:none;
-  background:#111827;
-  color:white;
-}
+    .wrap{
+      max-width:850px;
+      margin:0 auto;
+      padding:18px;
+    }
 
-button{
-  width:100%;
-  padding:15px;
-  margin-top:10px;
-  border:none;
-  border-radius:15px;
-  background:#16a34a;
-  color:white;
-  font-weight:bold;
-}
+    .hero{
+      background:linear-gradient(180deg,var(--blue),var(--blue-dark));
+      border-radius:24px;
+      padding:28px 20px;
+      text-align:center;
+      color:white;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
 
-.preview{
-  background:white;
-  color:black;
-  padding:20px;
-  margin-top:20px;
-  border-radius:20px;
-}
+    .hero img{
+      width:170px;
+      max-width:80%;
+      display:block;
+      margin:0 auto 10px;
+    }
 
-.logo{
-  text-align:center;
-}
+    .hero p{
+      margin:0;
+      font-size:18px;
+      opacity:.95;
+    }
 
-.logo img{
-  width:100px;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
 
-.title{
-  text-align:center;
-  font-weight:bold;
-  font-size:24px;
-  margin-top:10px;
-}
+    .card h2,
+    .card h3{
+      margin:0 0 14px;
+      font-size:22px;
+    }
 
-.folio{
-  text-align:right;
-  color:red;
-  font-weight:bold;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
 
-.row{
-  display:flex;
-  justify-content:space-between;
-  margin:10px 0;
-  border-bottom:1px solid #ccc;
-  padding-bottom:5px;
-}
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
 
-.firma{
-  margin-top:40px;
-  text-align:center;
-}
+    .full{
+      grid-column:1 / -1;
+    }
 
-.firma img{
-  width:200px;
-  display:block;
-  margin:auto;
-}
+    label{
+      font-size:13px;
+      font-weight:700;
+      color:var(--text);
+    }
 
-.linea{
-  border-top:2px solid black;
-  margin-top:10px;
-}
-</style>
+    input, select, textarea{
+      width:100%;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:white;
+      color:var(--text);
+      font-size:15px;
+      outline:none;
+    }
+
+    textarea{
+      min-height:90px;
+      resize:vertical;
+    }
+
+    .product-row{
+      display:grid;
+      grid-template-columns:1.5fr .6fr .7fr auto;
+      gap:10px;
+      align-items:end;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:10px;
+      background:var(--soft);
+    }
+
+    .btn{
+      border:none;
+      border-radius:14px;
+      padding:13px 16px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:var(--blue);
+      color:white;
+    }
+
+    .btn-secondary{
+      background:#e9eef5;
+      color:var(--text);
+    }
+
+    .btn-green{
+      background:var(--green);
+      color:white;
+    }
+
+    .btn-red{
+      background:var(--red);
+      color:white;
+      width:44px;
+      height:46px;
+      padding:0;
+      font-size:22px;
+      line-height:1;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .actions .btn{
+      flex:1;
+      min-width:160px;
+    }
+
+    .summary{
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      background:var(--soft);
+    }
+
+    .sum-line{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin:7px 0;
+      font-size:14px;
+    }
+
+    .sum-line.total{
+      border-top:1px solid var(--line);
+      padding-top:10px;
+      margin-top:10px;
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .receipt{
+      display:none;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .receipt-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      border-bottom:2px solid #e6ebf0;
+      padding-bottom:18px;
+      margin-bottom:18px;
+    }
+
+    .receipt-brand{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      flex:1;
+    }
+
+    .receipt-brand img{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+    }
+
+    .receipt-brand h1{
+      margin:0;
+      font-size:28px;
+      color:#374151;
+    }
+
+    .receipt-brand p{
+      margin:8px 0 0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .folio-box{
+      min-width:150px;
+      text-align:right;
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+    }
+
+    .folio-box .tag{
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.8px;
+    }
+
+    .folio-box .num{
+      margin-top:6px;
+      font-size:28px;
+      font-weight:800;
+      color:var(--blue);
+    }
+
+    .receipt-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 24px;
+    }
+
+    .r-field{
+      border-bottom:1px solid #edf1f4;
+      padding:8px 0;
+    }
+
+    .r-field.full{
+      grid-column:1 / -1;
+    }
+
+    .r-field .k{
+      display:block;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      font-weight:700;
+      letter-spacing:.8px;
+      margin-bottom:6px;
+    }
+
+    .r-field .v{
+      display:block;
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .amount-box{
+      background:#eef4f8;
+      border:1px solid #d9e3eb;
+      border-radius:14px;
+      padding:14px;
+    }
+
+    .amount-box .v{
+      font-size:26px;
+      font-weight:800;
+      color:var(--blue);
+    }
+
+    .receipt-table{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      display:none;
+    }
+
+    .receipt-table.active{
+      display:block;
+    }
+
+    .receipt-table-head,
+    .receipt-table-row{
+      display:grid;
+      grid-template-columns:1.8fr .5fr .8fr .8fr;
+      gap:10px;
+      padding:12px 14px;
+      align-items:center;
+    }
+
+    .receipt-table-head{
+      background:#f8fafc;
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--muted);
+      letter-spacing:.8px;
+    }
+
+    .receipt-table-row{
+      border-top:1px solid #edf1f4;
+      font-size:14px;
+    }
+
+    .receipt-totals{
+      margin-top:16px;
+      margin-left:auto;
+      max-width:320px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      background:#fafcff;
+      display:none;
+    }
+
+    .receipt-totals .line{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:7px 0;
+      border-bottom:1px solid #edf1f4;
+      font-size:14px;
+    }
+
+    .receipt-totals .line.total{
+      border-bottom:none;
+      font-size:18px;
+      font-weight:800;
+      color:var(--blue);
+    }
+
+    .signature{
+      margin-top:42px;
+      text-align:center;
+    }
+
+    .signature img{
+      max-width:180px;
+      max-height:68px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 6px;
+    }
+
+    .signature-line{
+      width:220px;
+      border-top:1.5px solid #444;
+      margin:0 auto 8px;
+    }
+
+    .signature-text{
+      font-size:13px;
+      color:#444;
+      font-weight:700;
+    }
+
+    .history{
+      display:none;
+    }
+
+    .history.active{
+      display:block;
+    }
+
+    .history-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .history-card{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      background:#fafcff;
+    }
+
+    .history-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+
+    .history-title{
+      font-weight:800;
+      font-size:16px;
+    }
+
+    .history-meta{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .history-badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eef4f8;
+      border:1px solid #d9e3eb;
+      font-size:11px;
+      font-weight:800;
+      color:#45627f;
+    }
+
+    @media (max-width:760px){
+      .grid,
+      .receipt-grid{
+        grid-template-columns:1fr;
+      }
+
+      .product-row{
+        grid-template-columns:1fr;
+      }
+
+      .receipt-head{
+        flex-direction:column;
+      }
+
+      .folio-box{
+        text-align:left;
+      }
+
+      .receipt-brand{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+
+      .receipt-table-head,
+      .receipt-table-row{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+      }
+
+      .hero,
+      .panel,
+      .history{
+        display:none !important;
+      }
+
+      .receipt{
+        display:block !important;
+        box-shadow:none;
+        border:none;
+        border-radius:0;
+        margin:0;
+        padding:18px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
 
-<div class="container">
+    <div class="hero">
+      <img src="logo.png" alt="Logo">
+      <p>Empresario Independiente</p>
 
-<input id="nombre" placeholder="Nombre">
-<input id="ciudad" placeholder="Ciudad">
-<input id="direccion" placeholder="Dirección">
-<input id="celular" placeholder="Celular">
+      <div class="top-actions">
+        <button class="btn btn-secondary" onclick="scrollToSection('form-section')">Formulario</button>
+        <button class="btn btn-secondary" onclick="scrollToSection('recibo')">Recibo</button>
+        <button class="btn btn-secondary" onclick="toggleHistory()">Historial</button>
+      </div>
+    </div>
 
-<input id="cantidad" type="number" placeholder="Cantidad">
+    <div class="card panel" id="form-section">
+      <h2>Formulario de recibo</h2>
 
-<select id="metodo">
-<option>Efectivo</option>
-<option>Transferencia</option>
-</select>
+      <div class="grid">
+        <div class="field">
+          <label for="folio">Número de recibo</label>
+          <input id="folio" readonly>
+        </div>
 
-<input id="conceptoPago" placeholder="Por concepto de pago">
+        <div class="field">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha">
+        </div>
 
-<input id="letra" placeholder="Importe con letra (auto)">
+        <div class="field full">
+          <label for="cliente">Nombre del cliente</label>
+          <input id="cliente" placeholder="Escribe el nombre del cliente">
+        </div>
 
-<button onclick="generar()">Generar recibo</button>
+        <div class="field">
+          <label for="modo">Modo</label>
+          <select id="modo" onchange="toggleMode()">
+            <option value="productos">Con productos</option>
+            <option value="concepto">Concepto general</option>
+          </select>
+        </div>
 
-<div id="preview"></div>
+        <div class="field">
+          <label for="cantidad">Cantidad total ($)</label>
+          <input type="number" step="0.01" id="cantidad" placeholder="Ejemplo: 1250.50" oninput="updateLetterManual()">
+        </div>
 
-</div>
+        <div class="field full">
+          <label for="letra">Cantidad con letra</label>
+          <input id="letra" placeholder="Se llena automáticamente">
+        </div>
 
-<script>
+        <div class="field full" id="concepto-wrap">
+          <label for="concepto">Concepto general</label>
+          <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
+        </div>
+      </div>
 
-// convertir número a letras
-function numeroALetras(num){
-  const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
-  const especiales = ["diez","once","doce","trece","catorce","quince"];
-  const decenas = ["","","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
-  const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
+      <div id="products-wrap" style="margin-top:16px;">
+        <h3 style="margin:0 0 12px;">Productos</h3>
+        <div id="product-rows"></div>
+        <button class="mini-btn add-btn" onclick="addProductRow()">+ Agregar producto</button>
 
-  if(num==0) return "cero";
+        <div class="summary">
+          <div class="sum-line">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="sum-line">
+            <span>Total de piezas</span>
+            <span id="pieces">0</span>
+          </div>
+          <div class="sum-line total">
+            <span>Total</span>
+            <span id="total">$0.00</span>
+          </div>
+        </div>
+      </div>
 
-  if(num==100) return "cien";
+      <div class="actions">
+        <button class="primary" onclick="generateReceipt()">Generar recibo</button>
+        <button class="secondary" onclick="printReceipt()">Guardar / Imprimir PDF</button>
+        <button class="whatsapp" onclick="sendWhatsApp()">WhatsApp</button>
+        <button class="ghost" onclick="resetForm()">Nuevo recibo</button>
+      </div>
+    </div>
 
-  if(num<10) return unidades[num];
+    <div class="receipt" id="recibo">
+      <div class="receipt-head">
+        <div class="receipt-brand">
+          <img src="logo.png" class="receipt-logo" alt="Logo">
+          <div>
+            <h1>AMWAY MÉXICO</h1>
+            <p>Empresario Independiente</p>
+          </div>
+        </div>
 
-  if(num<16) return especiales[num-10];
+        <div class="folio-box">
+          <div class="tag">Recibo No.</div>
+          <div class="num" id="r-folio">001</div>
+        </div>
+      </div>
 
-  if(num<20) return "dieci"+unidades[num-10];
+      <div class="receipt-grid">
+        <div class="r-field">
+          <span class="k">Fecha</span>
+          <span class="v" id="r-date"></span>
+        </div>
 
-  if(num<30) return num==20 ? "veinte" : "veinti"+unidades[num-20];
+        <div class="r-field">
+          <span class="k">Cliente</span>
+          <span class="v" id="r-client"></span>
+        </div>
 
-  if(num<100){
-    let d=Math.floor(num/10);
-    let r=num%10;
-    return decenas[d]+(r?" y "+unidades[r]:"");
-  }
+        <div class="r-field amount-box">
+          <span class="k">Cantidad</span>
+          <span class="v" id="r-amount"></span>
+        </div>
 
-  if(num<1000){
-    let c=Math.floor(num/100);
-    let r=num%100;
-    return centenas[c]+(r?" "+numeroALetras(r):"");
-  }
+        <div class="r-field">
+          <span class="k">Importe con letra</span>
+          <span class="v" id="r-words"></span>
+        </div>
 
-  if(num<1000000){
-    let m=Math.floor(num/1000);
-    let r=num%1000;
-    return (m==1?"mil":numeroALetras(m)+" mil")+(r?" "+numeroALetras(r):"");
-  }
+        <div class="r-field full">
+          <span class="k">Concepto</span>
+          <span class="v" id="r-concept"></span>
+        </div>
+      </div>
 
-  return num;
-}
+      <div class="receipt-table" id="receipt-table">
+        <div class="receipt-table-head">
+          <div>Producto</div>
+          <div>Cant.</div>
+          <div>Precio</div>
+          <div>Importe</div>
+        </div>
+        <div id="receipt-table-body"></div>
+      </div>
 
-// automático letras
-document.getElementById("cantidad").addEventListener("input", function(){
-  let val = parseInt(this.value);
-  if(!isNaN(val)){
-    document.getElementById("letra").value = (numeroALetras(val)+" pesos").toUpperCase();
-  }
-});
+      <div class="receipt-totals" id="receipt-totals">
+        <div class="line">
+          <span>Subtotal</span>
+          <span id="r-subtotal"></span>
+        </div>
+        <div class="line">
+          <span>Total piezas</span>
+          <span id="r-pieces"></span>
+        </div>
+        <div class="line total">
+          <span>Total</span>
+          <span id="r-total"></span>
+        </div>
+      </div>
 
-function generar(){
+      <div class="signature">
+        <img src="firma.PNG" alt="Firma">
+        <div class="signature-line"></div>
+        <div class="signature-text">Firma de recibido</div>
+      </div>
+    </div>
 
-let nombre = document.getElementById("nombre").value;
-let ciudad = document.getElementById("ciudad").value;
-let direccion = document.getElementById("direccion").value;
-let celular = document.getElementById("celular").value;
-let cantidad = document.getElementById("cantidad").value;
-let metodo = document.getElementById("metodo").value;
-let letra = document.getElementById("letra").value;
-let concepto = document.getElementById("conceptoPago").value;
+    <div class="card panel history" id="history">
+      <h3>Historial</h3>
+      <div class="actions" style="margin-top:0; margin-bottom:12px;">
+        <button class="ghost" onclick="exportHistory()">Exportar historial</button>
+        <button class="ghost" onclick="clearHistory()">Borrar historial</button>
+      </div>
+      <div class="history-list" id="history-list"></div>
+    </div>
 
-let folio = "AIP-" + Math.floor(Math.random()*10000);
+  </div>
 
-let fecha = new Date().toLocaleString("es-MX");
+  <script>
+    const products = [
+      { nombre:"Cal Mag D Advanced", precio:545.00 },
+      { nombre:"CLA 500", precio:1240.00 },
+      { nombre:"Daily Plus 90c", precio:1170.00 },
+      { nombre:"Proteína Vegetal", precio:783.00 },
+      { nombre:"Triple Omega-3", precio:999.00 },
+      { nombre:"XS Bebida energética", precio:41.50 },
+      { nombre:"XS Barra", precio:38.00 },
+      { nombre:"Suero Diario Vitamina C + HA3", precio:1643.99 },
+      { nombre:"Shampoo Anticaída", precio:356.00 },
+      { nombre:"Gel de baño exfoliante", precio:261.00 },
+      { nombre:"Pasta dental multiacción 200 g", precio:178.99 },
+      { nombre:"SA8 detergente líquido concentrado", precio:502.00 }
+    ];
 
-document.getElementById("preview").innerHTML = `
-<div class="preview">
+    function money(n){
+      return "$" + Number(n || 0).toLocaleString("es-MX", {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      });
+    }
 
-<div class="folio">${folio}</div>
+    function formatFolio(n){
+      return String(n).padStart(3,"0");
+    }
 
-<div class="logo">
-<img src="logo.PNG">
-</div>
+    function setCurrentFolio(){
+      let last = localStorage.getItem("amwayCleanFolio");
+      if(!last){
+        last = 1;
+      }else{
+        last = parseInt(last,10);
+        if(isNaN(last) || last < 1) last = 1;
+      }
+      document.getElementById("folio").value = formatFolio(last);
+    }
 
-<div class="title">
-ASESORÍA INTEGRAL EN PENSIONES
-</div>
+    function advanceFolio(){
+      const current = parseInt(document.getElementById("folio").value,10);
+      if(!isNaN(current)){
+        localStorage.setItem("amwayCleanFolio", current + 1);
+      }
+    }
 
-<div class="row"><span>Recibí de</span><span>${nombre}</span></div>
-<div class="row"><span>Ciudad</span><span>${ciudad}</span></div>
-<div class="row"><span>Dirección</span><span>${direccion}</span></div>
-<div class="row"><span>Celular</span><span>${celular}</span></div>
-<div class="row"><span>Cantidad ($)</span><span>$${cantidad}</span></div>
-<div class="row"><span>Método de pago</span><span>${metodo}</span></div>
-<div class="row"><span>Importe con letra</span><span>${letra}</span></div>
-<div class="row"><span>Por concepto de pago</span><span>${concepto}</span></div>
-<div class="row"><span>Fecha</span><span>${fecha}</span></div>
+    function setToday(){
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2,"0");
+      const d = String(now.getDate()).padStart(2,"0");
+      document.getElementById("fecha").value = `${y}-${m}-${d}`;
+    }
 
-<div class="firma">
-<img src="firma.png">
-<div class="linea"></div>
-Firma de recibido
-</div>
+    function prettyDate(v){
+      if(!v) return "";
+      const p = v.split("-");
+      if(p.length !== 3) return v;
+      return `${p[2]}/${p[1]}/${p[0]}`;
+    }
 
-</div>
-`;
+    function toWordsWithCents(value){
+      const number = Number(value);
+      if(isNaN(number)) return "";
+      const whole = Math.floor(number);
+      const cents = Math.round((number - whole) * 100);
 
-}
+      function convert(n){
+        if(n === 0) return "CERO";
+        const u = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+        const sp = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
+        const d = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+        const c = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
 
-</script>
+        function inner(x){
+          if(x === 0) return "";
+          if(x === 100) return "CIEN";
+          if(x < 10) return u[x];
+          if(x >= 10 && x < 16) return sp[x - 10];
+          if(x < 20) return "DIECI" + u[x - 10];
+          if(x === 20) return "VEINTE";
+          if(x < 30) return "VEINTI" + u[x - 20];
+          if(x < 100){
+            const dd = Math.floor(x / 10);
+            const uu = x % 10;
+            return d[dd] + (uu ? " Y " + u[uu] : "");
+          }
+          if(x < 1000){
+            const cc = Math.floor(x / 100);
+            const rr = x % 100;
+            return c[cc] + (rr ? " " + inner(rr) : "");
+          }
+          if(x < 1000000){
+            const th = Math.floor(x / 1000);
+            const rr = x % 1000;
+            const tx = th === 1 ? "MIL" : inner(th) + " MIL";
+            return tx + (rr ? " " + inner(rr) : "");
+          }
+          if(x < 1000000000){
+            const mi = Math.floor(x / 1000000);
+            const rr = x % 1000000;
+            const tx = mi === 1 ? "UN MILLON" : inner(mi) + " MILLONES";
+            return tx + (rr ? " " + inner(rr) : "");
+          }
+          return String(x);
+        }
 
+        return inner(n).replace(/\s+/g, " ").trim();
+      }
+
+      return `${convert(whole)} PESOS ${String(cents).padStart(2,"0")}/100 M.N.`;
+    }
+
+    function createProductSelect(selected = ""){
+      const select = document.createElement("select");
+      products.forEach(p => {
+        const option = document.createElement("option");
+        option.value = p.nombre;
+        option.textContent = `${p.nombre} — ${money(p.precio)}`;
+        select.appendChild(option);
+      });
+      if(selected) select.value = selected;
+      return select;
+    }
+
+    function findPrice(name){
+      const p = products.find(x => x.nombre === name);
+      return p ? p.precio : 0;
+    }
+
+    function addProductRow(name = "", qty = 1, price = ""){
+      const container = document.getElementById("product-rows");
+      const row = document.createElement("div");
+      row.className = "product-row";
+
+      const c1 = document.createElement("div");
+      const l1 = document.createElement("label");
+      l1.textContent = "Producto";
+      const select = createProductSelect(name);
+      c1.appendChild(l1);
+      c1.appendChild(select);
+
+      const c2 = document.createElement("div");
+      const l2 = document.createElement("label");
+      l2.textContent = "Cantidad";
+      const inputQty = document.createElement("input");
+      inputQty.type = "number";
+      inputQty.min = "1";
+      inputQty.value = qty;
+      c2.appendChild(l2);
+      c2.appendChild(inputQty);
+
+      const c3 = document.createElement("div");
+      const l3 = document.createElement("label");
+      l3.textContent = "Precio";
+      const inputPrice = document.createElement("input");
+      inputPrice.type = "number";
+      inputPrice.step = "0.01";
+      inputPrice.min = "0";
+      inputPrice.value = price !== "" ? price : findPrice(select.value);
+      c3.appendChild(l3);
+      c3.appendChild(inputPrice);
+
+      const c4 = document.createElement("div");
+      const l4 = document.createElement("label");
+      l4.textContent = "Quitar";
+      const remove = document.createElement("button");
+      remove.className = "mini-btn remove-btn";
+      remove.type = "button";
+      remove.textContent = "×";
+      c4.appendChild(l4);
+      c4.appendChild(remove);
+
+      row.appendChild(c1);
+      row.appendChild(c2);
+      row.appendChild(c3);
+      row.appendChild(c4);
+      container.appendChild(row);
+
+      select.addEventListener("change", () => {
+        inputPrice.value = findPrice(select.value);
+        recalcProducts();
+      });
+
+      inputQty.addEventListener("input", recalcProducts);
+      inputPrice.addEventListener("input", recalcProducts);
+
+      remove.onclick = () => {
+        row.remove();
+        if(document.querySelectorAll("#product-rows .product-row").length === 0){
+          addProductRow();
+        }
+        recalcProducts();
+      };
+
+      recalcProducts();
+    }
+
+    function capturedProducts(){
+      const rows = [...document.querySelectorAll("#product-rows .product-row")];
+      return rows.map(row => {
+        const name = row.querySelector("select").value;
+        const qty = Number(row.querySelectorAll("input")[0].value || 0);
+        const price = Number(row.querySelectorAll("input")[1].value || 0);
+        return { nombre:name, cantidad:qty, precio:price, importe:qty * price };
+      }).filter(x => x.cantidad > 0);
+    }
+
+    function recalcProducts(){
+      const items = capturedProducts();
+      let subtotal = 0;
+      let pieces = 0;
+
+      items.forEach(i => {
+        subtotal += i.importe;
+        pieces += i.cantidad;
+      });
+
+      document.getElementById("subtotal").textContent = money(subtotal);
+      document.getElementById("pieces").textContent = pieces;
+      document.getElementById("total").textContent = money(subtotal);
+
+      if(document.getElementById("modo").value === "productos"){
+        document.getElementById("cantidad").value = subtotal ? subtotal.toFixed(2) : "";
+        document.getElementById("letra").value = subtotal ? toWordsWithCents(subtotal) : "";
+      }
+    }
+
+    function toggleMode(){
+      const mode = document.getElementById("modo").value;
+      const productsWrap = document.getElementById("products-wrap");
+      const conceptWrap = document.getElementById("concepto-wrap");
+      const amount = document.getElementById("cantidad");
+
+      if(mode === "concepto"){
+        productsWrap.style.display = "none";
+        conceptWrap.style.display = "flex";
+        amount.readOnly = false;
+        updateLetterManual();
+      }else{
+        productsWrap.style.display = "block";
+        conceptWrap.style.display = "none";
+        amount.readOnly = true;
+        recalcProducts();
+      }
+    }
+
+    function updateLetterManual(){
+      if(document.getElementById("modo").value === "productos") return;
+      const amount = document.getElementById("cantidad").value.trim();
+      document.getElementById("letra").value = toWordsWithCents(amount);
+    }
+
+    function generateReceipt(){
+      const folio = document.getElementById("folio").value.trim();
+      const date = document.getElementById("fecha").value.trim();
+      const client = document.getElementById("cliente").value.trim();
+      const mode = document.getElementById("modo").value;
+      const amount = document.getElementById("cantidad").value.trim();
+      const words = document.getElementById("letra").value.trim();
+      const concept = document.getElementById("concepto").value.trim();
+
+      if(!date || !client || !amount){
+        alert("Completa fecha, nombre del cliente y cantidad.");
+        return;
+      }
+
+      let finalConcept = concept;
+      let items = [];
+
+      if(mode === "productos"){
+        items = capturedProducts();
+        if(items.length === 0){
+          alert("Agrega al menos un producto.");
+          return;
+        }
+        finalConcept = "Compra de productos Amway";
+      }else{
+        if(!concept){
+          alert("Escribe el concepto general.");
+          return;
+        }
+      }
+
+      document.getElementById("r-folio").textContent = folio;
+      document.getElementById("r-date").textContent = prettyDate(date);
+      document.getElementById("r-client").textContent = client;
+      document.getElementById("r-amount").textContent = money(amount);
+      document.getElementById("r-words").textContent = words || toWordsWithCents(amount);
+      document.getElementById("r-concept").textContent = finalConcept;
+
+      const table = document.getElementById("receipt-table");
+      const body = document.getElementById("receipt-table-body");
+      const totals = document.getElementById("receipt-totals");
+      body.innerHTML = "";
+
+      if(mode === "productos"){
+        let subtotal = 0;
+        let pieces = 0;
+
+        table.classList.add("active");
+        totals.style.display = "block";
+
+        items.forEach(p => {
+          subtotal += p.importe;
+          pieces += p.cantidad;
+
+          const row = document.createElement("div");
+          row.className = "receipt-table-row";
+          row.innerHTML = `
+            <div>${p.nombre}</div>
+            <div>${p.cantidad}</div>
+            <div>${money(p.precio)}</div>
+            <div>${money(p.importe)}</div>
+          `;
+          body.appendChild(row);
+        });
+
+        document.getElementById("r-subtotal").textContent = money(subtotal);
+        document.getElementById("r-pieces").textContent = pieces;
+        document.getElementById("r-total").textContent = money(subtotal);
+      }else{
+        table.classList.remove("active");
+        totals.style.display = "none";
+      }
+
+      document.getElementById("recibo").style.display = "block";
+
+      saveHistory({
+        folio,
+        fecha: prettyDate(date),
+        cliente: client,
+        cantidad: money(amount),
+        letra: words || toWordsWithCents(amount),
+        concepto: finalConcept,
+        modo: mode,
+        productos: items
+      });
+
+      advanceFolio();
+      setCurrentFolio();
+      renderHistory();
+
+      document.getElementById("recibo").scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function printReceipt(){
+      const visible = document.getElementById("recibo").style.display === "block";
+      if(!visible){
+        alert("Primero genera el recibo.");
+        return;
+      }
+      window.print();
+    }
+
+    function sendWhatsApp(){
+      const client = document.getElementById("cliente").value.trim();
+      const date = document.getElementById("fecha").value.trim();
+      const amount = document.getElementById("cantidad").value.trim();
+      const mode = document.getElementById("modo").value;
+      const concept = document.getElementById("concepto").value.trim();
+
+      if(!date || !amount){
+        alert("Primero llena la información del recibo.");
+        return;
+      }
+
+      let message = `Hola${client ? " " + client : ""}, te comparto el resumen de tu compra.%0A`;
+      message += `Fecha: ${prettyDate(date)}%0A`;
+      message += `Total: ${money(amount)}%0A`;
+
+      if(mode === "productos"){
+        const items = capturedProducts();
+        if(items.length){
+          message += `Productos:%0A`;
+          items.forEach(i => {
+            message += `- ${i.nombre} x${i.cantidad} = ${money(i.importe)}%0A`;
+          });
+        }
+      } else if (concept) {
+        message += `Concepto: ${concept}%0A`;
+      }
+
+      window.open(`https://wa.me/?text=${message}`, "_blank");
+    }
+
+    function resetForm(){
+      document.getElementById("cliente").value = "";
+      document.getElementById("cantidad").value = "";
+      document.getElementById("letra").value = "";
+      document.getElementById("concepto").value = "";
+      document.getElementById("modo").value = "productos";
+      document.getElementById("recibo").style.display = "none";
+      document.getElementById("product-rows").innerHTML = "";
+      addProductRow();
+      setToday();
+      setCurrentFolio();
+      toggleMode();
+      window.scrollTo({ top:0, behavior:"smooth" });
+    }
+
+    function scrollToSection(id){
+      document.getElementById(id).scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function getHistory(){
+      try{
+        return JSON.parse(localStorage.getItem("amwayCleanHistory") || "[]");
+      }catch(e){
+        return [];
+      }
+    }
+
+    function saveHistory(receipt){
+      const history = getHistory();
+      history.unshift({
+        ...receipt,
+        creadoEn: new Date().toLocaleString("es-MX")
+      });
+      localStorage.setItem("amwayCleanHistory", JSON.stringify(history.slice(0,100)));
+    }
+
+    function toggleHistory(){
+      const panel = document.getElementById("history");
+      panel.classList.toggle("active");
+      if(panel.classList.contains("active")){
+        renderHistory();
+        panel.scrollIntoView({ behavior:"smooth", block:"start" });
+      }
+    }
+
+    function renderHistory(){
+      const list = document.getElementById("history-list");
+      const history = getHistory();
+      list.innerHTML = "";
+
+      if(history.length === 0){
+        list.innerHTML = `<div class="history-card"><div class="history-meta">Aún no hay recibos guardados.</div></div>`;
+        return;
+      }
+
+      history.forEach((r, index) => {
+        const productsTxt = r.productos && r.productos.length
+          ? `<div class="history-meta" style="margin-top:6px;">${r.productos.map(p => `${p.nombre} (${p.cantidad})`).join("<br>")}</div>`
+          : "";
+
+        const div = document.createElement("div");
+        div.className = "history-card";
+        div.innerHTML = `
+          <div class="history-top">
+            <div>
+              <div class="history-title">Recibo No. ${r.folio}</div>
+              <div class="history-meta">${r.cliente}<br>${r.fecha}<br>${r.cantidad}</div>
+            </div>
+            <div><span class="history-badge">${r.modo === "productos" ? "Con productos" : "Concepto general"}</span></div>
+          </div>
+          <div class="history-meta">${r.concepto}</div>
+          ${productsTxt}
+          <div class="history-meta" style="margin-top:8px;">Guardado: ${r.creadoEn}</div>
+          <div class="history-actions">
+            <button class="small-btn" onclick="loadHistory(${index})">Cargar</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function loadHistory(index){
+      const history = getHistory();
+      const r = history[index];
+      if(!r) return;
+
+      document.getElementById("cliente").value = r.cliente;
+      document.getElementById("fecha").value = toInputDate(r.fecha);
+      document.getElementById("cantidad").value = cleanAmount(r.cantidad);
+      document.getElementById("letra").value = r.letra || "";
+      document.getElementById("concepto").value = r.concepto || "";
+      document.getElementById("modo").value = r.modo || "concepto";
+
+      document.getElementById("product-rows").innerHTML = "";
+      if(r.productos && r.productos.length){
+        r.productos.forEach(p => addProductRow(p.nombre, p.cantidad, p.precio));
+      }else{
+        addProductRow();
+      }
+
+      toggleMode();
+      scrollToSection("form-section");
+    }
+
+    function toInputDate(text){
+      const p = text.split("/");
+      if(p.length !== 3) return "";
+      return `${p[2]}-${p[1]}-${p[0]}`;
+    }
+
+    function cleanAmount(text){
+      return String(text).replace(/[^0-9.]/g,"");
+    }
+
+    function clearHistory(){
+      if(!confirm("¿Seguro que quieres borrar todo el historial?")) return;
+      localStorage.removeItem("amwayCleanHistory");
+      renderHistory();
+    }
+
+    function exportHistory(){
+      const history = getHistory();
+      const blob = new Blob([JSON.stringify(history, null, 2)], { type:"application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "historial-recibos-amway.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    setToday();
+    setCurrentFolio();
+    addProductRow();
+    renderHistory();
+    toggleMode();
+  </script>
 </body>
 </html>
