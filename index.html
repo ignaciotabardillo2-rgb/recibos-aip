@@ -1,630 +1,225 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recibos Amway México</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesoría Integral en Pensiones</title>
 
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#111827;
-      --card2:#0f172a;
-      --line:#263041;
-      --text:#e5e7eb;
-      --muted:#9ca3af;
-      --white:#ffffff;
-      --dark:#111111;
-      --accent:#2f4b66;
-      --accent2:#1d3557;
-      --soft:#e9eef5;
-      --gray:#4b5563;
-      --gray2:#6b7280;
-    }
+<style>
+body{
+  font-family: Arial;
+  background:#0b0f14;
+  color:white;
+  padding:20px;
+}
 
-    *{box-sizing:border-box}
+.container{
+  max-width:600px;
+  margin:auto;
+}
 
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      background:radial-gradient(circle at top, #111827 0%, #0b0f14 55%);
-      color:var(--text);
-      padding:22px 14px 40px;
-    }
+input, select{
+  width:100%;
+  padding:15px;
+  margin:10px 0;
+  border-radius:15px;
+  border:none;
+  background:#111827;
+  color:white;
+}
 
-    .app{
-      max-width:780px;
-      margin:0 auto;
-    }
+button{
+  width:100%;
+  padding:15px;
+  margin-top:10px;
+  border:none;
+  border-radius:15px;
+  background:#16a34a;
+  color:white;
+  font-weight:bold;
+}
 
-    .panel{
-      background:linear-gradient(180deg, rgba(17,24,39,.98), rgba(15,23,42,.98));
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:22px;
-      box-shadow:0 18px 45px rgba(0,0,0,.28);
-      margin-bottom:18px;
-    }
+.preview{
+  background:white;
+  color:black;
+  padding:20px;
+  margin-top:20px;
+  border-radius:20px;
+}
 
-    .topTitle{
-      margin:0 0 8px;
-      font-size:28px;
-      line-height:1.1;
-      font-weight:800;
-      color:#f3f4f6;
-      text-align:center;
-      letter-spacing:.3px;
-    }
+.logo{
+  text-align:center;
+}
 
-    .topSub{
-      text-align:center;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:14px;
-      margin-bottom:22px;
-    }
+.logo img{
+  width:100px;
+}
 
-    .formGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
+.title{
+  text-align:center;
+  font-weight:bold;
+  font-size:24px;
+  margin-top:10px;
+}
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-    }
+.folio{
+  text-align:right;
+  color:red;
+  font-weight:bold;
+}
 
-    .full{
-      grid-column:1 / -1;
-    }
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+  border-bottom:1px solid #ccc;
+  padding-bottom:5px;
+}
 
-    label{
-      font-size:14px;
-      font-weight:700;
-      color:#f3f4f6;
-    }
+.firma{
+  margin-top:40px;
+  text-align:center;
+}
 
-    input, textarea{
-      width:100%;
-      border:1px solid #334155;
-      background:#0f172a;
-      color:#f8fafc;
-      border-radius:12px;
-      padding:14px 14px;
-      font-size:15px;
-      outline:none;
-      transition:.18s ease;
-    }
+.firma img{
+  width:200px;
+  display:block;
+  margin:auto;
+}
 
-    textarea{
-      min-height:96px;
-      resize:vertical;
-    }
-
-    input::placeholder,
-    textarea::placeholder{
-      color:#94a3b8;
-    }
-
-    input:focus, textarea:focus{
-      border-color:#64748b;
-      box-shadow:0 0 0 3px rgba(148,163,184,.12);
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    button{
-      border:none;
-      border-radius:12px;
-      padding:14px 18px;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
-      transition:.15s ease;
-    }
-
-    button:hover{
-      transform:translateY(-1px);
-    }
-
-    .btnPrimary{
-      background:#334a62;
-      color:#fff;
-      flex:1;
-      min-width:180px;
-    }
-
-    .btnDark{
-      background:#e5e7eb;
-      color:#111827;
-      flex:1;
-      min-width:180px;
-    }
-
-    .btnGhost{
-      background:#1f2937;
-      color:#f9fafb;
-      flex:1;
-      min-width:180px;
-      border:1px solid #374151;
-    }
-
-    .receipt{
-      display:none;
-      background:#fff;
-      color:#111;
-      border-radius:18px;
-      padding:34px 30px;
-      box-shadow:0 16px 36px rgba(0,0,0,.22);
-      max-width:760px;
-      margin:0 auto;
-    }
-
-    .receiptHead{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      margin-bottom:22px;
-      padding-bottom:18px;
-      border-bottom:2px solid #d7dce3;
-    }
-
-    .brandWrap{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      flex:1;
-    }
-
-    .receiptLogo{
-      width:86px;
-      height:86px;
-      object-fit:contain;
-      filter:grayscale(100%) contrast(110%);
-    }
-
-    .receiptTitle{
-      margin:0;
-      font-size:30px;
-      line-height:1.05;
-      color:#4a4a4a;
-      font-weight:800;
-      letter-spacing:.5px;
-    }
-
-    .receiptSub{
-      margin-top:8px;
-      font-size:14px;
-      color:#666;
-      line-height:1.6;
-    }
-
-    .folioBox{
-      min-width:145px;
-      text-align:right;
-    }
-
-    .folioLabel{
-      font-size:12px;
-      color:#6b7280;
-      text-transform:uppercase;
-      letter-spacing:.9px;
-      font-weight:700;
-    }
-
-    .folioValue{
-      margin-top:6px;
-      font-size:28px;
-      font-weight:800;
-      color:#2f4b66;
-    }
-
-    .receiptBody{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px 24px;
-      margin-top:6px;
-    }
-
-    .item{
-      padding:10px 0;
-      border-bottom:1px solid #eceff4;
-    }
-
-    .item.full{
-      grid-column:1 / -1;
-    }
-
-    .k{
-      display:block;
-      font-size:12px;
-      color:#6b7280;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      margin-bottom:7px;
-      font-weight:700;
-    }
-
-    .v{
-      display:block;
-      font-size:16px;
-      color:#111827;
-      line-height:1.5;
-      word-break:break-word;
-    }
-
-    .money{
-      background:#edf3f8;
-      border:1px solid #d4dde8;
-      border-radius:14px;
-      padding:14px;
-    }
-
-    .money .v{
-      font-size:25px;
-      font-weight:800;
-      color:#2f4b66;
-    }
-
-    .signature{
-      margin-top:48px;
-      text-align:center;
-    }
-
-    .signature img{
-      max-width:180px;
-      max-height:68px;
-      object-fit:contain;
-      display:block;
-      margin:0 auto 4px;
-    }
-
-    .signatureLine{
-      width:230px;
-      border-top:1.8px solid #444;
-      margin:0 auto 8px;
-    }
-
-    .signatureText{
-      font-size:13px;
-      color:#444;
-      font-weight:700;
-    }
-
-    .footNote{
-      margin-top:24px;
-      font-size:12px;
-      color:#7b8190;
-      text-align:center;
-    }
-
-    @media (max-width:700px){
-      .formGrid,
-      .receiptBody{
-        grid-template-columns:1fr;
-      }
-
-      .receiptHead{
-        flex-direction:column;
-      }
-
-      .folioBox{
-        text-align:left;
-      }
-
-      .receipt{
-        padding:24px 18px;
-      }
-
-      .receiptTitle{
-        font-size:24px;
-      }
-
-      .brandWrap{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-      }
-
-      .receiptLogo{
-        margin:0 auto;
-      }
-    }
-
-    @media print{
-      body{
-        background:#fff;
-        padding:0;
-      }
-
-      .panel{
-        display:none !important;
-      }
-
-      .receipt{
-        display:block !important;
-        box-shadow:none;
-        border-radius:0;
-        margin:0;
-        max-width:none;
-        padding:18px;
-      }
-    }
-  </style>
+.linea{
+  border-top:2px solid black;
+  margin-top:10px;
+}
+</style>
 </head>
+
 <body>
-  <div class="app">
 
-    <div class="panel">
-      <h1 class="topTitle">RECIBOS AMWAY MÉXICO</h1>
-      <div class="topSub">
-        Ignacio Tabardillo<br>
-        Empresario Independiente Amway<br>
-        ID: 1701181882
-      </div>
+<div class="container">
 
-      <div class="formGrid">
-        <div class="field">
-          <label for="folio">Número de recibo</label>
-          <input type="text" id="folio" readonly>
-        </div>
+<input id="nombre" placeholder="Nombre">
+<input id="ciudad" placeholder="Ciudad">
+<input id="direccion" placeholder="Dirección">
+<input id="celular" placeholder="Celular">
 
-        <div class="field">
-          <label for="fecha">Fecha</label>
-          <input type="date" id="fecha">
-        </div>
+<input id="cantidad" type="number" placeholder="Cantidad">
 
-        <div class="field full">
-          <label for="cliente">Nombre del cliente</label>
-          <input type="text" id="cliente" placeholder="Escribe el nombre del cliente">
-        </div>
+<select id="metodo">
+<option>Efectivo</option>
+<option>Transferencia</option>
+</select>
 
-        <div class="field">
-          <label for="cantidad">Cantidad ($)</label>
-          <input type="number" id="cantidad" placeholder="Ejemplo: 1250" oninput="actualizarImporteLetra()">
-        </div>
+<input id="conceptoPago" placeholder="Por concepto de pago">
 
-        <div class="field">
-          <label for="importeLetra">Cantidad con letra</label>
-          <input type="text" id="importeLetra" placeholder="Se llena automáticamente">
-        </div>
+<input id="letra" placeholder="Importe con letra (auto)">
 
-        <div class="field full">
-          <label for="concepto">Concepto</label>
-          <textarea id="concepto" placeholder="Ejemplo: Compra de productos Amway"></textarea>
-        </div>
-      </div>
+<button onclick="generar()">Generar recibo</button>
 
-      <div class="actions">
-        <button class="btnPrimary" onclick="generarRecibo()">Generar recibo</button>
-        <button class="btnDark" onclick="imprimirRecibo()">Guardar / Imprimir PDF</button>
-        <button class="btnGhost" onclick="nuevoRecibo()">Nuevo recibo</button>
-      </div>
-    </div>
+<div id="preview"></div>
 
-    <div class="receipt" id="recibo">
-      <div class="receiptHead">
-        <div class="brandWrap">
-          <img src="logo.PNG" alt="Logo Amway" class="receiptLogo">
-          <div>
-            <h1 class="receiptTitle">RECIBOS AMWAY<br>MÉXICO</h1>
-            <div class="receiptSub">
-              Ignacio Tabardillo<br>
-              Empresario Independiente Amway<br>
-              ID: 1701181882
-            </div>
-          </div>
-        </div>
+</div>
 
-        <div class="folioBox">
-          <div class="folioLabel">Recibo No.</div>
-          <div class="folioValue" id="rfolio">001</div>
-        </div>
-      </div>
+<script>
 
-      <div class="receiptBody">
-        <div class="item">
-          <span class="k">Fecha</span>
-          <span class="v" id="rfecha"></span>
-        </div>
+// convertir número a letras
+function numeroALetras(num){
+  const unidades = ["","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];
+  const especiales = ["diez","once","doce","trece","catorce","quince"];
+  const decenas = ["","","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];
+  const centenas = ["","ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];
 
-        <div class="item">
-          <span class="k">Cliente</span>
-          <span class="v" id="rcliente"></span>
-        </div>
+  if(num==0) return "cero";
 
-        <div class="item money">
-          <span class="k">Cantidad</span>
-          <span class="v" id="rcantidad"></span>
-        </div>
+  if(num==100) return "cien";
 
-        <div class="item">
-          <span class="k">Importe con letra</span>
-          <span class="v" id="rletra"></span>
-        </div>
+  if(num<10) return unidades[num];
 
-        <div class="item full">
-          <span class="k">Concepto</span>
-          <span class="v" id="rconcepto"></span>
-        </div>
-      </div>
+  if(num<16) return especiales[num-10];
 
-      <div class="signature">
-        <img src="firma.PNG" alt="Firma">
-        <div class="signatureLine"></div>
-        <div class="signatureText">Firma de recibido</div>
-      </div>
+  if(num<20) return "dieci"+unidades[num-10];
 
-      <div class="footNote">
-        Recibo generado para control de entrega y pago de productos.
-      </div>
-    </div>
-  </div>
+  if(num<30) return num==20 ? "veinte" : "veinti"+unidades[num-20];
 
-  <script>
-    function formatearFolio(n){
-      return String(n).padStart(3, "0");
-    }
+  if(num<100){
+    let d=Math.floor(num/10);
+    let r=num%10;
+    return decenas[d]+(r?" y "+unidades[r]:"");
+  }
 
-    function obtenerFolioActual(){
-      let ultimo = localStorage.getItem("amwayUltimoFolio");
-      if(!ultimo){
-        ultimo = 1;
-      }else{
-        ultimo = parseInt(ultimo, 10);
-        if(isNaN(ultimo) || ultimo < 1) ultimo = 1;
-      }
-      document.getElementById("folio").value = formatearFolio(ultimo);
-    }
+  if(num<1000){
+    let c=Math.floor(num/100);
+    let r=num%100;
+    return centenas[c]+(r?" "+numeroALetras(r):"");
+  }
 
-    function avanzarFolio(){
-      const actual = parseInt(document.getElementById("folio").value, 10);
-      if(!isNaN(actual)){
-        localStorage.setItem("amwayUltimoFolio", actual + 1);
-      }
-    }
+  if(num<1000000){
+    let m=Math.floor(num/1000);
+    let r=num%1000;
+    return (m==1?"mil":numeroALetras(m)+" mil")+(r?" "+numeroALetras(r):"");
+  }
 
-    function ponerFechaHoy(){
-      const hoy = new Date();
-      const y = hoy.getFullYear();
-      const m = String(hoy.getMonth() + 1).padStart(2, "0");
-      const d = String(hoy.getDate()).padStart(2, "0");
-      document.getElementById("fecha").value = `${y}-${m}-${d}`;
-    }
+  return num;
+}
 
-    function fechaBonita(valor){
-      if(!valor) return "";
-      const partes = valor.split("-");
-      if(partes.length !== 3) return valor;
-      return `${partes[2]}/${partes[1]}/${partes[0]}`;
-    }
+// automático letras
+document.getElementById("cantidad").addEventListener("input", function(){
+  let val = parseInt(this.value);
+  if(!isNaN(val)){
+    document.getElementById("letra").value = (numeroALetras(val)+" pesos").toUpperCase();
+  }
+});
 
-    function numeroALetras(numero){
-      numero = parseInt(numero, 10);
-      if(isNaN(numero)) return "";
-      if(numero === 0) return "CERO PESOS";
+function generar(){
 
-      const unidades = ["", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
-      const especiales = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE"];
-      const decenas = ["", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
-      const centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+let nombre = document.getElementById("nombre").value;
+let ciudad = document.getElementById("ciudad").value;
+let direccion = document.getElementById("direccion").value;
+let celular = document.getElementById("celular").value;
+let cantidad = document.getElementById("cantidad").value;
+let metodo = document.getElementById("metodo").value;
+let letra = document.getElementById("letra").value;
+let concepto = document.getElementById("conceptoPago").value;
 
-      function convertir(n){
-        if(n === 0) return "";
-        if(n === 100) return "CIEN";
-        if(n < 10) return unidades[n];
-        if(n >= 10 && n < 16) return especiales[n - 10];
-        if(n < 20) return "DIECI" + unidades[n - 10];
-        if(n === 20) return "VEINTE";
-        if(n < 30) return "VEINTI" + unidades[n - 20];
-        if(n < 100){
-          const d = Math.floor(n / 10);
-          const u = n % 10;
-          return decenas[d] + (u ? " Y " + unidades[u] : "");
-        }
-        if(n < 1000){
-          const c = Math.floor(n / 100);
-          const r = n % 100;
-          return centenas[c] + (r ? " " + convertir(r) : "");
-        }
-        if(n < 1000000){
-          const miles = Math.floor(n / 1000);
-          const resto = n % 1000;
-          let textoMiles = "";
-          if(miles === 1){
-            textoMiles = "MIL";
-          }else{
-            textoMiles = convertir(miles) + " MIL";
-          }
-          return textoMiles + (resto ? " " + convertir(resto) : "");
-        }
-        if(n < 1000000000){
-          const millones = Math.floor(n / 1000000);
-          const resto = n % 1000000;
-          let textoMillones = "";
-          if(millones === 1){
-            textoMillones = "UN MILLON";
-          }else{
-            textoMillones = convertir(millones) + " MILLONES";
-          }
-          return textoMillones + (resto ? " " + convertir(resto) : "");
-        }
-        return String(n);
-      }
+let folio = "AIP-" + Math.floor(Math.random()*10000);
 
-      return (convertir(numero).trim() + " PESOS").replace(/\s+/g, " ");
-    }
+let fecha = new Date().toLocaleString("es-MX");
 
-    function actualizarImporteLetra(){
-      const cantidad = document.getElementById("cantidad").value.trim();
-      document.getElementById("importeLetra").value = numeroALetras(cantidad);
-    }
+document.getElementById("preview").innerHTML = `
+<div class="preview">
 
-    function generarRecibo(){
-      const folio = document.getElementById("folio").value.trim();
-      const fecha = document.getElementById("fecha").value.trim();
-      const cliente = document.getElementById("cliente").value.trim();
-      const cantidad = document.getElementById("cantidad").value.trim();
-      const importeLetraInput = document.getElementById("importeLetra").value.trim();
-      const concepto = document.getElementById("concepto").value.trim();
+<div class="folio">${folio}</div>
 
-      if(!fecha || !cliente || !cantidad || !concepto){
-        alert("Completa fecha, nombre del cliente, cantidad y concepto.");
-        return;
-      }
+<div class="logo">
+<img src="logo.PNG">
+</div>
 
-      const importeLetraFinal = importeLetraInput || numeroALetras(cantidad);
+<div class="title">
+ASESORÍA INTEGRAL EN PENSIONES
+</div>
 
-      document.getElementById("rfolio").textContent = folio;
-      document.getElementById("rfecha").textContent = fechaBonita(fecha);
-      document.getElementById("rcliente").textContent = cliente;
-      document.getElementById("rcantidad").textContent = "$" + Number(cantidad).toLocaleString("es-MX");
-      document.getElementById("rletra").textContent = importeLetraFinal;
-      document.getElementById("rconcepto").textContent = concepto;
+<div class="row"><span>Recibí de</span><span>${nombre}</span></div>
+<div class="row"><span>Ciudad</span><span>${ciudad}</span></div>
+<div class="row"><span>Dirección</span><span>${direccion}</span></div>
+<div class="row"><span>Celular</span><span>${celular}</span></div>
+<div class="row"><span>Cantidad ($)</span><span>$${cantidad}</span></div>
+<div class="row"><span>Método de pago</span><span>${metodo}</span></div>
+<div class="row"><span>Importe con letra</span><span>${letra}</span></div>
+<div class="row"><span>Por concepto de pago</span><span>${concepto}</span></div>
+<div class="row"><span>Fecha</span><span>${fecha}</span></div>
 
-      document.getElementById("recibo").style.display = "block";
+<div class="firma">
+<img src="firma.png">
+<div class="linea"></div>
+Firma de recibido
+</div>
 
-      avanzarFolio();
-      setTimeout(() => {
-        obtenerFolioActual();
-      }, 50);
+</div>
+`;
 
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-      });
-    }
+}
 
-    function imprimirRecibo(){
-      const visible = document.getElementById("recibo").style.display === "block";
-      if(!visible){
-        alert("Primero genera el recibo.");
-        return;
-      }
-      window.print();
-    }
+</script>
 
-    function nuevoRecibo(){
-      document.getElementById("cliente").value = "";
-      document.getElementById("cantidad").value = "";
-      document.getElementById("importeLetra").value = "";
-      document.getElementById("concepto").value = "";
-      document.getElementById("recibo").style.display = "none";
-      ponerFechaHoy();
-      obtenerFolioActual();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    ponerFechaHoy();
-    obtenerFolioActual();
-  </script>
 </body>
 </html>
